@@ -1,3 +1,10 @@
+# [3.17.0-dev.1](https://github.com/wchill/anddea-rvx-morphed/compare/v3.16.0...v3.17.0-dev.1) (2026-02-01)
+
+
+### Features
+
+* Morphe compatibility ([3131248](https://github.com/wchill/anddea-rvx-morphed/commit/3131248b13b5033075e634dc828b84945ba0f21d))
+
 # [3.16.0](https://github.com/anddea/revanced-patches/compare/v3.15.0...v3.16.0) (2026-01-30)
 
 

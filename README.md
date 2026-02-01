@@ -2,7 +2,7 @@
 <img src="assets/rvx-logo.png" alt="RVX logo" width="128">
 
     
-## 🧩 ReVanced Extended Patches
+## 🧩 anddea's ReVanced Extended Patches adapted for Morphe
 [![Static Badge](https://img.shields.io/badge/RVX_Wiki-gray?logo=github)](https://github.com/anddea/revanced-patches/wiki)   [![Static Badge](https://img.shields.io/badge/Translations-gray?logo=crowdin)](https://rvxtranslate.netlify.app/)
 <br>
 [![Static Badge](https://img.shields.io/badge/Telegram-Community-gray?logo=telegram&color=%2326A5E4)](https://t.me/AnddeaChat)   [![Static Badge](https://img.shields.io/badge/Reddit-RVX-gray?logo=reddit&color=red)](https://reddit.com/r/revancedextended)   [![Static Badge](https://img.shields.io/badge/Reddit-YTAdvanced-gray?logo=reddit&color=yellow)](https://www.reddit.com/r/YTadvanced)
@@ -13,6 +13,8 @@
 Check the [wiki](https://github.com/anddea/revanced-patches/wiki) for resources on patching, customization, and debugging.
 
 Report issues [here](https://github.com/inotia00/ReVanced_Extended).
+
+This app uses code from Morphe. To learn more, visit https://morphe.software
 
 ## 📋 List of patches in this repository
 
@@ -137,28 +139,6 @@ Report issues [here](https://github.com/inotia00/ReVanced_Extended).
 | `Watch history` | Adds an option to change the domain of the watch history or check its status. | 6.20.51 ~ 8.30.54 |
 </details>
 
-### [📦 `com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage)
-<details>
-
-| 💊 Patch | 📜 Description | 🏹 Target Version |
-|:--------:|:--------------:|:-----------------:|
-| `Change package name` | Changes the package name for Reddit to the name specified in patch options. | 2024.17.0 ~ 2025.12.1 |
-| `Custom branding name for Reddit` | Changes the Reddit app name to the name specified in patch options. | 2024.17.0 ~ 2025.12.1 |
-| `Disable screenshot popup` | Adds an option to disable the popup that appears when taking a screenshot. | 2024.17.0 ~ 2025.12.1 |
-| `Hide Recently Visited shelf` | Adds an option to hide the Recently Visited shelf in the sidebar. | 2024.17.0 ~ 2025.12.1 |
-| `Hide Trending Today shelf` | Adds an option to hide the Trending Today shelf from search suggestions. | 2024.17.0 ~ 2025.12.1 |
-| `Hide ads` | Adds options to hide ads. | 2024.17.0 ~ 2025.12.1 |
-| `Hide navigation buttons` | Adds options to hide buttons in the navigation bar. | 2024.17.0 ~ 2025.12.1 |
-| `Hide recommended communities shelf` | Adds an option to hide the recommended communities shelves in subreddits. | 2024.17.0 ~ 2025.12.1 |
-| `Open links directly` | Adds an option to skip over redirection URLs in external links. | 2024.17.0 ~ 2025.12.1 |
-| `Open links externally` | Adds an option to always open links in your browser instead of in the in-app-browser. | 2024.17.0 ~ 2025.12.1 |
-| `Premium icon` | Unlocks premium app icons. | 2024.17.0 ~ 2025.12.1 |
-| `Remove subreddit dialog` | Adds options to remove the NSFW community warning and notifications suggestion dialogs by dismissing them automatically. | 2024.17.0 ~ 2025.12.1 |
-| `Sanitize sharing links` | Adds an option to sanitize sharing links by removing tracking query parameters. | 2024.17.0 ~ 2025.12.1 |
-| `Settings for Reddit` | Applies mandatory patches to implement ReVanced Extended settings into the application. | 2024.17.0 ~ 2025.12.1 |
-| `Translations for Reddit` | Add translations for RVX settings. | 2024.17.0 ~ 2025.12.1 |
-</details>
-
 ### [📦 `com.spotify.music`](https://play.google.com/store/apps/details?id=com.spotify.music)
 <details>
 
@@ -233,11 +213,7 @@ Example:
     "description": "Adds options to hide ads.",
     "use":true,
     "compatiblePackages": {
-      "com.reddit.frontpage": [
-        "2024.17.0",
-        "2025.05.1",
-        "2025.12.1"
-      ]
+      "com.reddit.frontpage": "COMPATIBLE_PACKAGE_REDDIT"
     },
     "options": []
   }
