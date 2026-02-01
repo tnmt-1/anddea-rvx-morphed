@@ -1,6 +1,6 @@
-package app.revanced.patches.music.misc.tracking
+package app.morphe.patches.music.misc.tracking
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 /**
  * Sharing panel of Lyrics

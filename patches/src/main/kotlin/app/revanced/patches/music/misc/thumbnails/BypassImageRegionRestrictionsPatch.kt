@@ -1,14 +1,14 @@
-package app.revanced.patches.music.misc.thumbnails
+package app.morphe.patches.music.misc.thumbnails
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.BYPASS_IMAGE_REGION_RESTRICTIONS
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.imageurl.addImageUrlHook
-import app.revanced.patches.shared.imageurl.cronetImageUrlHookPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.BYPASS_IMAGE_REGION_RESTRICTIONS
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.imageurl.addImageUrlHook
+import app.morphe.patches.shared.imageurl.cronetImageUrlHookPatch
 
 @Suppress("unused")
 val bypassImageRegionRestrictionsPatch = bytecodePatch(

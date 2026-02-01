@@ -1,9 +1,9 @@
-package app.revanced.patches.youtube.utils.settings
+package app.morphe.patches.youtube.utils.settings
 
-import app.revanced.patcher.fingerprint
-import app.revanced.patches.youtube.utils.resourceid.appearance
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patcher.fingerprint
+import app.morphe.patches.youtube.utils.resourceid.appearance
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val licenseActivityOnCreateFingerprint = fingerprint {

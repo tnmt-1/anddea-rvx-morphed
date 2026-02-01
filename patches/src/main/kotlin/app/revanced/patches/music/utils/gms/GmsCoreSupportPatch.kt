@@ -1,19 +1,19 @@
-package app.revanced.patches.music.utils.gms
+package app.morphe.patches.music.utils.gms
 
-import app.revanced.patcher.patch.Option
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.compatibility.Constants.YOUTUBE_MUSIC_PACKAGE_NAME
-import app.revanced.patches.music.utils.extension.sharedExtensionPatch
-import app.revanced.patches.music.utils.fix.fileprovider.fileProviderPatch
-import app.revanced.patches.music.utils.fix.streamingdata.spoofStreamingDataPatch
-import app.revanced.patches.music.utils.mainactivity.mainActivityFingerprint
-import app.revanced.patches.music.utils.patch.PatchList.GMSCORE_SUPPORT
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePackageName
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.gms.gmsCoreSupportPatch
-import app.revanced.patches.shared.spoof.useragent.baseSpoofUserAgentPatch
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.patch.Option
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.compatibility.Constants.YOUTUBE_MUSIC_PACKAGE_NAME
+import app.morphe.patches.music.utils.extension.sharedExtensionPatch
+import app.morphe.patches.music.utils.fix.fileprovider.fileProviderPatch
+import app.morphe.patches.music.utils.fix.streamingdata.spoofStreamingDataPatch
+import app.morphe.patches.music.utils.mainactivity.mainActivityFingerprint
+import app.morphe.patches.music.utils.patch.PatchList.GMSCORE_SUPPORT
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePackageName
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.gms.gmsCoreSupportPatch
+import app.morphe.patches.shared.spoof.useragent.baseSpoofUserAgentPatch
+import app.morphe.util.valueOrThrow
 
 @Suppress("unused")
 val gmsCoreSupportPatch = gmsCoreSupportPatch(
@@ -29,7 +29,7 @@ private fun gmsCoreSupportResourcePatch(
     gmsCoreVendorGroupIdOption: Option<String>,
     packageNameYouTubeOption: Option<String>,
     packageNameYouTubeMusicOption: Option<String>,
-) = app.revanced.patches.shared.gms.gmsCoreSupportResourcePatch(
+) = app.morphe.patches.shared.gms.gmsCoreSupportResourcePatch(
     fromPackageName = YOUTUBE_MUSIC_PACKAGE_NAME,
     spoofedPackageSignature = "afb0fed5eeaebdd86f56a97742f4b6b33ef59875",
     gmsCoreVendorGroupIdOption = gmsCoreVendorGroupIdOption,

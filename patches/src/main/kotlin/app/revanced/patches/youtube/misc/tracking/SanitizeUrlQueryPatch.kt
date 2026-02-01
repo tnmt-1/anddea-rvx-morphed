@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.misc.tracking
+package app.morphe.patches.youtube.misc.tracking
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.tracking.baseSanitizeUrlQueryPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.SANITIZE_SHARING_LINKS
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.tracking.baseSanitizeUrlQueryPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.SANITIZE_SHARING_LINKS
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
 
 @Suppress("unused")
 val sanitizeUrlQueryPatch = bytecodePatch(

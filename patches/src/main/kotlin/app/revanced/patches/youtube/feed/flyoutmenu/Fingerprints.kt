@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.feed.flyoutmenu
+package app.morphe.patches.youtube.feed.flyoutmenu
 
-import app.revanced.patches.youtube.utils.resourceid.posterArtWidthDefault
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.posterArtWidthDefault
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

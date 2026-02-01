@@ -1,10 +1,10 @@
-package app.revanced.patches.youtube.general.snackbar
+package app.morphe.patches.youtube.general.snackbar
 
-import app.revanced.patches.youtube.utils.resourceid.insetElementsWrapper
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversed
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.insetElementsWrapper
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionReversed
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

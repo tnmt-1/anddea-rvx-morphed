@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.layout.visual
+package app.morphe.patches.youtube.layout.visual
 
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.layout.branding.icon.customBrandingIconPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.VISUAL_PREFERENCES_ICONS_FOR_YOUTUBE
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.*
-import app.revanced.util.Utils.trimIndentMultiline
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.layout.branding.icon.customBrandingIconPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.VISUAL_PREFERENCES_ICONS_FOR_YOUTUBE
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.*
+import app.morphe.util.Utils.trimIndentMultiline
 import org.w3c.dom.Element
 
 private const val DEFAULT_ICON = "extension"

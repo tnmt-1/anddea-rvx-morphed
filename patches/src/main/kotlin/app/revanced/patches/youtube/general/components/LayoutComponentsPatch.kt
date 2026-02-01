@@ -1,37 +1,37 @@
-package app.revanced.patches.youtube.general.components
+package app.morphe.patches.youtube.general.components
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.settingmenu.settingsMenuPatch
-import app.revanced.patches.shared.viewgroup.viewGroupMarginLayoutParamsHookPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_PATH
-import app.revanced.patches.youtube.utils.fix.litho.lithoLayoutPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.HIDE_LAYOUT_COMPONENTS
-import app.revanced.patches.youtube.utils.playservice.is_19_25_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.accountSwitcherAccessibility
-import app.revanced.patches.youtube.utils.resourceid.fab
-import app.revanced.patches.youtube.utils.resourceid.pairWithTVKey
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.ytCallToAction
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.settingmenu.settingsMenuPatch
+import app.morphe.patches.shared.viewgroup.viewGroupMarginLayoutParamsHookPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_PATH
+import app.morphe.patches.youtube.utils.fix.litho.lithoLayoutPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.HIDE_LAYOUT_COMPONENTS
+import app.morphe.patches.youtube.utils.playservice.is_19_25_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.accountSwitcherAccessibility
+import app.morphe.patches.youtube.utils.resourceid.fab
+import app.morphe.patches.youtube.utils.resourceid.pairWithTVKey
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.resourceid.ytCallToAction
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -151,7 +151,7 @@ val layoutComponentsPatch = bytecodePatch(
         // for tablet and old clients
         accountMenuFingerprint.matchOrThrow(accountMenuParentFingerprint).let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.startIndex + 2
+                val targetIndex = it.instructionMatches.first().index + 2
                 val targetInstruction = getInstruction<FiveRegisterInstruction>(targetIndex)
 
                 addInstruction(

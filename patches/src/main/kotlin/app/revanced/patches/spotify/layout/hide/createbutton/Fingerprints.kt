@@ -1,8 +1,8 @@
-package app.revanced.patches.spotify.layout.hide.createbutton
+package app.morphe.patches.spotify.layout.hide.createbutton
 
-import app.revanced.patcher.fingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
+import app.morphe.patcher.fingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference

@@ -1,8 +1,8 @@
-package app.revanced.patches.music.utils.extension.hooks
+package app.morphe.patches.music.utils.extension.hooks
 
-import app.revanced.patches.shared.extension.extensionHook
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
+import app.morphe.patches.shared.extension.extensionHook
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 

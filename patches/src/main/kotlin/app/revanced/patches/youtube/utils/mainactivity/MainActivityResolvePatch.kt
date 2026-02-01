@@ -1,5 +1,5 @@
-package app.revanced.patches.youtube.utils.mainactivity
+package app.morphe.patches.youtube.utils.mainactivity
 
-import app.revanced.patches.shared.mainactivity.baseMainActivityResolvePatch
+import app.morphe.patches.shared.mainactivity.baseMainActivityResolvePatch
 
 val mainActivityResolvePatch = baseMainActivityResolvePatch(mainActivityFingerprint)

@@ -1,16 +1,16 @@
-package app.revanced.patches.youtube.general.navigation
+package app.morphe.patches.youtube.general.navigation
 
-import app.revanced.patches.youtube.utils.YOUTUBE_PIVOT_BAR_CLASS_TYPE
-import app.revanced.patches.youtube.utils.resourceid.actionBarSearchResultsViewMic
-import app.revanced.patches.youtube.utils.resourceid.newContentCount
-import app.revanced.patches.youtube.utils.resourceid.newContentDot
-import app.revanced.patches.youtube.utils.resourceid.searchBox
-import app.revanced.patches.youtube.utils.resourceid.searchQuery
-import app.revanced.patches.youtube.utils.resourceid.youTubeLogo
-import app.revanced.patches.youtube.utils.resourceid.ytFillBell
-import app.revanced.patches.youtube.utils.resourceid.ytOutlineLibrary
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.YOUTUBE_PIVOT_BAR_CLASS_TYPE
+import app.morphe.patches.youtube.utils.resourceid.actionBarSearchResultsViewMic
+import app.morphe.patches.youtube.utils.resourceid.newContentCount
+import app.morphe.patches.youtube.utils.resourceid.newContentDot
+import app.morphe.patches.youtube.utils.resourceid.searchBox
+import app.morphe.patches.youtube.utils.resourceid.searchQuery
+import app.morphe.patches.youtube.utils.resourceid.youTubeLogo
+import app.morphe.patches.youtube.utils.resourceid.ytFillBell
+import app.morphe.patches.youtube.utils.resourceid.ytOutlineLibrary
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

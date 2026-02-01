@@ -1,9 +1,9 @@
-package app.revanced.patches.youtube.utils.gms
+package app.morphe.patches.youtube.utils.gms
 
-import app.revanced.patches.youtube.utils.resourceid.icOfflineNoContentUpsideDown
-import app.revanced.patches.youtube.utils.resourceid.offlineNoContentBodyTextNotOfflineEligible
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.icOfflineNoContentUpsideDown
+import app.morphe.patches.youtube.utils.resourceid.offlineNoContentBodyTextNotOfflineEligible
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val specificNetworkErrorViewControllerFingerprint = legacyFingerprint(

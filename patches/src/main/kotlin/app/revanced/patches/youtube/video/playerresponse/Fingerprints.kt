@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.video.playerresponse
+package app.morphe.patches.youtube.video.playerresponse
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
-import app.revanced.util.parametersEqual
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
+import app.morphe.util.parametersEqual
 import com.android.tools.smali.dexlib2.AccessFlags
 
 private val PLAYER_PARAMETER_STARTS_WITH_PARAMETER_LIST = listOf(

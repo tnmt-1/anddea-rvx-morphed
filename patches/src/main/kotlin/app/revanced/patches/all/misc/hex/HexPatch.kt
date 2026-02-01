@@ -1,11 +1,11 @@
-package app.revanced.patches.all.misc.hex
+package app.morphe.patches.all.misc.hex
 
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.rawResourcePatch
-import app.revanced.patcher.patch.stringsOption
-import app.revanced.patches.shared.misc.hex.HexPatchBuilder
-import app.revanced.patches.shared.misc.hex.hexPatch
-import app.revanced.util.Utils.trimIndentMultiline
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.rawResourcePatch
+import app.morphe.patcher.patch.stringsOption
+import app.morphe.patches.shared.misc.hex.HexPatchBuilder
+import app.morphe.patches.shared.misc.hex.hexPatch
+import app.morphe.util.Utils.trimIndentMultiline
 
 @Suppress("unused")
 val hexPatch = rawResourcePatch(

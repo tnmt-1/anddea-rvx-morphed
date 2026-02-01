@@ -1,4 +1,4 @@
-package app.revanced.patches.youtube.utils.patch
+package app.morphe.patches.youtube.utils.patch
 
 internal enum class PatchList(
     val title: String,

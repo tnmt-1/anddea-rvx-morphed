@@ -1,12 +1,12 @@
-package app.revanced.patches.music.utils.videotype
+package app.morphe.patches.music.utils.videotype
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.extension.Constants.UTILS_PATH
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.extension.Constants.UTILS_PATH
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction

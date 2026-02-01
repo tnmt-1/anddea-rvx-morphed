@@ -1,21 +1,21 @@
-package app.revanced.patches.youtube.utils.fullscreen
+package app.morphe.patches.youtube.utils.fullscreen
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.playservice.is_20_02_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.util.addStaticFieldToExtension
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patches.youtube.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.playservice.is_20_02_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.util.addStaticFieldToExtension
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -106,15 +106,14 @@ val fullscreenButtonHookPatch = bytecodePatch(
                     (enterFullscreenReference as MethodReference).definingClass
 
                 if (opcode == Opcode.INVOKE_INTERFACE) {
-                    classes.forEach { classDef ->
+                    classDefForEach { classDef ->
                         if (enterFullscreenMethods.size >= 2)
-                            return@forEach
+                            return@classDefForEach
                         if (!classDef.interfaces.contains(enterFullscreenClass))
-                            return@forEach
+                            return@classDefForEach
 
                         val enterFullscreenMethod =
-                            proxy(classDef)
-                                .mutableClass
+                            mutableClassDefBy(classDef)
                                 .methods
                                 .find { method -> method.name == enterFullscreenReference.name }
                                 ?: throw PatchException("No matching classes: $enterFullscreenClass")

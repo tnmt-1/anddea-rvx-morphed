@@ -1,14 +1,14 @@
-package app.revanced.patches.shared.dialog
+package app.morphe.patches.shared.dialog
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
@@ -25,7 +25,7 @@ fun baseViewerDiscretionDialogPatch(
 
         if (isAgeVerified) {
             ageVerifiedFingerprint.matchOrThrow().let {
-                it.getWalkerMethod(it.patternMatch!!.endIndex - 1)
+                it.getWalkerMethod(it.instructionMatches.last().index - 1)
                     .invoke(classDescriptor, "confirmDialogAgeVerified")
             }
         }

@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.utils.flyoutmenu
+package app.morphe.patches.youtube.utils.flyoutmenu
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.youtube.utils.playbackRateBottomSheetBuilderFingerprint
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.util.addStaticFieldToExtension
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.youtube.utils.playbackRateBottomSheetBuilderFingerprint
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.util.addStaticFieldToExtension
+import app.morphe.util.fingerprint.methodOrThrow
 
 private const val EXTENSION_VIDEO_UTILS_CLASS_DESCRIPTOR =
     "$EXTENSION_PATH/utils/VideoUtils;"

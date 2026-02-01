@@ -1,7 +1,7 @@
-package app.revanced.patches.shared.materialyou
+package app.morphe.patches.shared.materialyou
 
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.util.FilesCompat
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.util.FilesCompat
 import org.w3c.dom.Element
 
 private fun ResourcePatchContext.patchXmlFile(

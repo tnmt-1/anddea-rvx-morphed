@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.utils.returnyoutubeusername
+package app.morphe.patches.youtube.utils.returnyoutubeusername
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.returnyoutubeusername.baseReturnYouTubeUsernamePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.RETURN_YOUTUBE_USERNAME
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.returnyoutubeusername.baseReturnYouTubeUsernamePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.RETURN_YOUTUBE_USERNAME
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
 
 @Suppress("unused")
 val returnYouTubeUsernamePatch = bytecodePatch(

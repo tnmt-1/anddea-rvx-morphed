@@ -1,36 +1,36 @@
-package app.revanced.patches.youtube.general.snackbar
+package app.morphe.patches.youtube.general.snackbar
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.drawable.addDrawableColorHook
-import app.revanced.patches.shared.drawable.drawableColorHookPatch
-import app.revanced.patches.shared.spans.addSpanFilter
-import app.revanced.patches.shared.spans.inclusiveSpanPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.SPANS_PATH
-import app.revanced.patches.youtube.utils.patch.PatchList.SNACK_BAR_COMPONENTS
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.findElementByAttributeValueOrThrow
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getNode
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.drawable.addDrawableColorHook
+import app.morphe.patches.shared.drawable.drawableColorHookPatch
+import app.morphe.patches.shared.spans.addSpanFilter
+import app.morphe.patches.shared.spans.inclusiveSpanPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.SPANS_PATH
+import app.morphe.patches.youtube.utils.patch.PatchList.SNACK_BAR_COMPONENTS
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.findElementByAttributeValueOrThrow
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getNode
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.valueOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -68,7 +68,7 @@ private val snackBarComponentsBytecodePatch = bytecodePatch(
 
         bottomUiContainerPreFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.startIndex + 1
+                val insertIndex = it.instructionMatches.first().index + 1
 
                 addInstruction(
                     insertIndex,
@@ -79,7 +79,7 @@ private val snackBarComponentsBytecodePatch = bytecodePatch(
 
         bottomUiContainerThemeFingerprint.matchOrThrow().let {
             it.method.apply {
-                val darkThemeIndex = it.patternMatch!!.startIndex + 2
+                val darkThemeIndex = it.instructionMatches.first().index + 2
                 val darkThemeReference =
                     getInstruction<ReferenceInstruction>(darkThemeIndex).reference.toString()
 

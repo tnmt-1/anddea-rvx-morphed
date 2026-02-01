@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.utils.bottomsheet
+package app.morphe.patches.youtube.utils.bottomsheet
 
-import app.revanced.patches.youtube.utils.resourceid.designBottomSheet
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.patches.youtube.utils.resourceid.designBottomSheet
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val bottomSheetBehaviorFingerprint = legacyFingerprint(
     name = "bottomSheetBehaviorFingerprint",

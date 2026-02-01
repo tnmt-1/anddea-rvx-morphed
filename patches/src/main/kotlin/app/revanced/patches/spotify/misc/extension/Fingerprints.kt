@@ -1,6 +1,6 @@
-package app.revanced.patches.spotify.misc.extension
+package app.morphe.patches.spotify.misc.extension
 
-import app.revanced.patcher.fingerprint
+import app.morphe.patcher.fingerprint
 
 internal val loadOrbitLibraryFingerprint = fingerprint {
     strings("orbit_library_load", "orbit-jni-spotify")

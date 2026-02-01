@@ -1,18 +1,18 @@
-package app.revanced.patches.youtube.layout.actionbuttons
+package app.morphe.patches.youtube.layout.actionbuttons
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.CUSTOM_SHORTS_ACTION_BUTTONS
-import app.revanced.patches.youtube.utils.playservice.is_19_36_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.ResourceGroup
-import app.revanced.util.Utils.printInfo
-import app.revanced.util.copyResources
-import app.revanced.util.inputStreamFromBundledResource
-import app.revanced.util.lowerCaseOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.CUSTOM_SHORTS_ACTION_BUTTONS
+import app.morphe.patches.youtube.utils.playservice.is_19_36_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.ResourceGroup
+import app.morphe.util.Utils.printInfo
+import app.morphe.util.copyResources
+import app.morphe.util.inputStreamFromBundledResource
+import app.morphe.util.lowerCaseOrThrow
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 

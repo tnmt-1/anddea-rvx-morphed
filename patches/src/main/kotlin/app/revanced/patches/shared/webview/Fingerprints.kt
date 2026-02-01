@@ -1,6 +1,6 @@
-package app.revanced.patches.shared.webview
+package app.morphe.patches.shared.webview
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val webViewHostActivityOnCreateFingerprint = legacyFingerprint(
     name = "webViewHostActivityOnCreateFingerprint",

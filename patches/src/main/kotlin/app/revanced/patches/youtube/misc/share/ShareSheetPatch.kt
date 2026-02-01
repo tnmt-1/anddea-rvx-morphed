@@ -1,20 +1,20 @@
-package app.revanced.patches.youtube.misc.share
+package app.morphe.patches.youtube.misc.share
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.MISC_PATH
-import app.revanced.patches.youtube.utils.fix.litho.lithoLayoutPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.CHANGE_SHARE_SHEET
-import app.revanced.patches.youtube.utils.recyclerview.recyclerViewTreeObserverHook
-import app.revanced.patches.youtube.utils.recyclerview.recyclerViewTreeObserverPatch
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.MISC_PATH
+import app.morphe.patches.youtube.utils.fix.litho.lithoLayoutPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.CHANGE_SHARE_SHEET
+import app.morphe.patches.youtube.utils.recyclerview.recyclerViewTreeObserverHook
+import app.morphe.patches.youtube.utils.recyclerview.recyclerViewTreeObserverPatch
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.methodOrThrow
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
     "$MISC_PATH/ShareSheetPatch;"

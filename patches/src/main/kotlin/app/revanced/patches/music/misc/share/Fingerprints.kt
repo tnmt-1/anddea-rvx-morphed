@@ -1,8 +1,8 @@
-package app.revanced.patches.music.misc.share
+package app.morphe.patches.music.misc.share
 
-import app.revanced.patches.music.utils.resourceid.bottomSheetRecyclerView
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.music.utils.resourceid.bottomSheetRecyclerView
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val bottomSheetRecyclerViewFingerprint = legacyFingerprint(

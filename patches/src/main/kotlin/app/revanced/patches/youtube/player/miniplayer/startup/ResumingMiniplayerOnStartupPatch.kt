@@ -1,14 +1,14 @@
-package app.revanced.patches.youtube.player.miniplayer.startup
+package app.morphe.patches.youtube.player.miniplayer.startup
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.PLAYER_PATH
-import app.revanced.patches.youtube.utils.patch.PatchList.DISABLE_RESUMING_MINIPLAYER_ON_STARTUP
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.matchOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.PLAYER_PATH
+import app.morphe.patches.youtube.utils.patch.PatchList.DISABLE_RESUMING_MINIPLAYER_ON_STARTUP
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.matchOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
@@ -28,7 +28,7 @@ val resumingMiniplayerOnStartupPatch = bytecodePatch(
 
         showMiniplayerCommandFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex
+                val insertIndex = it.instructionMatches.last().index
                 val insertRegister =
                     getInstruction<OneRegisterInstruction>(insertIndex).registerA
 

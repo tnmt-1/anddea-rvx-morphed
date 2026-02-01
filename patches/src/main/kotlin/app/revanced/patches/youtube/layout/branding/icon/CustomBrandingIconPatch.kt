@@ -1,22 +1,22 @@
-package app.revanced.patches.youtube.layout.branding.icon
+package app.morphe.patches.youtube.layout.branding.icon
 
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.patch.PatchList.CUSTOM_BRANDING_ICON_FOR_YOUTUBE
-import app.revanced.patches.youtube.utils.playservice.is_19_17_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_32_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_34_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.restoreOldSplashAnimationIncluded
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusIcon
-import app.revanced.patches.youtube.utils.settings.getBytecodeContext
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.*
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.Utils.trimIndentMultiline
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.patch.PatchList.CUSTOM_BRANDING_ICON_FOR_YOUTUBE
+import app.morphe.patches.youtube.utils.playservice.is_19_17_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_32_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_34_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.restoreOldSplashAnimationIncluded
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusIcon
+import app.morphe.patches.youtube.utils.settings.getBytecodeContext
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.*
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.Utils.trimIndentMultiline
 import org.w3c.dom.Element
 
 private const val ADAPTIVE_ICON_BACKGROUND_FILE_NAME =

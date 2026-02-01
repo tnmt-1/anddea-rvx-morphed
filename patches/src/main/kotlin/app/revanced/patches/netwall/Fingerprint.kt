@@ -1,6 +1,6 @@
-package app.revanced.patches.netwall
+package app.morphe.patches.netwall
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val premiumCheckFingerprint = legacyFingerprint(
     name = "premiumCheckFingerprint",

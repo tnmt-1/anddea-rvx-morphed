@@ -1,17 +1,17 @@
-package app.revanced.patches.youtube.utils.fix.playbackspeed
+package app.morphe.patches.youtube.utils.fix.playbackspeed
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.utils.engagement.engagementPanelHookPatch
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.utils.playservice.is_19_34_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.youtube.utils.engagement.engagementPanelHookPatch
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.playertype.playerTypeHookPatch
+import app.morphe.patches.youtube.utils.playservice.is_19_34_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 

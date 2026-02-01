@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.layout.dimming
+package app.morphe.patches.youtube.layout.dimming
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.HIDE_SHORTS_DIMMING
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.removeOverlayBackground
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.HIDE_SHORTS_DIMMING
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.removeOverlayBackground
 
 @Suppress("unused")
 val shortsDimmingPatch = resourcePatch(

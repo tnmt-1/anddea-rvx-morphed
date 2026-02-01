@@ -1,10 +1,10 @@
-package app.revanced.patches.music.layout.playeroverlay
+package app.morphe.patches.music.layout.playeroverlay
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.HIDE_PLAYER_OVERLAY_FILTER
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.util.removeOverlayBackground
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.HIDE_PLAYER_OVERLAY_FILTER
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.util.removeOverlayBackground
 
 @Suppress("unused")
 val playerOverlayFilterPatch = resourcePatch(

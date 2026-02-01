@@ -1,29 +1,29 @@
 @file:Suppress("CONTEXT_RECEIVERS_DEPRECATED")
 
-package app.revanced.util
+package app.morphe.util
 
-import app.revanced.patcher.FingerprintBuilder
-import app.revanced.patcher.Match
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.instructions
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
-import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.mapping.getResourceId
-import app.revanced.patches.shared.mapping.resourceMappingPatch
-import app.revanced.util.InstructionUtils.Companion.branchOpcodes
-import app.revanced.util.InstructionUtils.Companion.returnOpcodes
-import app.revanced.util.InstructionUtils.Companion.writeOpcodes
-import app.revanced.util.Utils.printWarn
+import app.morphe.patcher.FingerprintBuilder
+import app.morphe.patcher.Match
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.util.proxy.mutableTypes.MutableClass
+import app.morphe.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.mapping.getResourceId
+import app.morphe.patches.shared.mapping.resourceMappingPatch
+import app.morphe.util.InstructionUtils.Companion.branchOpcodes
+import app.morphe.util.InstructionUtils.Companion.returnOpcodes
+import app.morphe.util.InstructionUtils.Companion.writeOpcodes
+import app.morphe.util.Utils.printWarn
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.Opcode.*
@@ -624,7 +624,7 @@ fun BytecodePatchContext.traverseClassHierarchy(
 
     targetClass.superclass ?: return
 
-    classBy { targetClass.superclass == it.type }?.mutableClass?.let {
+    mutableClassDefBy { targetClass.superclass == it.type }.let {
         traverseClassHierarchy(it, callback)
     }
 }
@@ -647,7 +647,7 @@ fun BytecodePatchContext.replaceLiteralInstructionCall(
     originalLiteral: Long,
     replaceLiteral: Long
 ) {
-    classes.forEach { classDef ->
+    classDefForEach { classDef ->
         classDef.methods.forEach { method ->
             method.implementation.apply {
                 this?.instructions?.forEachIndexed { _, instruction ->
@@ -656,8 +656,7 @@ fun BytecodePatchContext.replaceLiteralInstructionCall(
                     if ((instruction as Instruction31i).wideLiteral != originalLiteral)
                         return@forEachIndexed
 
-                    proxy(classDef)
-                        .mutableClass
+                    mutableClassDefBy(classDef)
                         .findMutableMethodOf(method).apply {
                             val index = indexOfFirstLiteralInstructionOrThrow(originalLiteral)
                             val register =
@@ -675,7 +674,7 @@ fun BytecodePatchContext.replaceLiteralInstructionCall(
     literal: Long,
     smaliInstruction: String
 ) {
-    classes.forEach { classDef ->
+    classDefForEach { classDef ->
         classDef.methods.forEach { method ->
             method.implementation.apply {
                 this?.instructions?.forEachIndexed { _, instruction ->
@@ -684,8 +683,7 @@ fun BytecodePatchContext.replaceLiteralInstructionCall(
                     if ((instruction as Instruction31i).wideLiteral != literal)
                         return@forEachIndexed
 
-                    proxy(classDef)
-                        .mutableClass
+                    mutableClassDefBy(classDef)
                         .findMutableMethodOf(method).apply {
                             val index = indexOfFirstLiteralInstructionOrThrow(literal)
                             val register =
@@ -921,13 +919,13 @@ fun BytecodePatchContext.forEachLiteralValueInstruction(
     literal: Long,
     block: MutableMethod.(literalInstructionIndex: Int) -> Unit,
 ) {
-    classes.forEach { classDef ->
+    classDefForEach { classDef ->
         classDef.methods.forEach { method ->
             method.implementation?.instructions?.forEachIndexed { index, instruction ->
                 if (instruction.opcode == CONST &&
                     (instruction as WideLiteralInstruction).wideLiteral == literal
                 ) {
-                    val mutableMethod = proxy(classDef).mutableClass.findMutableMethodOf(method)
+                    val mutableMethod = mutableClassDefBy(classDef).findMutableMethodOf(method)
                     block.invoke(mutableMethod, index)
                 }
             }
@@ -966,9 +964,9 @@ fun addStaticFieldToExtension(
     smaliInstructions: String,
     shouldAddConstructor: Boolean = true
 ): MutableMethod {
-    val classDef = classes.find { classDef -> classDef.type == className }
+    val classDef = classDefByOrNull { classDef -> classDef.type == className }
         ?: throw PatchException("No matching methods found in: $className")
-    val mutableClass = proxy(classDef).mutableClass
+    val mutableClass = mutableClassDefBy(classDef)
 
     val objectCall = "$mutableClass->$fieldName:$objectClass"
     val method = with(mutableClass) {
@@ -1039,10 +1037,9 @@ fun findMethodsOrThrow(
 
 context(BytecodePatchContext)
 fun findMutableClassOrThrow(reference: String): MutableClass {
-    val classDef = classes.find { classDef -> classDef.type == reference }
+    val classDef = classDefByOrNull { classDef -> classDef.type == reference }
         ?: throw PatchException("No matching methods found in: $reference")
-    return proxy(classDef)
-        .mutableClass
+    return mutableClassDefBy(classDef)
 }
 
 context(BytecodePatchContext)

@@ -1,7 +1,7 @@
-package app.revanced.patches.music.video.playback
+package app.morphe.patches.music.video.playback
 
-import app.revanced.patches.music.utils.resourceid.qualityAuto
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.patches.music.utils.resourceid.qualityAuto
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 internal val userQualityChangeFingerprint = legacyFingerprint(

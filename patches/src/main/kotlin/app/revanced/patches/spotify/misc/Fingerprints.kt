@@ -1,11 +1,11 @@
 @file:Suppress("CONTEXT_RECEIVERS_DEPRECATED")
 
-package app.revanced.patches.spotify.misc
+package app.morphe.patches.spotify.misc
 
-import app.revanced.patcher.fingerprint
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
+import app.morphe.patcher.fingerprint
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
@@ -55,7 +55,7 @@ internal val removeAdsContextMenuItemClassFingerprint = fingerprint {
     strings("?displayReason=", "play-without-ads-exp")
 }
 
-internal const val CONTEXT_MENU_ITEM_CLASS_DESCRIPTOR_PLACEHOLDER = "Lapp/revanced/ContextMenuItemPlaceholder;"
+internal const val CONTEXT_MENU_ITEM_CLASS_DESCRIPTOR_PLACEHOLDER = "Lapp/morphe/ContextMenuItemPlaceholder;"
 internal val extensionFilterContextMenuItemsFingerprint = fingerprint {
     accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
     returns("Ljava/util/List;")

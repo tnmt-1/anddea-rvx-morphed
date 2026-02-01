@@ -1,7 +1,7 @@
-package app.revanced.patches.shared.spoof.useragent
+package app.morphe.patches.shared.spoof.useragent
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 const val CLIENT_PACKAGE_NAME = "cbr"

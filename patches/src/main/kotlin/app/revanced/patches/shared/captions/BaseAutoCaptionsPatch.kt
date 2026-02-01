@@ -1,13 +1,13 @@
-package app.revanced.patches.shared.captions
+package app.morphe.patches.shared.captions
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.patches.shared.startVideoInformerFingerprint
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.patches.shared.startVideoInformerFingerprint
+import app.morphe.util.fingerprint.methodOrThrow
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
     "$PATCHES_PATH/AutoCaptionsPatch;"

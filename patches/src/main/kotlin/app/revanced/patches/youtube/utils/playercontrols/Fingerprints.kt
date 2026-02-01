@@ -1,13 +1,13 @@
-package app.revanced.patches.youtube.utils.playercontrols
+package app.morphe.patches.youtube.utils.playercontrols
 
-import app.revanced.patches.youtube.utils.resourceid.bottomUiContainerStub
-import app.revanced.patches.youtube.utils.resourceid.controlsLayoutStub
-import app.revanced.patches.youtube.utils.resourceid.fullScreenButton
-import app.revanced.patches.youtube.utils.resourceid.heatseekerViewstub
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversed
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.bottomUiContainerStub
+import app.morphe.patches.youtube.utils.resourceid.controlsLayoutStub
+import app.morphe.patches.youtube.utils.resourceid.fullScreenButton
+import app.morphe.patches.youtube.utils.resourceid.heatseekerViewstub
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionReversed
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

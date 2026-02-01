@@ -1,7 +1,7 @@
-package app.revanced.patches.music.utils.settings
+package app.morphe.patches.music.utils.settings
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

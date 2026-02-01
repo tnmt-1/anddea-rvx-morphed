@@ -1,20 +1,20 @@
-package app.revanced.patches.spotify.misc
+package app.morphe.patches.spotify.misc
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.spotify.misc.extension.sharedExtensionPatch
-import app.revanced.util.*
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableClass
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.spotify.misc.extension.sharedExtensionPatch
+import app.morphe.util.*
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -23,7 +23,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.TypeReference
 
-internal const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/revanced/extension/spotify/misc/UnlockPremiumPatch;"
+internal const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/spotify/misc/UnlockPremiumPatch;"
 
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
@@ -82,7 +82,7 @@ val unlockPremiumPatch = bytecodePatch(
 
         // Enable choosing a specific song/artist via Google Assistant.
         contextFromJsonFingerprint.method.apply {
-            val insertIndex = contextFromJsonFingerprint.patternMatch!!.startIndex
+            val insertIndex = contextFromJsonFingerprint.instructionMatches.first().index
             // Both the URI and URL need to be modified.
             val registerUrl = getInstruction<FiveRegisterInstruction>(insertIndex).registerC
             val registerUri = getInstruction<FiveRegisterInstruction>(insertIndex + 2).registerD
@@ -122,7 +122,7 @@ val unlockPremiumPatch = bytecodePatch(
         // Hook the method which adds context menu items and return before adding if the item is a Premium ad.
         oldContextMenuViewModelAddItemFingerprint.matchOrNull(contextMenuViewModelClassDef)?.method?.apply {
             val contextMenuItemInterfaceName = parameterTypes.first()
-            val contextMenuItemInterfaceClassDef = classes.find {
+            val contextMenuItemInterfaceClassDef = classDefByOrNull {
                 it.type == contextMenuItemInterfaceName
             } ?: throw PatchException("Could not find context menu item interface.")
 
@@ -169,7 +169,7 @@ val unlockPremiumPatch = bytecodePatch(
                     .originalClassDef
                     .interfaces
                     .firstOrNull()
-                    ?.let { interfaceName -> classes.find { it.type == interfaceName } }
+                    ?.let { interfaceName -> classDefByOrNull { it.type == interfaceName } }
                     ?: throw PatchException("Could not find context menu item interface.")
 
                 val contextMenuItemViewModelClassName = getViewModelFingerprint
@@ -221,10 +221,10 @@ val unlockPremiumPatch = bytecodePatch(
             // Find the protobuf array list class using the definingClass which contains the empty list static value.
             val classType = getInstruction(emptyProtobufListGetIndex).getReference<FieldReference>()!!.definingClass
 
-            classes.find { it.type == classType } ?: throw PatchException("Could not find protobuf array list class.")
+            classDefByOrNull { it.type == classType } ?: throw PatchException("Could not find protobuf array list class.")
         }
 
-        val abstractProtobufListClassDef = classes.find {
+        val abstractProtobufListClassDef = classDefByOrNull {
             it.type == protobufArrayListClassDef.superclass
         } ?: throw PatchException("Could not find abstract protobuf list class.")
 

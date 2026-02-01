@@ -1,19 +1,19 @@
-package app.revanced.patches.shared.spoof.browse
+package app.morphe.patches.shared.spoof.browse
 
-import app.revanced.patcher.Match
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.shared.authenticationChangeListenerFingerprint
-import app.revanced.patches.shared.clientTypeFingerprint
-import app.revanced.patches.shared.indexOfClientInfoInstruction
-import app.revanced.patches.shared.indexOfMessageLiteBuilderReference
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.patcher.Match
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patches.shared.authenticationChangeListenerFingerprint
+import app.morphe.patches.shared.clientTypeFingerprint
+import app.morphe.patches.shared.indexOfClientInfoInstruction
+import app.morphe.patches.shared.indexOfMessageLiteBuilderReference
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -58,7 +58,7 @@ val spoofClientBrowseEndpointPatch = bytecodePatch(
             .matchOrThrow(browseEndpointConstructorFingerprint)
             .let {
                 it.method.apply {
-                    val browseIdIndex = it.patternMatch!!.startIndex
+                    val browseIdIndex = it.instructionMatches.first().index
 
                     browseIdField =
                         getInstruction<ReferenceInstruction>(browseIdIndex).reference as FieldReference

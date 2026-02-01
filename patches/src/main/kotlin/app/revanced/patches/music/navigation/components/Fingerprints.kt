@@ -1,11 +1,11 @@
-package app.revanced.patches.music.navigation.components
+package app.morphe.patches.music.navigation.components
 
-import app.revanced.patches.music.utils.resourceid.colorGrey
-import app.revanced.patches.music.utils.resourceid.text1
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.music.utils.resourceid.colorGrey
+import app.morphe.patches.music.utils.resourceid.text1
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

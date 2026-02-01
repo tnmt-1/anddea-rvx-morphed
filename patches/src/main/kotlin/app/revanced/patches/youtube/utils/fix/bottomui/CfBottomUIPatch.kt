@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.utils.fix.bottomui
+package app.morphe.patches.youtube.utils.fix.bottomui
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.resolvable
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.resolvable
 
 val cfBottomUIPatch = bytecodePatch(
     description = "cfBottomUIPatch"

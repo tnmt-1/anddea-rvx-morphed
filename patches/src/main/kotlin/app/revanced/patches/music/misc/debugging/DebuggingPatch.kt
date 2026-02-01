@@ -1,12 +1,12 @@
-package app.revanced.patches.music.misc.debugging
+package app.morphe.patches.music.misc.debugging
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.ENABLE_DEBUG_LOGGING
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.ENABLE_DEBUG_LOGGING
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
 
 @Suppress("unused")
 val debuggingPatch = resourcePatch(

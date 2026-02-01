@@ -1,18 +1,18 @@
 @file:Suppress("SpellCheckingInspection")
 
-package app.revanced.patches.youtube.player.miniplayer.general
+package app.morphe.patches.youtube.player.miniplayer.general
 
-import app.revanced.patches.youtube.utils.resourceid.floatyBarTopMargin
-import app.revanced.patches.youtube.utils.resourceid.miniplayerMaxSize
-import app.revanced.patches.youtube.utils.resourceid.modernMiniPlayerClose
-import app.revanced.patches.youtube.utils.resourceid.modernMiniPlayerExpand
-import app.revanced.patches.youtube.utils.resourceid.modernMiniPlayerForwardButton
-import app.revanced.patches.youtube.utils.resourceid.modernMiniPlayerOverlayActionButton
-import app.revanced.patches.youtube.utils.resourceid.modernMiniPlayerRewindButton
-import app.revanced.patches.youtube.utils.resourceid.scrimOverlay
-import app.revanced.patches.youtube.utils.resourceid.ytOutlinePictureInPictureWhite
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.floatyBarTopMargin
+import app.morphe.patches.youtube.utils.resourceid.miniplayerMaxSize
+import app.morphe.patches.youtube.utils.resourceid.modernMiniPlayerClose
+import app.morphe.patches.youtube.utils.resourceid.modernMiniPlayerExpand
+import app.morphe.patches.youtube.utils.resourceid.modernMiniPlayerForwardButton
+import app.morphe.patches.youtube.utils.resourceid.modernMiniPlayerOverlayActionButton
+import app.morphe.patches.youtube.utils.resourceid.modernMiniPlayerRewindButton
+import app.morphe.patches.youtube.utils.resourceid.scrimOverlay
+import app.morphe.patches.youtube.utils.resourceid.ytOutlinePictureInPictureWhite
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

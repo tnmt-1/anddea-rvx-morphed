@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.utils.mainactivity
+package app.morphe.patches.youtube.utils.mainactivity
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 /**
  * 'WatchWhileActivity' has been renamed to 'MainActivity' in YouTube v18.48.xx+

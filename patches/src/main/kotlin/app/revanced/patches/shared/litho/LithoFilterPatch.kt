@@ -1,22 +1,22 @@
-package app.revanced.patches.shared.litho
+package app.morphe.patches.shared.litho
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.shared.conversionContextFingerprintToString2
-import app.revanced.patches.shared.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.playservice.*
-import app.revanced.util.*
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patches.shared.conversionContextFingerprintToString2
+import app.morphe.patches.shared.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.playservice.*
+import app.morphe.util.*
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -78,7 +78,7 @@ val lithoFilterPatch = bytecodePatch(
             //     protobufBufferReferenceFingerprint.let {
             //         // Hook the buffer after the call to jniDecode().
             //         it.method.addInstruction(
-            //             it.patternMatch!!.endIndex + 1,
+            //             it.instructionMatches.last().index + 1,
             //             "invoke-static { p1 }, $EXTENSION_LITHO_FILER_CLASS_DESCRIPTOR->setProtoBuffer([B)V",
             //         )
             //     }
@@ -121,10 +121,10 @@ val lithoFilterPatch = bytecodePatch(
                 // The only static method in the class.
                     method -> AccessFlags.STATIC.isSet(method.accessFlags)
             }
-            val emptyComponentField = classBy {
+            val emptyComponentField = classDefBy {
                 // Only one field that matches.
                 it.type == builderMethodDescriptor.returnType
-            }!!.immutableClass.fields.single()
+            }.fields.single()
 
             emptyComponentLabel = """
                 move-object/from16 v0, p1
@@ -266,10 +266,10 @@ val lithoFilterPatch = bytecodePatch(
                         method ->
                     AccessFlags.STATIC.isSet(method.accessFlags)
                 }
-            val emptyComponentField = classBy {
+            val emptyComponentField = classDefBy {
                 // Only one field that matches.
                 it.type == builderMethodDescriptor.returnType
-            }!!.immutableClass.fields.single()
+            }.fields.single()
 
             emptyComponentLabel = """
             move-object/from16 v0, p1

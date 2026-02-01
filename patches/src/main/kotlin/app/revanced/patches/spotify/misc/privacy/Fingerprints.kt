@@ -1,7 +1,7 @@
-package app.revanced.patches.spotify.misc.privacy
+package app.morphe.patches.spotify.misc.privacy
 
-import app.revanced.patcher.extensions.InstructionExtensions.instructionsOrNull
-import app.revanced.patcher.fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
+import app.morphe.patcher.fingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction

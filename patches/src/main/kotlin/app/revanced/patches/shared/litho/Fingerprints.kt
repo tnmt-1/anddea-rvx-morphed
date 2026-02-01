@@ -1,8 +1,8 @@
-package app.revanced.patches.shared.litho
+package app.morphe.patches.shared.litho
 
-import app.revanced.patcher.fingerprint
-import app.revanced.util.*
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.patcher.fingerprint
+import app.morphe.util.*
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.StringReference

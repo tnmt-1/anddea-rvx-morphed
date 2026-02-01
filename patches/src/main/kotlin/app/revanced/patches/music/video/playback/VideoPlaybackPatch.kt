@@ -1,45 +1,45 @@
-package app.revanced.patches.music.video.playback
+package app.morphe.patches.music.video.playback
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.VIDEO_PATH
-import app.revanced.patches.music.utils.patch.PatchList.VIDEO_PLAYBACK
-import app.revanced.patches.music.utils.playbackSpeedBottomSheetFingerprint
-import app.revanced.patches.music.utils.playbackSpeedFingerprint
-import app.revanced.patches.music.utils.playbackSpeedParentFingerprint
-import app.revanced.patches.music.utils.playservice.is_7_13_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.resourceid.qualityAuto
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.music.video.information.onCreateHook
-import app.revanced.patches.music.video.information.videoInformationPatch
-import app.revanced.patches.shared.FIXED_RESOLUTION_STRING
-import app.revanced.patches.shared.customspeed.customPlaybackSpeedPatch
-import app.revanced.patches.shared.drc.drcAudioPatch
-import app.revanced.patches.shared.opus.baseOpusCodecsPatch
-import app.revanced.patches.shared.playbackStartParametersConstructorFingerprint
-import app.revanced.patches.shared.playbackStartParametersToStringFingerprint
-import app.revanced.util.findFieldFromToString
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.findMutableClassOrThrow
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.fingerprint.originalMethodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.VIDEO_PATH
+import app.morphe.patches.music.utils.patch.PatchList.VIDEO_PLAYBACK
+import app.morphe.patches.music.utils.playbackSpeedBottomSheetFingerprint
+import app.morphe.patches.music.utils.playbackSpeedFingerprint
+import app.morphe.patches.music.utils.playbackSpeedParentFingerprint
+import app.morphe.patches.music.utils.playservice.is_7_13_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.resourceid.qualityAuto
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.music.video.information.onCreateHook
+import app.morphe.patches.music.video.information.videoInformationPatch
+import app.morphe.patches.shared.FIXED_RESOLUTION_STRING
+import app.morphe.patches.shared.customspeed.customPlaybackSpeedPatch
+import app.morphe.patches.shared.drc.drcAudioPatch
+import app.morphe.patches.shared.opus.baseOpusCodecsPatch
+import app.morphe.patches.shared.playbackStartParametersConstructorFingerprint
+import app.morphe.patches.shared.playbackStartParametersToStringFingerprint
+import app.morphe.util.findFieldFromToString
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.findMutableClassOrThrow
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.fingerprint.originalMethodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -96,7 +96,7 @@ val videoPlaybackPatch = bytecodePatch(
 
         playbackSpeedFingerprint.matchOrThrow(playbackSpeedParentFingerprint).let {
             it.method.apply {
-                val startIndex = it.patternMatch!!.startIndex
+                val startIndex = it.instructionMatches.first().index
                 val speedRegister =
                     getInstruction<OneRegisterInstruction>(startIndex + 1).registerA
 
@@ -116,7 +116,7 @@ val videoPlaybackPatch = bytecodePatch(
         val videoQualityClass = videoQualityListFingerprint.matchOrThrow().let {
             with(it.method) {
                 // set video quality array
-                val listIndex = it.patternMatch!!.startIndex
+                val listIndex = it.instructionMatches.first().index
                 val listRegister = getInstruction<FiveRegisterInstruction>(listIndex).registerD
 
                 addInstruction(
@@ -207,7 +207,7 @@ val videoPlaybackPatch = bytecodePatch(
 
         userQualityChangeFingerprint.matchOrThrow().let {
             it.method.apply {
-                val endIndex = it.patternMatch!!.endIndex
+                val endIndex = it.instructionMatches.last().index
                 val qualityChangedClass =
                     getInstruction<ReferenceInstruction>(endIndex).reference.toString()
 

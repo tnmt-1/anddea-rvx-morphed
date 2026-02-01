@@ -1,6 +1,6 @@
-package app.revanced.patches.shared.mapping
+package app.morphe.patches.shared.mapping
 
-import app.revanced.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.resourcePatch
 import org.w3c.dom.Element
 
 data class ResourceElement(val type: String, val name: String, val id: Long)

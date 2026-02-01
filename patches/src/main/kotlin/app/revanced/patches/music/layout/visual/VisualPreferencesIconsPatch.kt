@@ -1,16 +1,16 @@
-package app.revanced.patches.music.layout.visual
+package app.morphe.patches.music.layout.visual
 
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.music.layout.branding.icon.customBrandingIconPatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.VISUAL_PREFERENCES_ICONS_FOR_YOUTUBE_MUSIC
-import app.revanced.patches.music.utils.settings.ResourceUtils.SETTINGS_HEADER_PATH
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.util.*
-import app.revanced.util.Utils.trimIndentMultiline
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.music.layout.branding.icon.customBrandingIconPatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.VISUAL_PREFERENCES_ICONS_FOR_YOUTUBE_MUSIC
+import app.morphe.patches.music.utils.settings.ResourceUtils.SETTINGS_HEADER_PATH
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.util.*
+import app.morphe.util.Utils.trimIndentMultiline
 import org.w3c.dom.Element
 
 private const val DEFAULT_ICON = "extension"

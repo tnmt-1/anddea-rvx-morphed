@@ -1,34 +1,34 @@
-package app.revanced.patches.youtube.general.toolbar
+package app.morphe.patches.youtube.general.toolbar
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.youtube.utils.castbutton.castButtonPatch
-import app.revanced.patches.youtube.utils.castbutton.hookToolBarCastButton
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.patch.PatchList.TOOLBAR_COMPONENTS
-import app.revanced.patches.youtube.utils.playservice.is_19_16_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_46_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_15_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.*
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.getContext
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.patches.youtube.utils.toolbar.hookToolBar
-import app.revanced.patches.youtube.utils.toolbar.toolBarHookPatch
-import app.revanced.util.*
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.fingerprint.*
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.youtube.utils.castbutton.castButtonPatch
+import app.morphe.patches.youtube.utils.castbutton.hookToolBarCastButton
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.patch.PatchList.TOOLBAR_COMPONENTS
+import app.morphe.patches.youtube.utils.playservice.is_19_16_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_46_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_15_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.*
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.getContext
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patches.youtube.utils.toolbar.hookToolBar
+import app.morphe.patches.youtube.utils.toolbar.toolBarHookPatch
+import app.morphe.util.*
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.fingerprint.*
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -216,7 +216,7 @@ val toolBarComponentsPatch = bytecodePatch(
         youActionBarFingerprint.matchOrThrow(setActionBarRingoFingerprint).let {
             it.method.apply {
                 injectSearchBarHook(
-                    it.patternMatch!!.endIndex,
+                    it.instructionMatches.last().index,
                     "enableWideSearchBarInYouTab"
                 )
             }
@@ -363,7 +363,7 @@ val toolBarComponentsPatch = bytecodePatch(
 
         searchBarFingerprint.matchOrThrow(searchBarParentFingerprint).let {
             it.method.apply {
-                val startIndex = it.patternMatch!!.startIndex
+                val startIndex = it.instructionMatches.first().index
                 val setVisibilityIndex = indexOfFirstInstructionOrThrow(startIndex) {
                     opcode == Opcode.INVOKE_VIRTUAL &&
                             getReference<MethodReference>()?.name == "setVisibility"
@@ -553,10 +553,10 @@ val toolBarComponentsPatch = bytecodePatch(
         // region patch for replace create button
 
         val matchedMethods = mutableListOf<MutableMethod>()
-        classes.forEach { classDef ->
+        classDefForEach { classDef ->
             classDef.methods.forEach { method ->
                 if (method.containsLiteralInstruction(ytOutlineVideoCamera)) {
-                    val mutableMethod = proxy(classDef).mutableClass.findMutableMethodOf(method)
+                    val mutableMethod = mutableClassDefBy(classDef).findMutableMethodOf(method)
                     matchedMethods.add(mutableMethod)
                 }
             }

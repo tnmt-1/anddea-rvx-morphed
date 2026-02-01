@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.general.startpage
+package app.morphe.patches.youtube.general.startpage
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 internal val browseIdFingerprint = legacyFingerprint(

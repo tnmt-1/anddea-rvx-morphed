@@ -1,15 +1,15 @@
-package app.revanced.patches.shared.misc.extension
+package app.morphe.patches.shared.misc.extension
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.FingerprintBuilder
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.fingerprint
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.FingerprintBuilder
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.fingerprint
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.iface.Method
 
-internal const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/revanced/extension/shared/utils/Utils;"
+internal const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/shared/utils/Utils;"
 
 /**
  * A patch to extend with an extension shared with multiple patches.
@@ -23,7 +23,7 @@ fun sharedExtensionPatch(
 ) = bytecodePatch {
     dependsOn(sharedExtensionPatch(*hooks))
 
-    extendWith("extensions/shared.rve")
+    extendWith("extensions/shared.mpe")
 }
 
 /**
@@ -35,10 +35,10 @@ fun sharedExtensionPatch(
 fun sharedExtensionPatch(
     vararg hooks: ExtensionHook,
 ) = bytecodePatch {
-    extendWith("extensions/shared.rve")
+    extendWith("extensions/shared.mpe")
 
     execute {
-        if (classes.none { EXTENSION_CLASS_DESCRIPTOR == it.type }) {
+        if (classDefByOrNull { EXTENSION_CLASS_DESCRIPTOR == it.type } == null) {
             throw PatchException("Shared extension is not available. This patch can not succeed without it.")
         }
     }

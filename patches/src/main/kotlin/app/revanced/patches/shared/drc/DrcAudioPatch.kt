@@ -1,16 +1,16 @@
-package app.revanced.patches.shared.drc
+package app.morphe.patches.shared.drc
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatchBuilder
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.patches.shared.formatStreamModelConstructorFingerprint
-import app.revanced.util.addInstructionsAtControlFlowLabel
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.BytecodePatchBuilder
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.patches.shared.formatStreamModelConstructorFingerprint
+import app.morphe.util.addInstructionsAtControlFlowLabel
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -35,7 +35,7 @@ fun drcAudioPatch(
         val (formatFieldReference, loudnessDbFieldReference) =
             fingerprint.matchOrThrow(formatStreamModelConstructorFingerprint).let {
                 with(it.method) {
-                    val loudnessDbIndex = it.patternMatch!!.startIndex + 1
+                    val loudnessDbIndex = it.instructionMatches.first().index + 1
                     val loudnessDbFieldReference =
                         getInstruction<ReferenceInstruction>(loudnessDbIndex).reference as FieldReference
                     val formatClass = loudnessDbFieldReference.definingClass

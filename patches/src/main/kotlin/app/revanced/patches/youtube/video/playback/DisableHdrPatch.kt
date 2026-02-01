@@ -1,13 +1,13 @@
-package app.revanced.patches.youtube.video.playback
+package app.morphe.patches.youtube.video.playback
 
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.all.misc.transformation.IMethodCall
-import app.revanced.patches.all.misc.transformation.fromMethodReference
-import app.revanced.patches.all.misc.transformation.transformInstructionsPatch
-import app.revanced.patches.youtube.utils.extension.Constants.VIDEO_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.util.getReference
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.all.misc.transformation.IMethodCall
+import app.morphe.patches.all.misc.transformation.fromMethodReference
+import app.morphe.patches.all.misc.transformation.transformInstructionsPatch
+import app.morphe.patches.youtube.utils.extension.Constants.VIDEO_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.util.getReference
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 

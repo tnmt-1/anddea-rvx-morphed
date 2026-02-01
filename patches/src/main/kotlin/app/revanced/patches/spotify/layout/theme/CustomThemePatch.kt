@@ -1,21 +1,21 @@
-package app.revanced.patches.spotify.layout.theme
+package app.morphe.patches.spotify.layout.theme
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.spotify.misc.extension.sharedExtensionPatch
-import app.revanced.util.ResourceGroup
-import app.revanced.util.copyResources
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.spotify.misc.extension.sharedExtensionPatch
+import app.morphe.util.ResourceGroup
+import app.morphe.util.copyResources
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import org.w3c.dom.Element
 
-private const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/revanced/extension/spotify/layout/theme/CustomThemePatch;"
+private const val EXTENSION_CLASS_DESCRIPTOR = "Lapp/morphe/extension/spotify/layout/theme/CustomThemePatch;"
 
 private val customThemeBytecodePatch = bytecodePatch {
     dependsOn(sharedExtensionPatch)

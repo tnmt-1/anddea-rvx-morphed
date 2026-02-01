@@ -1,16 +1,16 @@
-package app.revanced.patches.music.utils.resourceid
+package app.morphe.patches.music.utils.resourceid
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.shared.mapping.ResourceType.ATTR
-import app.revanced.patches.shared.mapping.ResourceType.BOOL
-import app.revanced.patches.shared.mapping.ResourceType.COLOR
-import app.revanced.patches.shared.mapping.ResourceType.DIMEN
-import app.revanced.patches.shared.mapping.ResourceType.DRAWABLE
-import app.revanced.patches.shared.mapping.ResourceType.ID
-import app.revanced.patches.shared.mapping.ResourceType.LAYOUT
-import app.revanced.patches.shared.mapping.ResourceType.STRING
-import app.revanced.patches.shared.mapping.getResourceId
-import app.revanced.patches.shared.mapping.resourceMappingPatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.shared.mapping.ResourceType.ATTR
+import app.morphe.patches.shared.mapping.ResourceType.BOOL
+import app.morphe.patches.shared.mapping.ResourceType.COLOR
+import app.morphe.patches.shared.mapping.ResourceType.DIMEN
+import app.morphe.patches.shared.mapping.ResourceType.DRAWABLE
+import app.morphe.patches.shared.mapping.ResourceType.ID
+import app.morphe.patches.shared.mapping.ResourceType.LAYOUT
+import app.morphe.patches.shared.mapping.ResourceType.STRING
+import app.morphe.patches.shared.mapping.getResourceId
+import app.morphe.patches.shared.mapping.resourceMappingPatch
 
 var accountSwitcherAccessibility = -1L
     private set

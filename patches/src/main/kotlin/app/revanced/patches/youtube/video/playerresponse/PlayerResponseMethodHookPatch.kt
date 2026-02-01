@@ -1,10 +1,10 @@
-package app.revanced.patches.youtube.video.playerresponse
+package app.morphe.patches.youtube.video.playerresponse
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.util.fingerprint.methodOrThrow
 import kotlin.properties.Delegates
 
 private val hooks = mutableSetOf<Hook>()

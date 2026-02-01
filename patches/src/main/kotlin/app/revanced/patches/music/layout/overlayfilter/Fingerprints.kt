@@ -1,7 +1,7 @@
-package app.revanced.patches.music.layout.overlayfilter
+package app.morphe.patches.music.layout.overlayfilter
 
-import app.revanced.patches.music.utils.resourceid.designBottomSheetDialog
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.patches.music.utils.resourceid.designBottomSheetDialog
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 internal val designBottomSheetDialogFingerprint = legacyFingerprint(

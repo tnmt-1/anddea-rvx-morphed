@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.layout.theme
+package app.morphe.patches.youtube.layout.theme
 
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.shared.drawable.addDrawableColorHook
-import app.revanced.patches.shared.drawable.drawableColorHookPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.shared.drawable.addDrawableColorHook
+import app.morphe.patches.shared.drawable.drawableColorHookPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
 import org.w3c.dom.Element
 
 private const val SPLASH_SCREEN_COLOR_NAME = "splashScreenColor"

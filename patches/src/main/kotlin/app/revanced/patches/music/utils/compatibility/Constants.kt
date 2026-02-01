@@ -1,7 +1,7 @@
-package app.revanced.patches.music.utils.compatibility
+package app.morphe.patches.music.utils.compatibility
 
-import app.revanced.patcher.patch.PackageName
-import app.revanced.patcher.patch.VersionName
+import app.morphe.patcher.patch.PackageName
+import app.morphe.patcher.patch.VersionName
 
 internal object Constants {
     internal const val YOUTUBE_MUSIC_PACKAGE_NAME = "com.google.android.apps.youtube.music"

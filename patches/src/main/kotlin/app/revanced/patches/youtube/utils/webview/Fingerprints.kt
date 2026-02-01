@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.utils.webview
+package app.morphe.patches.youtube.utils.webview
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val vrWelcomeActivityOnCreateFingerprint = legacyFingerprint(
     name = "vrWelcomeActivityOnCreateFingerprint",

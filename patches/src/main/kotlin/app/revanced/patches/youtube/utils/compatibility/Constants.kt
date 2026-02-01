@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.utils.compatibility
+package app.morphe.patches.youtube.utils.compatibility
 
-import app.revanced.patcher.patch.PackageName
-import app.revanced.patcher.patch.VersionName
+import app.morphe.patcher.patch.PackageName
+import app.morphe.patcher.patch.VersionName
 
 internal object Constants {
     internal const val YOUTUBE_PACKAGE_NAME = "com.google.android.youtube"

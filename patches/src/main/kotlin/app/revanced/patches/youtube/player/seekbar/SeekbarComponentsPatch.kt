@@ -1,58 +1,58 @@
-package app.revanced.patches.youtube.player.seekbar
+package app.morphe.patches.youtube.player.seekbar
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.drawable.addDrawableColorHook
-import app.revanced.patches.shared.drawable.drawableColorHookPatch
-import app.revanced.patches.shared.mainactivity.onCreateMethod
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.extension.Constants.PLAYER_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.extension.Constants.PLAYER_PATH
-import app.revanced.patches.youtube.utils.flyoutmenu.flyoutMenuHookPatch
-import app.revanced.patches.youtube.utils.mainactivity.mainActivityResolvePatch
-import app.revanced.patches.youtube.utils.patch.PatchList.SEEKBAR_COMPONENTS
-import app.revanced.patches.youtube.utils.playerButtonsResourcesFingerprint
-import app.revanced.patches.youtube.utils.playerButtonsVisibilityFingerprint
-import app.revanced.patches.youtube.utils.playerSeekbarColorFingerprint
-import app.revanced.patches.youtube.utils.playservice.is_19_25_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_34_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_46_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_49_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_30_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.inlineTimeBarColorizedBarPlayedColorDark
-import app.revanced.patches.youtube.utils.resourceid.inlineTimeBarPlayedNotHighlightedColor
-import app.revanced.patches.youtube.utils.resourceid.reelTimeBarPlayedColor
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.resourceid.ytStaticBrandRed
-import app.revanced.patches.youtube.utils.seekbarFingerprint
-import app.revanced.patches.youtube.utils.seekbarOnDrawFingerprint
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.getContext
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.restoreOldSplashAnimationIncluded
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.patches.youtube.utils.totalTimeFingerprint
-import app.revanced.patches.youtube.video.information.videoInformationPatch
-import app.revanced.util.*
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.findElementByAttributeValueOrThrow
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.resolvable
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
-import app.revanced.util.inputStreamFromBundledResource
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.drawable.addDrawableColorHook
+import app.morphe.patches.shared.drawable.drawableColorHookPatch
+import app.morphe.patches.shared.mainactivity.onCreateMethod
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.extension.Constants.PLAYER_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.extension.Constants.PLAYER_PATH
+import app.morphe.patches.youtube.utils.flyoutmenu.flyoutMenuHookPatch
+import app.morphe.patches.youtube.utils.mainactivity.mainActivityResolvePatch
+import app.morphe.patches.youtube.utils.patch.PatchList.SEEKBAR_COMPONENTS
+import app.morphe.patches.youtube.utils.playerButtonsResourcesFingerprint
+import app.morphe.patches.youtube.utils.playerButtonsVisibilityFingerprint
+import app.morphe.patches.youtube.utils.playerSeekbarColorFingerprint
+import app.morphe.patches.youtube.utils.playservice.is_19_25_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_34_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_46_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_49_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_30_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.inlineTimeBarColorizedBarPlayedColorDark
+import app.morphe.patches.youtube.utils.resourceid.inlineTimeBarPlayedNotHighlightedColor
+import app.morphe.patches.youtube.utils.resourceid.reelTimeBarPlayedColor
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.resourceid.ytStaticBrandRed
+import app.morphe.patches.youtube.utils.seekbarFingerprint
+import app.morphe.patches.youtube.utils.seekbarOnDrawFingerprint
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.getContext
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.restoreOldSplashAnimationIncluded
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patches.youtube.utils.totalTimeFingerprint
+import app.morphe.patches.youtube.video.information.videoInformationPatch
+import app.morphe.util.*
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.findElementByAttributeValueOrThrow
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.resolvable
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.util.inputStreamFromBundledResource
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.*
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -247,7 +247,7 @@ val seekbarComponentsPatch = bytecodePatch(
 
         controlsOverlayStyleFingerprint.matchOrThrow().let {
             val walkerMethod =
-                it.getWalkerMethod(it.patternMatch!!.startIndex + 1)
+                it.getWalkerMethod(it.instructionMatches.first().index + 1)
             walkerMethod.apply {
                 val colorRegister = getInstruction<TwoRegisterInstruction>(0).registerA
 
@@ -320,7 +320,7 @@ val seekbarComponentsPatch = bytecodePatch(
 
             playerFingerprint.matchOrThrow().let {
                 it.method.apply {
-                    val index = it.patternMatch!!.endIndex
+                    val index = it.instructionMatches.last().index
                     val register = getInstruction<OneRegisterInstruction>(index).registerA
 
                     addInstructions(
@@ -453,7 +453,7 @@ val seekbarComponentsPatch = bytecodePatch(
                 val scaleNode = progressNode.getElementsByTagName("scale").item(0) as Element
                 val shapeNode = scaleNode.getElementsByTagName("shape").item(0) as Element
                 val replacementNode = document.createElement(
-                    "app.revanced.extension.youtube.patches.utils.ProgressBarDrawable"
+                    "app.morphe.extension.youtube.patches.utils.ProgressBarDrawable"
                 )
                 scaleNode.replaceChild(replacementNode, shapeNode)
             }

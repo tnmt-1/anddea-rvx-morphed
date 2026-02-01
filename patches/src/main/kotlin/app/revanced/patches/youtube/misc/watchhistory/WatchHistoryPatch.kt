@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.misc.watchhistory
+package app.morphe.patches.youtube.misc.watchhistory
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.trackingurlhook.hookWatchHistory
-import app.revanced.patches.shared.trackingurlhook.trackingUrlHookPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.WATCH_HISTORY
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.trackingurlhook.hookWatchHistory
+import app.morphe.patches.shared.trackingurlhook.trackingUrlHookPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.WATCH_HISTORY
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
 
 @Suppress("unused")
 val watchHistoryPatch = bytecodePatch(

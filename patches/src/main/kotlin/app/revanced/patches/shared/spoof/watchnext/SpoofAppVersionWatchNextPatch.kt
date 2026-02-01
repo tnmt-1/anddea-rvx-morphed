@@ -1,26 +1,26 @@
-package app.revanced.patches.shared.spoof.watchnext
+package app.morphe.patches.shared.spoof.watchnext
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatchBuilder
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.shared.clientTypeFingerprint
-import app.revanced.patches.shared.createPlayerRequestBodyFingerprint
-import app.revanced.patches.shared.indexOfClientInfoInstruction
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversed
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.or
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.BytecodePatchBuilder
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patches.shared.clientTypeFingerprint
+import app.morphe.patches.shared.createPlayerRequestBodyFingerprint
+import app.morphe.patches.shared.indexOfClientInfoInstruction
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversed
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -99,7 +99,7 @@ fun spoofAppVersionWatchNextPatch(
             createPlayerRequestBodyFingerprint.matchOrThrow().let {
                 it.method.apply {
                     val helperMethodName = "setClientInfo"
-                    val checkCastIndex = it.patternMatch!!.startIndex
+                    val checkCastIndex = it.instructionMatches.first().index
 
                     val checkCastInstruction =
                         getInstruction<OneRegisterInstruction>(checkCastIndex)
@@ -188,7 +188,7 @@ fun spoofAppVersionWatchNextPatch(
                 watchNextSyntheticFingerprint
             ).let { result ->
                 with(result.method) {
-                    val directIndex = result.patternMatch!!.startIndex
+                    val directIndex = result.instructionMatches.first().index
                     val startRegister =
                         getInstruction<RegisterRangeInstruction>(directIndex).startRegister
                     val directReference =

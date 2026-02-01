@@ -1,10 +1,10 @@
-package app.revanced.patches.shared.translations
+package app.morphe.patches.shared.translations
 
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.util.FilesCompat
-import app.revanced.util.doRecursively
-import app.revanced.util.inputStreamFromBundledResource
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.util.FilesCompat
+import app.morphe.util.doRecursively
+import app.morphe.util.inputStreamFromBundledResource
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.io.File

@@ -1,6 +1,6 @@
-package app.revanced.patches.spotify.misc.widgets
+package app.morphe.patches.spotify.misc.widgets
 
-import app.revanced.patcher.fingerprint
+import app.morphe.patcher.fingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 internal val canBindAppWidgetPermissionFingerprint = fingerprint {

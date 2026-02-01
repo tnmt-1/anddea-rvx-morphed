@@ -1,31 +1,31 @@
-package app.revanced.patches.music.video.information
+package app.morphe.patches.music.video.information
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patcher.util.smali.toInstructions
-import app.revanced.patches.music.utils.extension.Constants.SHARED_PATH
-import app.revanced.patches.music.utils.playbackSpeedFingerprint
-import app.revanced.patches.music.utils.playbackSpeedParentFingerprint
-import app.revanced.patches.music.video.playerresponse.Hook
-import app.revanced.patches.music.video.playerresponse.addPlayerResponseMethodHook
-import app.revanced.patches.music.video.playerresponse.playerResponseMethodHookPatch
-import app.revanced.patches.shared.mdxPlayerDirectorSetVideoStageFingerprint
-import app.revanced.patches.shared.videoLengthFingerprint
-import app.revanced.util.addStaticFieldToExtension
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.or
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableClass
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patcher.util.smali.toInstructions
+import app.morphe.patches.music.utils.extension.Constants.SHARED_PATH
+import app.morphe.patches.music.utils.playbackSpeedFingerprint
+import app.morphe.patches.music.utils.playbackSpeedParentFingerprint
+import app.morphe.patches.music.video.playerresponse.Hook
+import app.morphe.patches.music.video.playerresponse.addPlayerResponseMethodHook
+import app.morphe.patches.music.video.playerresponse.playerResponseMethodHookPatch
+import app.morphe.patches.shared.mdxPlayerDirectorSetVideoStageFingerprint
+import app.morphe.patches.shared.videoLengthFingerprint
+import app.morphe.util.addStaticFieldToExtension
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -224,7 +224,7 @@ val videoInformationPatch = bytecodePatch(
          */
         playerControllerSetTimeReferenceFingerprint.matchOrThrow().let {
             videoTimeConstructorMethod =
-                it.getWalkerMethod(it.patternMatch!!.startIndex)
+                it.getWalkerMethod(it.instructionMatches.first().index)
         }
 
         /**
@@ -257,7 +257,7 @@ val videoInformationPatch = bytecodePatch(
          * Hook current playback speed
          */
         playbackSpeedFingerprint.matchOrThrow(playbackSpeedParentFingerprint).let {
-            it.getWalkerMethod(it.patternMatch!!.endIndex).apply {
+            it.getWalkerMethod(it.instructionMatches.last().index).apply {
                 addInstruction(
                     implementation!!.instructions.lastIndex,
                     "invoke-static {p1}, $EXTENSION_CLASS_DESCRIPTOR->setPlaybackSpeed(F)V"

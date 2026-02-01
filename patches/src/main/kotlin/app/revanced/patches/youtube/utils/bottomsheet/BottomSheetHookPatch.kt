@@ -1,10 +1,10 @@
-package app.revanced.patches.youtube.utils.bottomsheet
+package app.morphe.patches.youtube.utils.bottomsheet
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.definingClassOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.definingClassOrThrow
 
 private const val EXTENSION_BOTTOM_SHEET_HOOK_CLASS_DESCRIPTOR =
     "$UTILS_PATH/BottomSheetHookPatch;"

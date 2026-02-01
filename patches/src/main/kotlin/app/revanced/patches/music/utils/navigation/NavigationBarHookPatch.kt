@@ -1,11 +1,11 @@
-package app.revanced.patches.music.utils.navigation
+package app.morphe.patches.music.utils.navigation
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.extension.Constants.SHARED_PATH
-import app.revanced.patches.music.utils.extension.sharedExtensionPatch
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.extension.Constants.SHARED_PATH
+import app.morphe.patches.music.utils.extension.sharedExtensionPatch
+import app.morphe.util.fingerprint.methodOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference

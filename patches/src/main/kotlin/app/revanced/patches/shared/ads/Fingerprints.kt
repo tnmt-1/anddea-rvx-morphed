@@ -1,10 +1,10 @@
-package app.revanced.patches.shared.ads
+package app.morphe.patches.shared.ads
 
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference

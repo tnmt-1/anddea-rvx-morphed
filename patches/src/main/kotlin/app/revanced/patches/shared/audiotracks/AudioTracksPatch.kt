@@ -1,22 +1,22 @@
-package app.revanced.patches.shared.audiotracks
+package app.morphe.patches.shared.audiotracks
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.BytecodePatchBuilder
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.shared.AUDIO_TRACK_DISPLAY_NAME_STRING
-import app.revanced.patches.shared.AUDIO_TRACK_ID_STRING
-import app.revanced.patches.shared.IS_DEFAULT_AUDIO_TRACK_STRING
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.patches.shared.formatStreamModelToStringFingerprint
-import app.revanced.util.findMethodFromToString
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.originalMethodOrThrow
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.BytecodePatchBuilder
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patches.shared.AUDIO_TRACK_DISPLAY_NAME_STRING
+import app.morphe.patches.shared.AUDIO_TRACK_ID_STRING
+import app.morphe.patches.shared.IS_DEFAULT_AUDIO_TRACK_STRING
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.patches.shared.formatStreamModelToStringFingerprint
+import app.morphe.util.findMethodFromToString
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.originalMethodOrThrow
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -60,9 +60,9 @@ internal fun audioTracksPatch(
         val audioTrackIdMethod = toStringMethod
             .findMethodFromToString(AUDIO_TRACK_ID_STRING)
 
-        proxy(classes.first {
+        mutableClassDefBy {
             it.type == audioTrackIdMethod.definingClass
-        }).mutableClass.apply {
+        }.apply {
             // Add a new field to store the override.
             val helperFieldName = "isDefaultAudioTrackOverride"
             fields.add(

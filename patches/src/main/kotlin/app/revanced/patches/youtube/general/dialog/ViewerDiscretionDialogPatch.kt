@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.general.dialog
+package app.morphe.patches.youtube.general.dialog
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.dialog.baseViewerDiscretionDialogPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.patch.PatchList.REMOVE_VIEWER_DISCRETION_DIALOG
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.dialog.baseViewerDiscretionDialogPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.patch.PatchList.REMOVE_VIEWER_DISCRETION_DIALOG
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
 
 @Suppress("unused")
 val viewerDiscretionDialogPatch = bytecodePatch(

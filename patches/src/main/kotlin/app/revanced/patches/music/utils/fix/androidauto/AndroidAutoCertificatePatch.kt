@@ -1,11 +1,11 @@
-package app.revanced.patches.music.utils.fix.androidauto
+package app.morphe.patches.music.utils.fix.androidauto
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.CERTIFICATE_SPOOF
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.CERTIFICATE_SPOOF
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.util.fingerprint.methodOrThrow
 
 @Suppress("unused")
 val androidAutoCertificatePatch = bytecodePatch(

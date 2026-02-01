@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.player.ambientmode
+package app.morphe.patches.youtube.player.ambientmode
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal const val AMBIENT_MODE_IN_FULLSCREEN_FEATURE_FLAG = 45389368L

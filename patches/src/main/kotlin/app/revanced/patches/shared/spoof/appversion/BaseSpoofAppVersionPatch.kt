@@ -1,12 +1,12 @@
-package app.revanced.patches.shared.spoof.appversion
+package app.morphe.patches.shared.spoof.appversion
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.createPlayerRequestBodyWithModelFingerprint
-import app.revanced.patches.shared.indexOfReleaseInstruction
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.createPlayerRequestBodyWithModelFingerprint
+import app.morphe.patches.shared.indexOfReleaseInstruction
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 

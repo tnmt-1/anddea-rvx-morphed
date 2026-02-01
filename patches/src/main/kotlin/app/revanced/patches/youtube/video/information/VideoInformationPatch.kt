@@ -1,57 +1,57 @@
-package app.revanced.patches.youtube.video.information
+package app.morphe.patches.youtube.video.information
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patcher.util.smali.toInstructions
-import app.revanced.patches.shared.FIXED_RESOLUTION_STRING
-import app.revanced.patches.shared.formatStreamModelToStringFingerprint
-import app.revanced.patches.shared.mdxPlayerDirectorSetVideoStageFingerprint
-import app.revanced.patches.shared.playbackStartParametersConstructorFingerprint
-import app.revanced.patches.shared.playbackStartParametersToStringFingerprint
-import app.revanced.patches.shared.videoLengthFingerprint
-import app.revanced.patches.youtube.utils.PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.YOUTUBE_FORMAT_STREAM_MODEL_CLASS_TYPE
-import app.revanced.patches.youtube.utils.YOUTUBE_VIDEO_QUALITY_CLASS_TYPE
-import app.revanced.patches.youtube.utils.extension.Constants.SHARED_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.VIDEO_PATH
-import app.revanced.patches.youtube.utils.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.videoEndFingerprint
-import app.revanced.patches.youtube.utils.videoIdFingerprintShorts
-import app.revanced.patches.youtube.video.playerresponse.Hook
-import app.revanced.patches.youtube.video.playerresponse.addPlayerResponseMethodHook
-import app.revanced.patches.youtube.video.playerresponse.playerResponseMethodHookPatch
-import app.revanced.patches.youtube.video.videoid.hookPlayerResponseVideoId
-import app.revanced.patches.youtube.video.videoid.hookVideoId
-import app.revanced.patches.youtube.video.videoid.videoIdPatch
-import app.revanced.util.addInstructionsAtControlFlowLabel
-import app.revanced.util.addStaticFieldToExtension
-import app.revanced.util.cloneMutable
-import app.revanced.util.findFieldFromToString
-import app.revanced.util.findMethodFromToString
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.findMutableClassOrThrow
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodCall
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.fingerprint.originalMethodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
-import app.revanced.util.or
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableClass
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patcher.util.smali.toInstructions
+import app.morphe.patches.shared.FIXED_RESOLUTION_STRING
+import app.morphe.patches.shared.formatStreamModelToStringFingerprint
+import app.morphe.patches.shared.mdxPlayerDirectorSetVideoStageFingerprint
+import app.morphe.patches.shared.playbackStartParametersConstructorFingerprint
+import app.morphe.patches.shared.playbackStartParametersToStringFingerprint
+import app.morphe.patches.shared.videoLengthFingerprint
+import app.morphe.patches.youtube.utils.PLAYER_RESPONSE_MODEL_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.YOUTUBE_FORMAT_STREAM_MODEL_CLASS_TYPE
+import app.morphe.patches.youtube.utils.YOUTUBE_VIDEO_QUALITY_CLASS_TYPE
+import app.morphe.patches.youtube.utils.extension.Constants.SHARED_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.VIDEO_PATH
+import app.morphe.patches.youtube.utils.playertype.playerTypeHookPatch
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.videoEndFingerprint
+import app.morphe.patches.youtube.utils.videoIdFingerprintShorts
+import app.morphe.patches.youtube.video.playerresponse.Hook
+import app.morphe.patches.youtube.video.playerresponse.addPlayerResponseMethodHook
+import app.morphe.patches.youtube.video.playerresponse.playerResponseMethodHookPatch
+import app.morphe.patches.youtube.video.videoid.hookPlayerResponseVideoId
+import app.morphe.patches.youtube.video.videoid.hookVideoId
+import app.morphe.patches.youtube.video.videoid.videoIdPatch
+import app.morphe.util.addInstructionsAtControlFlowLabel
+import app.morphe.util.addStaticFieldToExtension
+import app.morphe.util.cloneMutable
+import app.morphe.util.findFieldFromToString
+import app.morphe.util.findMethodFromToString
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.findMutableClassOrThrow
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodCall
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.fingerprint.originalMethodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -382,7 +382,7 @@ val videoInformationPatch = bytecodePatch(
          */
         playerControllerSetTimeReferenceFingerprint.matchOrThrow().let {
             videoTimeConstructorMethod =
-                it.getWalkerMethod(it.patternMatch!!.startIndex)
+                it.getWalkerMethod(it.instructionMatches.first().index)
         }
 
         /**
@@ -680,7 +680,7 @@ val videoInformationPatch = bytecodePatch(
                 formatStreamModelBuilderFingerprint
             ).let {
                 with(it.method) {
-                    val formatStreamIndex = it.patternMatch!!.startIndex + 1
+                    val formatStreamIndex = it.instructionMatches.first().index + 1
                     val formatStreamResolutionReference =
                         getInstruction<ReferenceInstruction>(formatStreamIndex).reference as MethodReference
 
@@ -778,7 +778,7 @@ val videoInformationPatch = bytecodePatch(
 
         videoQualityArrayFingerprint.matchOrThrow(formatStreamModelBuilderFingerprint).let {
             it.method.apply {
-                val index = it.patternMatch!!.startIndex
+                val index = it.instructionMatches.first().index
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
 
                 addInstructionsAtControlFlowLabel(
@@ -825,7 +825,7 @@ val videoInformationPatch = bytecodePatch(
                         )
                     }
                 )
-                val interfaceIndex = it.patternMatch!!.startIndex
+                val interfaceIndex = it.instructionMatches.first().index
                 val listRegister =
                     getInstruction<FiveRegisterInstruction>(interfaceIndex).registerD
                 val indexRegister =
@@ -842,7 +842,7 @@ val videoInformationPatch = bytecodePatch(
 
         videoQualitySetterFingerprint.matchOrThrow().let {
             it.method.apply {
-                val textIndex = it.patternMatch!!.endIndex
+                val textIndex = it.instructionMatches.last().index
                 val textRegister = getInstruction<TwoRegisterInstruction>(textIndex).registerA
 
                 addInstruction(

@@ -1,8 +1,8 @@
-package app.revanced.patches.music.layout.theme
+package app.morphe.patches.music.layout.theme
 
-import app.revanced.patches.music.utils.resourceid.elementsContainer
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.music.utils.resourceid.elementsContainer
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

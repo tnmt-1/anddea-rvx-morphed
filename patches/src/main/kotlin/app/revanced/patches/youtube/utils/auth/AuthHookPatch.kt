@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.utils.auth
+package app.morphe.patches.youtube.utils.auth
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.request.buildRequestPatch
-import app.revanced.patches.youtube.utils.request.hookBuildRequest
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.request.buildRequestPatch
+import app.morphe.patches.youtube.utils.request.hookBuildRequest
+import app.morphe.util.fingerprint.methodOrThrow
 
 private const val EXTENSION_AUTH_UTILS_CLASS_DESCRIPTOR =
     "$EXTENSION_PATH/innertube/utils/AuthUtils;"

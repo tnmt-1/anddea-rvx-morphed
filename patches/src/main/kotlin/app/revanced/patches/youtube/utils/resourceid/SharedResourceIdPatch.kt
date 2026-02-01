@@ -1,18 +1,18 @@
-package app.revanced.patches.youtube.utils.resourceid
+package app.morphe.patches.youtube.utils.resourceid
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.shared.mapping.ResourceType.ATTR
-import app.revanced.patches.shared.mapping.ResourceType.COLOR
-import app.revanced.patches.shared.mapping.ResourceType.DIMEN
-import app.revanced.patches.shared.mapping.ResourceType.DRAWABLE
-import app.revanced.patches.shared.mapping.ResourceType.ID
-import app.revanced.patches.shared.mapping.ResourceType.INTEGER
-import app.revanced.patches.shared.mapping.ResourceType.LAYOUT
-import app.revanced.patches.shared.mapping.ResourceType.RAW
-import app.revanced.patches.shared.mapping.ResourceType.STRING
-import app.revanced.patches.shared.mapping.ResourceType.XML
-import app.revanced.patches.shared.mapping.getResourceId
-import app.revanced.patches.shared.mapping.resourceMappingPatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.shared.mapping.ResourceType.ATTR
+import app.morphe.patches.shared.mapping.ResourceType.COLOR
+import app.morphe.patches.shared.mapping.ResourceType.DIMEN
+import app.morphe.patches.shared.mapping.ResourceType.DRAWABLE
+import app.morphe.patches.shared.mapping.ResourceType.ID
+import app.morphe.patches.shared.mapping.ResourceType.INTEGER
+import app.morphe.patches.shared.mapping.ResourceType.LAYOUT
+import app.morphe.patches.shared.mapping.ResourceType.RAW
+import app.morphe.patches.shared.mapping.ResourceType.STRING
+import app.morphe.patches.shared.mapping.ResourceType.XML
+import app.morphe.patches.shared.mapping.getResourceId
+import app.morphe.patches.shared.mapping.resourceMappingPatch
 
 var accountSwitcherAccessibility = -1L
     private set

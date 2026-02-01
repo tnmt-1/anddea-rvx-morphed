@@ -1,4 +1,4 @@
-package app.revanced.util
+package app.morphe.util
 
 import java.util.logging.Logger
 

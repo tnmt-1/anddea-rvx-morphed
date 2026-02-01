@@ -1,6 +1,6 @@
-package app.revanced.patches.music.utils.webview
+package app.morphe.patches.music.utils.webview
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val carAppPermissionActivityOnCreateFingerprint = legacyFingerprint(
     name = "carAppPermissionActivityOnCreateFingerprint",

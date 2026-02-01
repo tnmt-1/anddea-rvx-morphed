@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.alternative.thumbnails
+package app.morphe.patches.youtube.alternative.thumbnails
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.imageurl.addImageUrlHook
-import app.revanced.patches.shared.imageurl.cronetImageUrlHookPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.BYPASS_IMAGE_REGION_RESTRICTIONS
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.imageurl.addImageUrlHook
+import app.morphe.patches.shared.imageurl.cronetImageUrlHookPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.BYPASS_IMAGE_REGION_RESTRICTIONS
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
 
 @Suppress("unused")
 val bypassImageRegionRestrictionsPatch = bytecodePatch(

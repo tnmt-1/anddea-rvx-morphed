@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.player.fullscreen
+package app.morphe.patches.youtube.player.fullscreen
 
-import app.revanced.patches.youtube.utils.resourceid.appRelatedEndScreenResults
-import app.revanced.patches.youtube.utils.resourceid.fullScreenEngagementPanel
-import app.revanced.patches.youtube.utils.resourceid.playerVideoTitleView
-import app.revanced.patches.youtube.utils.resourceid.quickActionsElementContainer
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.appRelatedEndScreenResults
+import app.morphe.patches.youtube.utils.resourceid.fullScreenEngagementPanel
+import app.morphe.patches.youtube.utils.resourceid.playerVideoTitleView
+import app.morphe.patches.youtube.utils.resourceid.quickActionsElementContainer
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val broadcastReceiverFingerprint = legacyFingerprint(

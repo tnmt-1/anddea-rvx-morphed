@@ -1,7 +1,7 @@
-package app.revanced.patches.music.utils.returnyoutubedislike
+package app.morphe.patches.music.utils.returnyoutubedislike
 
-import app.revanced.patches.music.utils.resourceid.buttonIconPaddingMedium
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.patches.music.utils.resourceid.buttonIconPaddingMedium
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 internal val textComponentFingerprint = legacyFingerprint(

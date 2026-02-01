@@ -1,7 +1,7 @@
-package app.revanced.patches.spotify.layout.theme
+package app.morphe.patches.spotify.layout.theme
 
-import app.revanced.patcher.fingerprint
-import app.revanced.util.containsLiteralInstruction
+import app.morphe.patcher.fingerprint
+import app.morphe.util.containsLiteralInstruction
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val colorSpaceUtilsClassFingerprint = fingerprint {

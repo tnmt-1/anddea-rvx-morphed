@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.utils.toolbar
+package app.morphe.patches.youtube.utils.toolbar
 
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val toolBarPatchFingerprint = legacyFingerprint(

@@ -1,79 +1,79 @@
-package app.revanced.patches.music.player.components
+package app.morphe.patches.music.player.components
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.music.utils.extension.Constants.PLAYER_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.mainactivity.mainActivityResolvePatch
-import app.revanced.patches.music.utils.patch.PatchList.PLAYER_COMPONENTS
-import app.revanced.patches.music.utils.pendingIntentReceiverFingerprint
-import app.revanced.patches.music.utils.playservice.is_6_27_or_greater
-import app.revanced.patches.music.utils.playservice.is_6_42_or_greater
-import app.revanced.patches.music.utils.playservice.is_7_18_or_greater
-import app.revanced.patches.music.utils.playservice.is_7_25_or_greater
-import app.revanced.patches.music.utils.playservice.is_7_29_or_greater
-import app.revanced.patches.music.utils.playservice.is_8_03_or_greater
-import app.revanced.patches.music.utils.playservice.is_8_05_or_greater
-import app.revanced.patches.music.utils.playservice.is_8_12_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.resourceid.colorGrey
-import app.revanced.patches.music.utils.resourceid.darkBackground
-import app.revanced.patches.music.utils.resourceid.miniPlayerPlayPauseReplayButton
-import app.revanced.patches.music.utils.resourceid.miniPlayerViewPager
-import app.revanced.patches.music.utils.resourceid.playerViewPager
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.resourceid.tapBloomView
-import app.revanced.patches.music.utils.resourceid.topEnd
-import app.revanced.patches.music.utils.resourceid.topStart
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.music.utils.videotype.videoTypeHookPatch
-import app.revanced.patches.shared.comments.commentsPanelPatch
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.mainactivity.getMainActivityMethod
-import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
-import app.revanced.util.addStaticFieldToExtension
-import app.revanced.util.adoptChild
-import app.revanced.util.cloneMutable
-import app.revanced.util.doRecursively
-import app.revanced.util.findInstructionIndicesReversed
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.injectLiteralInstructionViewCall
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.fingerprint.matchOrNull
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodCall
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.fingerprint.resolvable
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
-import app.revanced.util.indexOfFirstStringInstructionOrThrow
-import app.revanced.util.insertNode
-import app.revanced.util.or
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableField.Companion.toMutable
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.music.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.music.utils.extension.Constants.PLAYER_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.mainactivity.mainActivityResolvePatch
+import app.morphe.patches.music.utils.patch.PatchList.PLAYER_COMPONENTS
+import app.morphe.patches.music.utils.pendingIntentReceiverFingerprint
+import app.morphe.patches.music.utils.playservice.is_6_27_or_greater
+import app.morphe.patches.music.utils.playservice.is_6_42_or_greater
+import app.morphe.patches.music.utils.playservice.is_7_18_or_greater
+import app.morphe.patches.music.utils.playservice.is_7_25_or_greater
+import app.morphe.patches.music.utils.playservice.is_7_29_or_greater
+import app.morphe.patches.music.utils.playservice.is_8_03_or_greater
+import app.morphe.patches.music.utils.playservice.is_8_05_or_greater
+import app.morphe.patches.music.utils.playservice.is_8_12_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.resourceid.colorGrey
+import app.morphe.patches.music.utils.resourceid.darkBackground
+import app.morphe.patches.music.utils.resourceid.miniPlayerPlayPauseReplayButton
+import app.morphe.patches.music.utils.resourceid.miniPlayerViewPager
+import app.morphe.patches.music.utils.resourceid.playerViewPager
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.resourceid.tapBloomView
+import app.morphe.patches.music.utils.resourceid.topEnd
+import app.morphe.patches.music.utils.resourceid.topStart
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.music.utils.videotype.videoTypeHookPatch
+import app.morphe.patches.shared.comments.commentsPanelPatch
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.mainactivity.getMainActivityMethod
+import app.morphe.util.REGISTER_TEMPLATE_REPLACEMENT
+import app.morphe.util.addStaticFieldToExtension
+import app.morphe.util.adoptChild
+import app.morphe.util.cloneMutable
+import app.morphe.util.doRecursively
+import app.morphe.util.findInstructionIndicesReversed
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.injectLiteralInstructionViewCall
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.matchOrNull
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodCall
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.fingerprint.resolvable
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.util.indexOfFirstStringInstructionOrThrow
+import app.morphe.util.insertNode
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
@@ -363,7 +363,7 @@ val playerComponentsPatch = bytecodePatch(
         if (!is_6_42_or_greater) {
             nextButtonVisibilityFingerprint.matchOrThrow(miniPlayerParentFingerprint).let {
                 it.method.apply {
-                    val targetIndex = it.patternMatch!!.startIndex + 1
+                    val targetIndex = it.instructionMatches.first().index + 1
                     val targetRegister =
                         getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
@@ -422,7 +422,7 @@ val playerComponentsPatch = bytecodePatch(
             colorMathPlayerIGetReference
         ) = switchToggleColorFingerprint.matchOrThrow(miniPlayerConstructorFingerprint).let {
             with(it.method) {
-                val relativeIndex = it.patternMatch!!.endIndex + 1
+                val relativeIndex = it.instructionMatches.last().index + 1
                 val invokeVirtualIndex =
                     indexOfFirstInstructionOrThrow(relativeIndex, Opcode.INVOKE_VIRTUAL)
                 val iGetIndex = indexOfFirstInstructionOrThrow(relativeIndex, Opcode.IGET)
@@ -608,7 +608,7 @@ val playerComponentsPatch = bytecodePatch(
 
         minimizedPlayerFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex
+                val insertIndex = it.instructionMatches.last().index
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
                 addInstructions(
@@ -743,7 +743,7 @@ val playerComponentsPatch = bytecodePatch(
 
                 handleSignInEventFingerprint.matchOrThrow(handleSearchRenderedFingerprint).let {
                     val dismissBehaviorMethod =
-                        it.getWalkerMethod(it.patternMatch!!.startIndex)
+                        it.getWalkerMethod(it.instructionMatches.first().index)
 
                     dismissBehaviorMethod.apply {
                         val insertIndex = indexOfFirstInstructionOrThrow {
@@ -785,7 +785,7 @@ val playerComponentsPatch = bytecodePatch(
 
                 miniPlayerDefaultTextFingerprint.matchOrThrow().let {
                     it.method.apply {
-                        val insertIndex = it.patternMatch!!.endIndex
+                        val insertIndex = it.instructionMatches.last().index
                         val insertRegister =
                             getInstruction<TwoRegisterInstruction>(insertIndex).registerB
 
@@ -869,11 +869,11 @@ val playerComponentsPatch = bytecodePatch(
         // this method is used for old player background (deprecated since YT Music v6.34.51)
         zenModeFingerprint.matchOrNull(miniPlayerConstructorFingerprint)?.let {
             it.method.apply {
-                val startIndex = it.patternMatch!!.startIndex
+                val startIndex = it.instructionMatches.first().index
                 val targetRegister =
                     getInstruction<OneRegisterInstruction>(startIndex).registerA
 
-                val insertIndex = it.patternMatch!!.endIndex + 1
+                val insertIndex = it.instructionMatches.last().index + 1
 
                 addInstructions(
                     insertIndex, """
@@ -964,7 +964,7 @@ val playerComponentsPatch = bytecodePatch(
 
         remixGenericButtonFingerprint.matchOrThrow().let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.endIndex
+                val targetIndex = it.instructionMatches.last().index
                 val targetRegister = getInstruction<TwoRegisterInstruction>(targetIndex).registerA
 
                 addInstructions(
@@ -1027,7 +1027,7 @@ val playerComponentsPatch = bytecodePatch(
 
         val (repeatTrackMethod, repeatTrackIndex) = repeatTrackFingerprint.matchOrThrow().let {
             with(it.method) {
-                val targetIndex = it.patternMatch!!.endIndex
+                val targetIndex = it.instructionMatches.last().index
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
                 addInstructions(
@@ -1087,10 +1087,9 @@ val playerComponentsPatch = bytecodePatch(
                 indexOfFirstInstructionReversedOrThrow(enumIndex, Opcode.CHECK_CAST)
             val shuffleClass =
                 getInstruction<ReferenceInstruction>(shuffleClassIndex).reference.toString()
-            val shuffleMutableClass = classBy { classDef ->
+            val shuffleMutableClass = mutableClassDefByOrNull { classDef ->
                 classDef.type == shuffleClass
-            }?.mutableClass
-                ?: throw PatchException("shuffle class not found")
+            } ?: throw PatchException("shuffle class not found")
 
             val smaliInstructions =
                 """
@@ -1224,7 +1223,7 @@ val playerComponentsPatch = bytecodePatch(
             engagementPanelHeightFingerprint.matchOrThrow(engagementPanelHeightParentFingerprint)
                 .let {
                     it.method.apply {
-                        val targetIndex = it.patternMatch!!.endIndex
+                        val targetIndex = it.instructionMatches.last().index
                         val targetRegister =
                             getInstruction<OneRegisterInstruction>(targetIndex).registerA
 

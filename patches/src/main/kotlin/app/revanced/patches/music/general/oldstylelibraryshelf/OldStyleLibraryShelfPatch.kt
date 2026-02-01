@@ -1,18 +1,18 @@
-package app.revanced.patches.music.general.oldstylelibraryshelf
+package app.morphe.patches.music.general.oldstylelibraryshelf
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.patch.PatchList.RESTORE_OLD_STYLE_LIBRARY_SHELF
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstStringInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.patch.PatchList.RESTORE_OLD_STYLE_LIBRARY_SHELF
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstStringInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 

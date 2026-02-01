@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.utils.fix.attributes
+package app.morphe.patches.youtube.utils.fix.attributes
 
-import app.revanced.patches.youtube.utils.resourceid.ytOutlineMoonZ
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.ytOutlineMoonZ
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

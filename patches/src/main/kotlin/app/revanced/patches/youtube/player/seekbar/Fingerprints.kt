@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.player.seekbar
+package app.morphe.patches.youtube.player.seekbar
 
-import app.revanced.patches.youtube.utils.resourceid.inlineTimeBarLiveSeekAbleRange
-import app.revanced.patches.youtube.utils.resourceid.reelTimeBarPlayedColor
-import app.revanced.patches.youtube.utils.resourceid.ytStaticBrandRed
-import app.revanced.patches.youtube.utils.resourceid.ytTextSecondary
-import app.revanced.patches.youtube.utils.resourceid.ytYoutubeMagenta
-import app.revanced.util.containsLiteralInstruction
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversed
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.inlineTimeBarLiveSeekAbleRange
+import app.morphe.patches.youtube.utils.resourceid.reelTimeBarPlayedColor
+import app.morphe.patches.youtube.utils.resourceid.ytStaticBrandRed
+import app.morphe.patches.youtube.utils.resourceid.ytTextSecondary
+import app.morphe.patches.youtube.utils.resourceid.ytYoutubeMagenta
+import app.morphe.util.containsLiteralInstruction
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionReversed
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.utils.request
+package app.morphe.patches.youtube.utils.request
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.util.findFreeRegister
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.util.findFreeRegister
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 private lateinit var buildRequestMethod: MutableMethod

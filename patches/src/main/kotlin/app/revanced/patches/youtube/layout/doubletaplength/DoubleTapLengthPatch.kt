@@ -1,16 +1,16 @@
-package app.revanced.patches.youtube.layout.doubletaplength
+package app.morphe.patches.youtube.layout.doubletaplength
 
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.CUSTOM_DOUBLE_TAP_LENGTH
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.ResourceGroup
-import app.revanced.util.addEntryValues
-import app.revanced.util.copyResources
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.CUSTOM_DOUBLE_TAP_LENGTH
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.ResourceGroup
+import app.morphe.util.addEntryValues
+import app.morphe.util.copyResources
+import app.morphe.util.valueOrThrow
 import java.nio.file.Files
 
 @Suppress("unused")

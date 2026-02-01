@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.utils.fix.shortsplayback
+package app.morphe.patches.youtube.utils.fix.shortsplayback
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal const val SHORTS_PLAYBACK_PRIMARY_FEATURE_FLAG = 45387052L
 

@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.player.buttons
+package app.morphe.patches.youtube.player.buttons
 
-import app.revanced.patches.youtube.utils.resourceid.cfFullscreenButton
-import app.revanced.patches.youtube.utils.resourceid.fadeDurationFast
-import app.revanced.patches.youtube.utils.resourceid.fullScreenButton
-import app.revanced.patches.youtube.utils.resourceid.musicAppDeeplinkButtonView
-import app.revanced.patches.youtube.utils.resourceid.playerCollapseButton
-import app.revanced.patches.youtube.utils.resourceid.titleAnchor
-import app.revanced.patches.youtube.utils.resourceid.youTubeControlsOverlaySubtitleButton
-import app.revanced.util.containsLiteralInstruction
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.cfFullscreenButton
+import app.morphe.patches.youtube.utils.resourceid.fadeDurationFast
+import app.morphe.patches.youtube.utils.resourceid.fullScreenButton
+import app.morphe.patches.youtube.utils.resourceid.musicAppDeeplinkButtonView
+import app.morphe.patches.youtube.utils.resourceid.playerCollapseButton
+import app.morphe.patches.youtube.utils.resourceid.titleAnchor
+import app.morphe.patches.youtube.utils.resourceid.youTubeControlsOverlaySubtitleButton
+import app.morphe.util.containsLiteralInstruction
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

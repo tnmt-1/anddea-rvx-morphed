@@ -1,43 +1,43 @@
-package app.revanced.patches.music.general.components
+package app.morphe.patches.music.general.components
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.extension.Constants.GENERAL_PATH
-import app.revanced.patches.music.utils.patch.PatchList.HIDE_LAYOUT_COMPONENTS
-import app.revanced.patches.music.utils.playservice.is_6_39_or_greater
-import app.revanced.patches.music.utils.playservice.is_6_42_or_greater
-import app.revanced.patches.music.utils.playservice.is_6_48_or_greater
-import app.revanced.patches.music.utils.playservice.is_8_05_or_greater
-import app.revanced.patches.music.utils.playservice.is_8_15_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.resourceid.musicTasteBuilderShelf
-import app.revanced.patches.music.utils.resourceid.playerOverlayChip
-import app.revanced.patches.music.utils.resourceid.searchButton
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.resourceid.topBarMenuItemImageView
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.settingmenu.settingsMenuPatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.extension.Constants.GENERAL_PATH
+import app.morphe.patches.music.utils.patch.PatchList.HIDE_LAYOUT_COMPONENTS
+import app.morphe.patches.music.utils.playservice.is_6_39_or_greater
+import app.morphe.patches.music.utils.playservice.is_6_42_or_greater
+import app.morphe.patches.music.utils.playservice.is_6_48_or_greater
+import app.morphe.patches.music.utils.playservice.is_8_05_or_greater
+import app.morphe.patches.music.utils.playservice.is_8_15_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.resourceid.musicTasteBuilderShelf
+import app.morphe.patches.music.utils.resourceid.playerOverlayChip
+import app.morphe.patches.music.utils.resourceid.searchButton
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.resourceid.topBarMenuItemImageView
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.settingmenu.settingsMenuPatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -99,7 +99,7 @@ val layoutComponentsPatch = bytecodePatch(
 
         chipCloudFingerprint.matchOrThrow().let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.endIndex
+                val targetIndex = it.instructionMatches.last().index
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
                 addInstruction(
@@ -134,7 +134,7 @@ val layoutComponentsPatch = bytecodePatch(
         ).forEach { fingerprint ->
             fingerprint.matchOrThrow().let {
                 it.method.apply {
-                    val insertIndex = it.patternMatch!!.startIndex
+                    val insertIndex = it.instructionMatches.first().index
                     val insertRegister =
                         getInstruction<FiveRegisterInstruction>(insertIndex).registerD
 
@@ -185,7 +185,7 @@ val layoutComponentsPatch = bytecodePatch(
         if (is_6_39_or_greater) {
             parentToolMenuFingerprint.matchOrThrow().let {
                 it.method.apply {
-                    val index = it.patternMatch!!.startIndex + 1
+                    val index = it.instructionMatches.first().index + 1
                     val register = getInstruction<FiveRegisterInstruction>(index).registerD
 
                     addInstructions(
@@ -278,7 +278,7 @@ val layoutComponentsPatch = bytecodePatch(
 
         tasteBuilderSyntheticFingerprint.matchOrThrow(tasteBuilderConstructorFingerprint).let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.startIndex
+                val insertIndex = it.instructionMatches.first().index
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
                 addInstruction(

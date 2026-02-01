@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.general.music
+package app.morphe.patches.youtube.general.music
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_PATH
-import app.revanced.patches.youtube.utils.patch.PatchList.HOOK_YOUTUBE_MUSIC_ACTIONS
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.getReference
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_PATH
+import app.morphe.patches.youtube.utils.patch.PatchList.HOOK_YOUTUBE_MUSIC_ACTIONS
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.getReference
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -31,7 +31,7 @@ val youtubeMusicActionsPatch = bytecodePatch(
 
         appDeepLinkFingerprint.matchOrThrow().let {
             it.method.apply {
-                val packageNameIndex = it.patternMatch!!.startIndex
+                val packageNameIndex = it.instructionMatches.first().index
                 val packageNameField =
                     getInstruction<ReferenceInstruction>(packageNameIndex).reference.toString()
 

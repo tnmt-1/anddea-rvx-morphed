@@ -1,21 +1,21 @@
-package app.revanced.patches.youtube.utils.playlist
+package app.morphe.patches.youtube.utils.playlist
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.mainactivity.getMainActivityMethod
-import app.revanced.patches.youtube.player.overlaybuttons.geminiButton
-import app.revanced.patches.youtube.utils.auth.authHookPatch
-import app.revanced.patches.youtube.utils.dismiss.dismissPlayerHookPatch
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.mainactivity.mainActivityResolvePatch
-import app.revanced.patches.youtube.utils.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.video.information.videoInformationPatch
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.mainactivity.getMainActivityMethod
+import app.morphe.patches.youtube.player.overlaybuttons.geminiButton
+import app.morphe.patches.youtube.utils.auth.authHookPatch
+import app.morphe.patches.youtube.utils.dismiss.dismissPlayerHookPatch
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.mainactivity.mainActivityResolvePatch
+import app.morphe.patches.youtube.utils.playertype.playerTypeHookPatch
+import app.morphe.patches.youtube.video.information.videoInformationPatch
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -62,7 +62,7 @@ val playlistPatch = bytecodePatch(
             .matchOrThrow(editPlaylistConstructorFingerprint)
             .let {
                 it.method.apply {
-                    val castIndex = it.patternMatch!!.startIndex
+                    val castIndex = it.instructionMatches.first().index
                     val castClass =
                         getInstruction<ReferenceInstruction>(castIndex).reference.toString()
 

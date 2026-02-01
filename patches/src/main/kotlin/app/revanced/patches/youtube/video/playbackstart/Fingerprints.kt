@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.video.playbackstart
+package app.morphe.patches.youtube.video.playbackstart
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 const val PLAYBACK_START_DESCRIPTOR_CLASS_DESCRIPTOR =

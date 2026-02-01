@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.layout.branding.name
+package app.morphe.patches.youtube.layout.branding.name
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.CUSTOM_BRANDING_NAME_FOR_YOUTUBE
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.removeStringsElements
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.CUSTOM_BRANDING_NAME_FOR_YOUTUBE
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.removeStringsElements
+import app.morphe.util.valueOrThrow
 
 private const val APP_NAME = "RVX"
 

@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.utils.lockmodestate
+package app.morphe.patches.youtube.utils.lockmodestate
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

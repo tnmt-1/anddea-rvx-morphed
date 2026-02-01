@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.utils.dismiss
+package app.morphe.patches.youtube.utils.dismiss
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal const val DISMISS_PLAYER_LITERAL = 34699L

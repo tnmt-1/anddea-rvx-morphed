@@ -1,8 +1,8 @@
-package app.revanced.patches.shared.extension
+package app.morphe.patches.shared.extension
 
 @Suppress("MemberVisibilityCanBePrivate")
 internal object Constants {
-    const val EXTENSION_PATH = "Lapp/revanced/extension/shared"
+    const val EXTENSION_PATH = "Lapp/morphe/extension/shared"
     const val PATCHES_PATH = "$EXTENSION_PATH/patches"
     const val COMPONENTS_PATH = "$PATCHES_PATH/components"
     const val SPANS_PATH = "$PATCHES_PATH/spans"

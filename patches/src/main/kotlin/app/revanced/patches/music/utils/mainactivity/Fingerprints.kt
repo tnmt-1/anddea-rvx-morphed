@@ -1,6 +1,6 @@
-package app.revanced.patches.music.utils.mainactivity
+package app.morphe.patches.music.utils.mainactivity
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val mainActivityFingerprint = legacyFingerprint(
     name = "mainActivityFingerprint",

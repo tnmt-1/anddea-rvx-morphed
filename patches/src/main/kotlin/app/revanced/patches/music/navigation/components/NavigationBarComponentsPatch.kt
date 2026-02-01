@@ -1,39 +1,39 @@
-package app.revanced.patches.music.navigation.components
+package app.morphe.patches.music.navigation.components
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.general.startpage.changeStartPagePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.NAVIGATION_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.patch.PatchList.NAVIGATION_BAR_COMPONENTS
-import app.revanced.patches.music.utils.playservice.is_6_27_or_greater
-import app.revanced.patches.music.utils.playservice.is_8_29_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.resourceid.colorGrey
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.resourceid.text1
-import app.revanced.patches.music.utils.resourceid.ytFillSamples
-import app.revanced.patches.music.utils.resourceid.ytFillYouTubeMusic
-import app.revanced.patches.music.utils.resourceid.ytOutlineSamples
-import app.revanced.patches.music.utils.resourceid.ytOutlineYouTubeMusic
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
-import app.revanced.util.replaceLiteralInstructionCall
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.general.startpage.changeStartPagePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.NAVIGATION_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.patch.PatchList.NAVIGATION_BAR_COMPONENTS
+import app.morphe.patches.music.utils.playservice.is_6_27_or_greater
+import app.morphe.patches.music.utils.playservice.is_8_29_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.resourceid.colorGrey
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.resourceid.text1
+import app.morphe.patches.music.utils.resourceid.ytFillSamples
+import app.morphe.patches.music.utils.resourceid.ytFillYouTubeMusic
+import app.morphe.patches.music.utils.resourceid.ytOutlineSamples
+import app.morphe.patches.music.utils.resourceid.ytOutlineYouTubeMusic
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.util.REGISTER_TEMPLATE_REPLACEMENT
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.util.replaceLiteralInstructionCall
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -134,7 +134,7 @@ val navigationBarComponentsPatch = bytecodePatch(
                 val browseIdFieldName =
                     (getInstruction<ReferenceInstruction>(browseIdIndex).reference as FieldReference).name
 
-                val enumIndex = it.patternMatch!!.startIndex + 3
+                val enumIndex = it.instructionMatches.first().index + 3
                 val enumRegister = getInstruction<OneRegisterInstruction>(enumIndex).registerA
                 val insertEnumIndex = indexOfFirstInstructionOrThrow(Opcode.AND_INT_LIT8) - 2
 

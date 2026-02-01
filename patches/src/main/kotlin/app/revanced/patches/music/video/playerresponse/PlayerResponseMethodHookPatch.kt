@@ -1,13 +1,13 @@
-package app.revanced.patches.music.video.playerresponse
+package app.morphe.patches.music.video.playerresponse
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.music.utils.extension.sharedExtensionPatch
-import app.revanced.patches.music.utils.playservice.is_7_03_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patches.music.utils.extension.sharedExtensionPatch
+import app.morphe.patches.music.utils.playservice.is_7_03_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.util.fingerprint.methodOrThrow
 
 private val hooks = mutableSetOf<Hook>()
 

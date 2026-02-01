@@ -1,10 +1,10 @@
-package app.revanced.patches.music.general.splash
+package app.morphe.patches.music.general.splash
 
-import app.revanced.patches.music.utils.resourceid.mainActivityLaunchAnimation
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversed
-import app.revanced.util.indexOfFirstLiteralInstruction
+import app.morphe.patches.music.utils.resourceid.mainActivityLaunchAnimation
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionReversed
+import app.morphe.util.indexOfFirstLiteralInstruction
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference

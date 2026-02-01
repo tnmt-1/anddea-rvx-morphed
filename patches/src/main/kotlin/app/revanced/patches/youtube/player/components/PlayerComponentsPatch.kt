@@ -1,63 +1,63 @@
-package app.revanced.patches.youtube.player.components
+package app.morphe.patches.youtube.player.components
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.spans.addSpanFilter
-import app.revanced.patches.shared.spans.inclusiveSpanPatch
-import app.revanced.patches.shared.startVideoInformerFingerprint
-import app.revanced.patches.shared.textcomponent.hookSpannableString
-import app.revanced.patches.shared.textcomponent.textComponentPatch
-import app.revanced.patches.youtube.utils.bottomsheet.bottomSheetHookPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.dismiss.dismissPlayerHookPatch
-import app.revanced.patches.youtube.utils.dismiss.hookDismissObserver
-import app.revanced.patches.youtube.utils.engagement.engagementPanelBuilderMethod
-import app.revanced.patches.youtube.utils.engagement.engagementPanelFreeRegister
-import app.revanced.patches.youtube.utils.engagement.engagementPanelHookPatch
-import app.revanced.patches.youtube.utils.engagement.engagementPanelIdIndex
-import app.revanced.patches.youtube.utils.engagement.engagementPanelIdRegister
-import app.revanced.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.PLAYER_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.extension.Constants.PLAYER_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.SPANS_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.fix.endscreensuggestedvideo.endScreenSuggestedVideoPatch
-import app.revanced.patches.youtube.utils.fix.litho.lithoLayoutPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.PLAYER_COMPONENTS
-import app.revanced.patches.youtube.utils.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.utils.playservice.*
-import app.revanced.patches.youtube.utils.resourceid.*
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.patches.youtube.utils.youtubeControlsOverlayFingerprint
-import app.revanced.patches.youtube.video.information.hookBackgroundPlayVideoInformation
-import app.revanced.patches.youtube.video.information.hookVideoInformation
-import app.revanced.patches.youtube.video.information.videoInformationPatch
-import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.findMutableMethodOf
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.injectLiteralInstructionViewCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
-import app.revanced.util.or
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.spans.addSpanFilter
+import app.morphe.patches.shared.spans.inclusiveSpanPatch
+import app.morphe.patches.shared.startVideoInformerFingerprint
+import app.morphe.patches.shared.textcomponent.hookSpannableString
+import app.morphe.patches.shared.textcomponent.textComponentPatch
+import app.morphe.patches.youtube.utils.bottomsheet.bottomSheetHookPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.dismiss.dismissPlayerHookPatch
+import app.morphe.patches.youtube.utils.dismiss.hookDismissObserver
+import app.morphe.patches.youtube.utils.engagement.engagementPanelBuilderMethod
+import app.morphe.patches.youtube.utils.engagement.engagementPanelFreeRegister
+import app.morphe.patches.youtube.utils.engagement.engagementPanelHookPatch
+import app.morphe.patches.youtube.utils.engagement.engagementPanelIdIndex
+import app.morphe.patches.youtube.utils.engagement.engagementPanelIdRegister
+import app.morphe.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.PLAYER_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.extension.Constants.PLAYER_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.SPANS_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.fix.endscreensuggestedvideo.endScreenSuggestedVideoPatch
+import app.morphe.patches.youtube.utils.fix.litho.lithoLayoutPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.PLAYER_COMPONENTS
+import app.morphe.patches.youtube.utils.playertype.playerTypeHookPatch
+import app.morphe.patches.youtube.utils.playservice.*
+import app.morphe.patches.youtube.utils.resourceid.*
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patches.youtube.utils.youtubeControlsOverlayFingerprint
+import app.morphe.patches.youtube.video.information.hookBackgroundPlayVideoInformation
+import app.morphe.patches.youtube.video.information.hookVideoInformation
+import app.morphe.patches.youtube.video.information.videoInformationPatch
+import app.morphe.util.REGISTER_TEMPLATE_REPLACEMENT
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.findMutableMethodOf
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.injectLiteralInstructionViewCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
@@ -164,11 +164,10 @@ private val speedOverlayPatch = bytecodePatch(
                         indexOfFirstInstruction(Opcode.CMPL_FLOAT) >= 0
             }
 
-            classes.forEach { classDef ->
+            classDefForEach { classDef ->
                 classDef.methods.forEach { method ->
                     if (method.isSyntheticMethod()) {
-                        proxy(classDef)
-                            .mutableClass
+                        mutableClassDefBy(classDef)
                             .findMutableMethodOf(method)
                             .apply {
                                 val speedFieldIndex = indexOfFirstSpeedFieldInstruction(this)
@@ -214,16 +213,17 @@ private val speedOverlayPatch = bytecodePatch(
                     horizontalTouchOffsetConstructorFingerprint
                 ).let {
                     with(it.method) {
-                        val patternMatch = it.patternMatch!!
-                        val jumpIndex = patternMatch.endIndex + 1
-                        val insertIndex = patternMatch.endIndex - 1
+                        val startIndex = it.instructionMatches.first().index
+                        val endIndex = it.instructionMatches.last().index
+                        val jumpIndex = endIndex + 1
+                        val insertIndex = endIndex - 1
                         val insertRegister =
                             getInstruction<TwoRegisterInstruction>(insertIndex).registerA
 
                         hookSpeedOverlay(insertIndex, insertRegister, jumpIndex)
 
                         val slideToSeekBooleanMethod =
-                            getWalkerMethod(patternMatch.startIndex + 1)
+                            getWalkerMethod(startIndex + 1)
 
                         val slideToSeekConstructorMethod =
                             findMethodOrThrow(slideToSeekBooleanMethod.definingClass)
@@ -520,7 +520,7 @@ val playerComponentsPatch = bytecodePatch(
 
         watermarkFingerprint.matchOrThrow(watermarkParentFingerprint).let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex
+                val insertIndex = it.instructionMatches.last().index
                 val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
 
                 addInstructions(
@@ -538,7 +538,7 @@ val playerComponentsPatch = bytecodePatch(
 
         crowdfundingBoxFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex
+                val insertIndex = it.instructionMatches.last().index
                 val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
 
                 addInstruction(
@@ -577,7 +577,7 @@ val playerComponentsPatch = bytecodePatch(
         ).forEach { fingerprint ->
             fingerprint.matchOrThrow().let {
                 it.method.apply {
-                    val insertIndex = it.patternMatch!!.endIndex
+                    val insertIndex = it.instructionMatches.last().index
                     val viewRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
                     addInstruction(
@@ -646,7 +646,7 @@ val playerComponentsPatch = bytecodePatch(
                 filmStripOverlayStartParentFingerprint
             ).let {
                 it.method.apply {
-                    val index = it.patternMatch!!.startIndex
+                    val index = it.instructionMatches.first().index
                     val register = getInstruction<TwoRegisterInstruction>(index).registerA
 
                     hookFilmstripOverlay(index, register)
@@ -657,7 +657,7 @@ val playerComponentsPatch = bytecodePatch(
                 filmStripOverlayStartParentFingerprint
             ).let {
                 it.method.apply {
-                    val index = it.patternMatch!!.startIndex + 2
+                    val index = it.instructionMatches.first().index + 2
                     val register = getInstruction<OneRegisterInstruction>(index).registerA
 
                     addInstructions(
@@ -720,7 +720,7 @@ val playerComponentsPatch = bytecodePatch(
 
         infoCardsIncognitoFingerprint.matchOrThrow().let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.startIndex
+                val targetIndex = it.instructionMatches.first().index
                 val targetRegister =
                     getInstruction<TwoRegisterInstruction>(targetIndex).registerA
 
@@ -739,7 +739,7 @@ val playerComponentsPatch = bytecodePatch(
 
         linearLayoutManagerItemCountsFingerprint.matchOrThrow().let {
             val methodWalker =
-                it.getWalkerMethod(it.patternMatch!!.endIndex)
+                it.getWalkerMethod(it.instructionMatches.last().index)
             methodWalker.apply {
                 val index = indexOfFirstInstructionOrThrow(Opcode.MOVE_RESULT)
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
@@ -851,7 +851,7 @@ val playerComponentsPatch = bytecodePatch(
 
         suggestedActionsFingerprint.matchOrThrow().let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.endIndex
+                val targetIndex = it.instructionMatches.last().index
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
                 addInstruction(

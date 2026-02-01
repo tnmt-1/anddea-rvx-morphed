@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.player.flyoutmenu.hide
+package app.morphe.patches.youtube.player.flyoutmenu.hide
 
-import app.revanced.patches.youtube.utils.YOUTUBE_VIDEO_QUALITY_CLASS_TYPE
-import app.revanced.patches.youtube.utils.indexOfAddHeaderViewInstruction
-import app.revanced.patches.youtube.utils.resourceid.bottomSheetFooterText
-import app.revanced.patches.youtube.utils.resourceid.subtitleMenuSettingsFooterInfo
-import app.revanced.patches.youtube.utils.resourceid.videoQualityBottomSheet
-import app.revanced.util.containsLiteralInstruction
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.YOUTUBE_VIDEO_QUALITY_CLASS_TYPE
+import app.morphe.patches.youtube.utils.indexOfAddHeaderViewInstruction
+import app.morphe.patches.youtube.utils.resourceid.bottomSheetFooterText
+import app.morphe.patches.youtube.utils.resourceid.subtitleMenuSettingsFooterInfo
+import app.morphe.patches.youtube.utils.resourceid.videoQualityBottomSheet
+import app.morphe.util.containsLiteralInstruction
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

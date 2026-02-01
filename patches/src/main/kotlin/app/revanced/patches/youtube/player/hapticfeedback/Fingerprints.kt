@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.player.hapticfeedback
+package app.morphe.patches.youtube.player.hapticfeedback
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 
 internal val markerHapticsFingerprint = legacyFingerprint(

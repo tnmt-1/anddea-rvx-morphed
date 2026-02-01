@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.utils.settings
+package app.morphe.patches.youtube.utils.settings
 
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.patches.youtube.utils.compatibility.Constants.YOUTUBE_PACKAGE_NAME
-import app.revanced.patches.youtube.utils.patch.PatchList
-import app.revanced.util.doRecursively
-import app.revanced.util.findElementByAttributeValueOrThrow
-import app.revanced.util.insertNode
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.patches.youtube.utils.compatibility.Constants.YOUTUBE_PACKAGE_NAME
+import app.morphe.patches.youtube.utils.patch.PatchList
+import app.morphe.util.doRecursively
+import app.morphe.util.findElementByAttributeValueOrThrow
+import app.morphe.util.insertNode
 import org.w3c.dom.Element
 import java.io.File
 

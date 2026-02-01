@@ -1,6 +1,6 @@
-package app.revanced.patches.music.utils.fix.timedlyrics
+package app.morphe.patches.music.utils.fix.timedlyrics
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal const val TIMED_LYRICS_PRIMARY_FEATURE_FLAG = 45685201L
 internal const val TIMED_LYRICS_SECONDARY_FEATURE_FLAG = 45688384L

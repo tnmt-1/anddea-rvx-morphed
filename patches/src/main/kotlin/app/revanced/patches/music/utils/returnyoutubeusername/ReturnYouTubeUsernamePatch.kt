@@ -1,16 +1,16 @@
-package app.revanced.patches.music.utils.returnyoutubeusername
+package app.morphe.patches.music.utils.returnyoutubeusername
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.RETURN_YOUTUBE_USERNAME
-import app.revanced.patches.music.utils.playservice.is_6_42_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.returnyoutubeusername.baseReturnYouTubeUsernamePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.RETURN_YOUTUBE_USERNAME
+import app.morphe.patches.music.utils.playservice.is_6_42_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.returnyoutubeusername.baseReturnYouTubeUsernamePatch
 
 @Suppress("unused")
 val returnYouTubeUsernamePatch = resourcePatch(

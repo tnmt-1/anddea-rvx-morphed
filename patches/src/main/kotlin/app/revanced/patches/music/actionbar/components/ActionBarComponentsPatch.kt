@@ -1,44 +1,44 @@
-package app.revanced.patches.music.actionbar.components
+package app.morphe.patches.music.actionbar.components
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.utils.ACTION_BAR_POSITION_FEATURE_FLAG
-import app.revanced.patches.music.utils.actionBarPositionFeatureFlagFingerprint
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.ACTIONBAR_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.patch.PatchList.HIDE_ACTION_BAR_COMPONENTS
-import app.revanced.patches.music.utils.playservice.is_7_17_or_greater
-import app.revanced.patches.music.utils.playservice.is_7_25_or_greater
-import app.revanced.patches.music.utils.playservice.is_7_33_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.resourceid.elementsLottieAnimationViewTagId
-import app.revanced.patches.music.utils.resourceid.likeDislikeContainer
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.music.video.information.videoInformationPatch
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.textcomponent.hookSpannableString
-import app.revanced.patches.shared.textcomponent.textComponentPatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
-import app.revanced.util.or
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.music.utils.ACTION_BAR_POSITION_FEATURE_FLAG
+import app.morphe.patches.music.utils.actionBarPositionFeatureFlagFingerprint
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.ACTIONBAR_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.music.utils.patch.PatchList.HIDE_ACTION_BAR_COMPONENTS
+import app.morphe.patches.music.utils.playservice.is_7_17_or_greater
+import app.morphe.patches.music.utils.playservice.is_7_25_or_greater
+import app.morphe.patches.music.utils.playservice.is_7_33_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.resourceid.elementsLottieAnimationViewTagId
+import app.morphe.patches.music.utils.resourceid.likeDislikeContainer
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.music.video.information.videoInformationPatch
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.textcomponent.hookSpannableString
+import app.morphe.patches.shared.textcomponent.textComponentPatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -170,11 +170,11 @@ val actionBarComponentsPatch = bytecodePatch(
                     removeInstruction(spannedIndex)
 
                     // set action button identifier
-                    val buttonTypeDownloadIndex = it.patternMatch!!.startIndex + 1
+                    val buttonTypeDownloadIndex = it.instructionMatches.first().index + 1
                     val buttonTypeDownloadRegister =
                         getInstruction<OneRegisterInstruction>(buttonTypeDownloadIndex).registerA
 
-                    val buttonTypeIndex = it.patternMatch!!.endIndex - 1
+                    val buttonTypeIndex = it.instructionMatches.last().index - 1
                     val buttonTypeRegister =
                         getInstruction<OneRegisterInstruction>(buttonTypeIndex).registerA
 

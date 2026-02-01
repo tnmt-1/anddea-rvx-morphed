@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.general.updates
+package app.morphe.patches.youtube.general.updates
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val cronetHeaderFingerprint = legacyFingerprint(

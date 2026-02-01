@@ -1,10 +1,10 @@
-package app.revanced.patches.shared.viewgroup
+package app.morphe.patches.shared.viewgroup
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
 
 val viewGroupMarginLayoutParamsHookPatch = bytecodePatch(
     description = "viewGroupMarginLayoutParamsHookPatch"

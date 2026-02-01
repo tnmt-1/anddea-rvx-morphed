@@ -1,11 +1,11 @@
-package app.revanced.patches.youtube.utils.lockmodestate
+package app.morphe.patches.youtube.utils.lockmodestate
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.util.fingerprint.matchOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.util.fingerprint.matchOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
@@ -19,7 +19,7 @@ val lockModeStateHookPatch = bytecodePatch(
 
         lockModeStateFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex
+                val insertIndex = it.instructionMatches.last().index
                 val insertRegister = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
                 addInstructions(

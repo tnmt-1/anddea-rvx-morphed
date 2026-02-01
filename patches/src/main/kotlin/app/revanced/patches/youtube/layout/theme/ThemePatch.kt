@@ -1,13 +1,13 @@
-package app.revanced.patches.youtube.layout.theme
+package app.morphe.patches.youtube.layout.theme
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.MATERIALYOU
-import app.revanced.patches.youtube.utils.patch.PatchList.THEME
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.MATERIALYOU
+import app.morphe.patches.youtube.utils.patch.PatchList.THEME
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.valueOrThrow
 import org.w3c.dom.Element
 
 @Suppress("unused")

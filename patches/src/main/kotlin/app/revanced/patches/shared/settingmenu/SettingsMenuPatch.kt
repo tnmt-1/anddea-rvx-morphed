@@ -1,10 +1,10 @@
-package app.revanced.patches.shared.settingmenu
+package app.morphe.patches.shared.settingmenu
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.methodCall
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.methodCall
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
     "$PATCHES_PATH/BaseSettingsMenuPatch;"

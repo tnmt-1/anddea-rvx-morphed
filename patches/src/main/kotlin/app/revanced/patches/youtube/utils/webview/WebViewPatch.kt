@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.utils.webview
+package app.morphe.patches.youtube.utils.webview
 
-import app.revanced.patches.shared.webview.webViewPatch
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.shared.webview.webViewPatch
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
 
 val webViewPatch = webViewPatch(
     block = {

@@ -1,13 +1,13 @@
-package app.revanced.patches.music.misc.quic
+package app.morphe.patches.music.misc.quic
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.DISABLE_QUIC_PROTOCOL
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.quic.baseQuicProtocolPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.DISABLE_QUIC_PROTOCOL
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.quic.baseQuicProtocolPatch
 
 @Suppress("unused", "SpellCheckingInspection")
 val quicProtocolPatch = bytecodePatch(

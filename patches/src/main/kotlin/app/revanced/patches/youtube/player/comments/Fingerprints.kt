@@ -1,8 +1,8 @@
-package app.revanced.patches.youtube.player.comments
+package app.morphe.patches.youtube.player.comments
 
-import app.revanced.patches.youtube.utils.resourceid.emojiPickerIcon
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.emojiPickerIcon
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val shortsLiveStreamEmojiPickerOnClickListenerFingerprint = legacyFingerprint(

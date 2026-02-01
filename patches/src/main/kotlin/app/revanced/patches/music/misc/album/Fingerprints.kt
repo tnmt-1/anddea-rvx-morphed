@@ -1,10 +1,10 @@
-package app.revanced.patches.music.misc.album
+package app.morphe.patches.music.misc.album
 
-import app.revanced.patches.music.utils.resourceid.musicSnackbarActionColor
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.music.utils.resourceid.musicSnackbarActionColor
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

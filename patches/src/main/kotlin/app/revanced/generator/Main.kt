@@ -1,6 +1,6 @@
-package app.revanced.generator
+package app.morphe.generator
 
-import app.revanced.patcher.patch.loadPatchesFromJar
+import app.morphe.patcher.patch.loadPatchesFromJar
 import java.io.File
 
 internal fun main() = loadPatchesFromJar(
@@ -8,7 +8,7 @@ internal fun main() = loadPatchesFromJar(
         val fileName = file.name
         !fileName.contains("javadoc") &&
                 !fileName.contains("sources") &&
-                fileName.endsWith(".rvp")
+                fileName.endsWith(".mpp")
     }!!.first()),
 ).also { loader ->
     if (loader.isEmpty()) throw IllegalStateException("No patches found")

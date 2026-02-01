@@ -1,33 +1,33 @@
-package app.revanced.patches.music.utils.sponsorblock
+package app.morphe.patches.music.utils.sponsorblock
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.music.utils.patch.PatchList.SPONSORBLOCK
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.ACTIVITY_HOOK_TARGET_CLASS
-import app.revanced.patches.music.utils.settings.ResourceUtils.PREFERENCE_CATEGORY_TAG_NAME
-import app.revanced.patches.music.utils.settings.ResourceUtils.PREFERENCE_SCREEN_TAG_NAME
-import app.revanced.patches.music.utils.settings.ResourceUtils.SETTINGS_HEADER_PATH
-import app.revanced.patches.music.utils.settings.ResourceUtils.SWITCH_PREFERENCE_TAG_NAME
-import app.revanced.patches.music.utils.settings.ResourceUtils.addPreferenceCategory
-import app.revanced.patches.music.utils.settings.ResourceUtils.musicPackageName
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.music.video.information.videoIdHook
-import app.revanced.patches.music.video.information.videoInformationPatch
-import app.revanced.patches.music.video.information.videoTimeHook
-import app.revanced.util.adoptChild
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.music.utils.patch.PatchList.SPONSORBLOCK
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.ACTIVITY_HOOK_TARGET_CLASS
+import app.morphe.patches.music.utils.settings.ResourceUtils.PREFERENCE_CATEGORY_TAG_NAME
+import app.morphe.patches.music.utils.settings.ResourceUtils.PREFERENCE_SCREEN_TAG_NAME
+import app.morphe.patches.music.utils.settings.ResourceUtils.SETTINGS_HEADER_PATH
+import app.morphe.patches.music.utils.settings.ResourceUtils.SWITCH_PREFERENCE_TAG_NAME
+import app.morphe.patches.music.utils.settings.ResourceUtils.addPreferenceCategory
+import app.morphe.patches.music.utils.settings.ResourceUtils.musicPackageName
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.music.video.information.videoIdHook
+import app.morphe.patches.music.video.information.videoInformationPatch
+import app.morphe.patches.music.video.information.videoTimeHook
+import app.morphe.util.adoptChild
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -111,7 +111,7 @@ private val sponsorBlockBytecodePatch = bytecodePatch(
             musicPlaybackControlsTimeBarOnMeasureFingerprint.matchOrThrow().let {
                 with(it.method) {
                     val rectangleIndex =
-                        indexOfFirstInstructionReversedOrThrow(it.patternMatch!!.endIndex) {
+                        indexOfFirstInstructionReversedOrThrow(it.instructionMatches.last().index) {
                             opcode == Opcode.IGET_OBJECT &&
                                     getReference<FieldReference>()?.type == "Landroid/graphics/Rect;"
                         }

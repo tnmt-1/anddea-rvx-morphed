@@ -1,14 +1,14 @@
-package app.revanced.patches.spotify.extended
+package app.morphe.patches.spotify.extended
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.fingerprint
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.fingerprint
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-private const val UTILS_CLASS_DESCRIPTOR = "Lapp/revanced/extension/shared/utils/Utils;"
+private const val UTILS_CLASS_DESCRIPTOR = "Lapp/morphe/extension/shared/utils/Utils;"
 private const val MAIN_ACTIVITY_DESCRIPTOR = "Lcom/spotify/music/SpotifyMainActivity;"
 // private const val NOW_PLAYING_ACTIVITY_DESCRIPTOR = "Lcom/spotify/nowplaying/musicinstallation/NowPlayingActivity;"
 

@@ -1,16 +1,16 @@
-package app.revanced.patches.music.layout.overlayfilter
+package app.morphe.patches.music.layout.overlayfilter
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.patch.PatchList.HIDE_OVERLAY_FILTER
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.matchOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.patch.PatchList.HIDE_OVERLAY_FILTER
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.matchOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 private val overlayFilterBytecodePatch = bytecodePatch(
@@ -21,7 +21,7 @@ private val overlayFilterBytecodePatch = bytecodePatch(
     execute {
         designBottomSheetDialogFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex - 1
+                val insertIndex = it.instructionMatches.last().index - 1
                 val freeRegister = getInstruction<OneRegisterInstruction>(insertIndex + 1).registerA
 
                 addInstructions(

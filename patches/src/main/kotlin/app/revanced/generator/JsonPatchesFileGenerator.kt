@@ -1,6 +1,6 @@
-package app.revanced.generator
+package app.morphe.generator
 
-import app.revanced.patcher.patch.Patch
+import app.morphe.patcher.patch.Patch
 import com.google.gson.GsonBuilder
 import java.io.File
 

@@ -1,6 +1,6 @@
-package app.revanced.patches.shared.spans
+package app.morphe.patches.shared.spans
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val customCharacterStyleFingerprint = legacyFingerprint(
     name = "customCharacterStyleFingerprint",

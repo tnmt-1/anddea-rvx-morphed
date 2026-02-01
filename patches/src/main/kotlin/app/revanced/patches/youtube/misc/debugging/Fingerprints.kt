@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.misc.debugging
+package app.morphe.patches.youtube.misc.debugging
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val currentWatchNextResponseFingerprint = legacyFingerprint(

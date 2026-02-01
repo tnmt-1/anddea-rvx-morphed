@@ -1,6 +1,6 @@
-package app.revanced.generator
+package app.morphe.generator
 
-import app.revanced.patcher.patch.Patch
+import app.morphe.patcher.patch.Patch
 
 internal interface PatchesFileGenerator {
     fun generate(patches: Set<Patch<*>>)

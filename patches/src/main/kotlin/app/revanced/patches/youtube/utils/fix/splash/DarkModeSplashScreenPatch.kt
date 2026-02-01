@@ -1,9 +1,9 @@
-package app.revanced.patches.youtube.utils.fix.splash
+package app.morphe.patches.youtube.utils.fix.splash
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.youtube.utils.playservice.is_19_32_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.restoreOldSplashAnimationIncluded
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.youtube.utils.playservice.is_19_32_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.restoreOldSplashAnimationIncluded
 import org.w3c.dom.Element
 
 /**

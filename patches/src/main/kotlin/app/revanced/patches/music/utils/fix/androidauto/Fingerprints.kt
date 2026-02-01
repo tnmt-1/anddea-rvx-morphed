@@ -1,6 +1,6 @@
-package app.revanced.patches.music.utils.fix.androidauto
+package app.morphe.patches.music.utils.fix.androidauto
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val certificateCheckFingerprint = legacyFingerprint(
     name = "certificateCheckFingerprint",

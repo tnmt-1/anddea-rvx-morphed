@@ -1,10 +1,10 @@
-package app.revanced.patches.youtube.feed.components
+package app.morphe.patches.youtube.feed.components
 
-import app.revanced.patches.youtube.utils.resourceid.*
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.resourceid.*
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

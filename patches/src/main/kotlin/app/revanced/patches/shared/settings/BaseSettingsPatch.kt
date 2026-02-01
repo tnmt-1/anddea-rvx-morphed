@@ -1,9 +1,9 @@
-package app.revanced.patches.shared.settings
+package app.morphe.patches.shared.settings
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.extension.Constants.EXTENSION_THEME_UTILS_CLASS_DESCRIPTOR
-import app.revanced.util.findMethodsOrThrow
-import app.revanced.util.returnEarly
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.extension.Constants.EXTENSION_THEME_UTILS_CLASS_DESCRIPTOR
+import app.morphe.util.findMethodsOrThrow
+import app.morphe.util.returnEarly
 
 private const val THEME_FOREGROUND_COLOR = "@color/yt_white1"
 private const val THEME_BACKGROUND_COLOR = "@color/yt_black3"

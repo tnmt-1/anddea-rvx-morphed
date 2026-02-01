@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.utils.extension.hooks
+package app.morphe.patches.youtube.utils.extension.hooks
 
-import app.revanced.patches.shared.extension.extensionHook
+import app.morphe.patches.shared.extension.extensionHook
 
 /**
  * Hooks the context when the app is launched as a regular application (and is not an embedded video playback).

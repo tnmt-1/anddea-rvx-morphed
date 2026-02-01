@@ -1,14 +1,14 @@
-package app.revanced.patches.music.ads.general
+package app.morphe.patches.music.ads.general
 
-import app.revanced.patches.music.utils.resourceid.buttonContainer
-import app.revanced.patches.music.utils.resourceid.floatingLayout
-import app.revanced.patches.music.utils.resourceid.modernDialogBackground
-import app.revanced.patches.music.utils.resourceid.musicNotifierShelf
-import app.revanced.patches.music.utils.resourceid.privacyTosFooter
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.music.utils.resourceid.buttonContainer
+import app.morphe.patches.music.utils.resourceid.floatingLayout
+import app.morphe.patches.music.utils.resourceid.modernDialogBackground
+import app.morphe.patches.music.utils.resourceid.musicNotifierShelf
+import app.morphe.patches.music.utils.resourceid.privacyTosFooter
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

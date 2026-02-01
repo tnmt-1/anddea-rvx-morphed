@@ -1,24 +1,24 @@
-package app.revanced.patches.youtube.general.formfactor
+package app.morphe.patches.youtube.general.formfactor
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.shared.CLIENT_INFO_CLASS_DESCRIPTOR
-import app.revanced.patches.shared.createPlayerRequestBodyWithModelFingerprint
-import app.revanced.patches.shared.spoof.guide.addClientInfoHook
-import app.revanced.patches.shared.spoof.guide.spoofClientGuideEndpointPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_PATH
-import app.revanced.patches.youtube.utils.navigation.navigationBarHookPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.CHANGE_FORM_FACTOR
-import app.revanced.patches.youtube.utils.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.definingClassOrThrow
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.shared.CLIENT_INFO_CLASS_DESCRIPTOR
+import app.morphe.patches.shared.createPlayerRequestBodyWithModelFingerprint
+import app.morphe.patches.shared.spoof.guide.addClientInfoHook
+import app.morphe.patches.shared.spoof.guide.spoofClientGuideEndpointPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_PATH
+import app.morphe.patches.youtube.utils.navigation.navigationBarHookPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.CHANGE_FORM_FACTOR
+import app.morphe.patches.youtube.utils.playertype.playerTypeHookPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.definingClassOrThrow
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -89,7 +89,7 @@ val changeFormFactorPatch = bytecodePatch(
 
         widthDpUIFingerprint.matchOrThrow().let {
             it.method.apply {
-                val index = it.patternMatch!!.startIndex
+                val index = it.instructionMatches.first().index
                 val register = getInstruction<OneRegisterInstruction>(index).registerA
 
                 addInstructions(

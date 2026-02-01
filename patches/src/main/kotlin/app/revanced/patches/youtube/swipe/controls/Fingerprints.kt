@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.swipe.controls
+package app.morphe.patches.youtube.swipe.controls
 
-import app.revanced.patches.youtube.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.youtube.utils.resourceid.autoNavScrollCancelPadding
-import app.revanced.util.containsLiteralInstruction
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.youtube.utils.resourceid.autoNavScrollCancelPadding
+import app.morphe.util.containsLiteralInstruction
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
@@ -72,14 +72,8 @@ internal val watchPanelGesturesChannelBarFingerprint = legacyFingerprint(
     }
 )
 
-/**
- * fuzzyPatternScanThreshold is required to maintain compatibility with YouTube v18.29.38 ~ v18.32.39.
- *
- * TODO: Remove fuzzyPatternScanThreshold if support for YouTube v18.29.38 to v18.32.39 is dropped.
- */
 internal val playerGestureConfigSyntheticFingerprint = legacyFingerprint(
     name = "playerGestureConfigSyntheticFingerprint",
-    fuzzyPatternScanThreshold = 5,
     returnType = "V",
     accessFlags = AccessFlags.PUBLIC or AccessFlags.FINAL,
     parameters = listOf("Ljava/lang/Object;"),

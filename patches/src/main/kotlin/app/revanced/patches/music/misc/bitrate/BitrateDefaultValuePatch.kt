@@ -1,10 +1,10 @@
-package app.revanced.patches.music.misc.bitrate
+package app.morphe.patches.music.misc.bitrate
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.BITRATE_DEFAULT_VALUE
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.settingsPatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.BITRATE_DEFAULT_VALUE
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.settingsPatch
 
 @Suppress("unused")
 val bitrateDefaultValuePatch = resourcePatch(

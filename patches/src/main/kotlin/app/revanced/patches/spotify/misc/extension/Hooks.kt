@@ -1,10 +1,10 @@
-package app.revanced.patches.spotify.misc.extension
+package app.morphe.patches.spotify.misc.extension
 
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patches.shared.misc.extension.extensionHook
-import app.revanced.patches.spotify.shared.mainActivityOnCreateFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patches.shared.misc.extension.extensionHook
+import app.morphe.patches.spotify.shared.mainActivityOnCreateFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 

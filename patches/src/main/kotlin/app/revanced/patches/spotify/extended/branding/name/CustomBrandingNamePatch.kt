@@ -1,9 +1,9 @@
-package app.revanced.patches.spotify.extended.branding.name
+package app.morphe.patches.spotify.extended.branding.name
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.util.Utils.printInfo
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.util.Utils.printInfo
+import app.morphe.util.valueOrThrow
 import java.io.FileWriter
 import java.nio.file.Files
 

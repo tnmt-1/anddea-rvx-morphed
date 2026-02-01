@@ -1,9 +1,9 @@
 @file:Suppress("ktlint:standard:property-naming")
 
-package app.revanced.patches.music.utils.playservice
+package app.morphe.patches.music.utils.playservice
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.util.findElementByAttributeValueOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.util.findElementByAttributeValueOrThrow
 
 var is_6_27_or_greater = false
     private set

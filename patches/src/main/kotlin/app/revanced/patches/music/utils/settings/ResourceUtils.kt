@@ -1,13 +1,13 @@
-package app.revanced.patches.music.utils.settings
+package app.morphe.patches.music.utils.settings
 
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.patches.music.utils.compatibility.Constants.YOUTUBE_MUSIC_PACKAGE_NAME
-import app.revanced.patches.music.utils.patch.PatchList
-import app.revanced.util.adoptChild
-import app.revanced.util.cloneNodes
-import app.revanced.util.doRecursively
-import app.revanced.util.findElementByAttributeValueOrThrow
-import app.revanced.util.insertNode
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.patches.music.utils.compatibility.Constants.YOUTUBE_MUSIC_PACKAGE_NAME
+import app.morphe.patches.music.utils.patch.PatchList
+import app.morphe.util.adoptChild
+import app.morphe.util.cloneNodes
+import app.morphe.util.doRecursively
+import app.morphe.util.findElementByAttributeValueOrThrow
+import app.morphe.util.insertNode
 import org.w3c.dom.Element
 
 internal object ResourceUtils {

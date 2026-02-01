@@ -1,10 +1,10 @@
-package app.revanced.patches.youtube.utils.sponsorblock
+package app.morphe.patches.youtube.utils.sponsorblock
 
-import app.revanced.patches.youtube.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionReversed
-import app.revanced.util.or
+import app.morphe.patches.youtube.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionReversed
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method

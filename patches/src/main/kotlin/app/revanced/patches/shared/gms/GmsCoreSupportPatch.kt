@@ -1,41 +1,41 @@
-package app.revanced.patches.shared.gms
+package app.morphe.patches.shared.gms
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.instructions
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.BytecodePatchBuilder
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.Option
-import app.revanced.patcher.patch.Patch
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatchBuilder
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.patches.shared.gms.Constants.ACTIONS
-import app.revanced.patches.shared.gms.Constants.ACTIONS_LEGACY
-import app.revanced.patches.shared.gms.Constants.AUTHORITIES
-import app.revanced.patches.shared.gms.Constants.AUTHORITIES_LEGACY
-import app.revanced.patches.shared.gms.Constants.PERMISSIONS
-import app.revanced.patches.shared.gms.Constants.PERMISSIONS_LEGACY
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.Utils.trimIndentMultiline
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.methodOrNull
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.fingerprint.mutableClassOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.returnEarly
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.BytecodePatchBuilder
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.Option
+import app.morphe.patcher.patch.Patch
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.ResourcePatchBuilder
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.patches.shared.gms.Constants.ACTIONS
+import app.morphe.patches.shared.gms.Constants.ACTIONS_LEGACY
+import app.morphe.patches.shared.gms.Constants.AUTHORITIES
+import app.morphe.patches.shared.gms.Constants.AUTHORITIES_LEGACY
+import app.morphe.patches.shared.gms.Constants.PERMISSIONS
+import app.morphe.patches.shared.gms.Constants.PERMISSIONS_LEGACY
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.Utils.trimIndentMultiline
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.methodOrNull
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.fingerprint.mutableClassOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.returnEarly
+import app.morphe.util.valueOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -186,9 +186,9 @@ fun gmsCoreSupportPatch(
         else
             AUTHORITIES_LEGACY
 
-        fun transformStringReferences(transform: (str: String) -> String?) = classes.forEach {
+        fun transformStringReferences(transform: (str: String) -> String?) = classDefForEach {
             val mutableClass by lazy {
-                proxy(it).mutableClass
+                mutableClassDefBy(it)
             }
 
             it.methods.forEach classLoop@{ method ->
@@ -385,7 +385,7 @@ fun gmsCoreSupportPatch(
                     val reference =
                         getReference<MethodReference>() ?: return@indexOfFirstInstruction false
 
-                    reference.toString() == "Lapp/revanced/extension/shared/Utils;->setContext(Landroid/content/Context;)V"
+                    reference.toString() == "Lapp/morphe/extension/shared/Utils;->setContext(Landroid/content/Context;)V"
                 }
 
                 // Add after setContext call, because this patch needs the context.

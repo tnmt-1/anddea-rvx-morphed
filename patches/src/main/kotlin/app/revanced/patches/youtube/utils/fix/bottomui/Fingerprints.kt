@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.utils.fix.bottomui
+package app.morphe.patches.youtube.utils.fix.bottomui
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal const val FULLSCREEN_BUTTON_POSITION_FEATURE_FLAG = 45627640L
 internal const val FULLSCREEN_BUTTON_VIEW_STUB_FEATURE_FLAG = 45617294L

@@ -1,14 +1,14 @@
-package app.revanced.patches.youtube.utils.fix.hype
+package app.morphe.patches.youtube.utils.fix.hype
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.shared.spoof.watchnext.spoofAppVersionWatchNextPatch
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.playservice.is_19_26_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.ResourceGroup
-import app.revanced.util.copyResources
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.shared.spoof.watchnext.spoofAppVersionWatchNextPatch
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.playservice.is_19_26_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.ResourceGroup
+import app.morphe.util.copyResources
 
 private val hypeButtonIconResourcePatch = resourcePatch(
     description = "hypeButtonIconResourcePatch"

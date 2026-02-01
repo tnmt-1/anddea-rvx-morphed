@@ -1,12 +1,12 @@
-package app.revanced.patches.spotify.extended
+package app.morphe.patches.spotify.extended
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.instructionsOrNull
-import app.revanced.patcher.fingerprint
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.spotify.misc.privacy.shareLinkFingerprint
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
+import app.morphe.patcher.fingerprint
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.spotify.misc.privacy.shareLinkFingerprint
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -14,7 +14,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
-    "Lapp/revanced/extension/spotify/misc/privacy/SanitizeSharingLinksPatch;"
+    "Lapp/morphe/extension/spotify/misc/privacy/SanitizeSharingLinksPatch;"
 
 @Suppress("unused")
 val sanitizeSharingLinksPatch = bytecodePatch(

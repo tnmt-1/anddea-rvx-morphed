@@ -1,7 +1,7 @@
-package app.revanced.patches.spotify.misc.widgets
+package app.morphe.patches.spotify.misc.widgets
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.util.returnEarly
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.util.returnEarly
 
 @Suppress("unused")
 val fixThirdPartyLaunchersWidgets = bytecodePatch(

@@ -1,11 +1,11 @@
-package app.revanced.util
+package app.morphe.util
 
-import app.revanced.patcher.patch.Option
-import app.revanced.patcher.patch.Patch
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.patcher.util.Document
-import app.revanced.util.Utils.printWarn
+import app.morphe.patcher.patch.Option
+import app.morphe.patcher.patch.Patch
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.patcher.util.Document
+import app.morphe.util.Utils.printWarn
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList

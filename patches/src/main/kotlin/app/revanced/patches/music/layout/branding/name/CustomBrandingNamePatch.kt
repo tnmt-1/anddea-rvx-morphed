@@ -1,13 +1,13 @@
-package app.revanced.patches.music.layout.branding.name
+package app.morphe.patches.music.layout.branding.name
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.CUSTOM_BRANDING_NAME_FOR_YOUTUBE_MUSIC
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.util.removeStringsElements
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.CUSTOM_BRANDING_NAME_FOR_YOUTUBE_MUSIC
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.util.removeStringsElements
+import app.morphe.util.valueOrThrow
 
 private const val APP_NAME_NOTIFICATION = "ReVanced Extended Music"
 private const val APP_NAME_LAUNCHER = "RVX Music"

@@ -1,9 +1,9 @@
 @file:Suppress("ktlint:standard:property-naming")
 
-package app.revanced.patches.youtube.utils.playservice
+package app.morphe.patches.youtube.utils.playservice
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.util.findElementByAttributeValueOrThrow
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.util.findElementByAttributeValueOrThrow
 
 var is_18_31_or_greater = false
     private set

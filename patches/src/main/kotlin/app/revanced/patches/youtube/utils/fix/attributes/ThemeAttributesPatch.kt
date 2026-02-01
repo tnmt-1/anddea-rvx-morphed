@@ -1,16 +1,16 @@
-package app.revanced.patches.youtube.utils.fix.attributes
+package app.morphe.patches.youtube.utils.fix.attributes
 
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.playservice.is_19_25_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_04_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.referenceMatchesOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.playservice.is_19_25_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_04_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.referenceMatchesOrThrow
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
 val themeAttributesPatch = bytecodePatch(
@@ -38,8 +38,8 @@ val themeAttributesPatch = bytecodePatch(
          */
         setSleepTimerDrawableFingerprint.matchOrThrow().let {
             it.method.apply {
-                val getResourcesIndex = it.patternMatch!!.startIndex
-                val getDrawableIndex = it.patternMatch!!.endIndex
+                val getResourcesIndex = it.instructionMatches.first().index
+                val getDrawableIndex = it.instructionMatches.last().index
 
                 // Verify that the correct pattern has been found.
                 referenceMatchesOrThrow(

@@ -1,16 +1,16 @@
-package app.revanced.patches.music.layout.translations
+package app.morphe.patches.music.layout.translations
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.TRANSLATIONS_FOR_YOUTUBE_MUSIC
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addLinkPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.translations.APP_LANGUAGES
-import app.revanced.patches.shared.translations.baseTranslationsPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.TRANSLATIONS_FOR_YOUTUBE_MUSIC
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addLinkPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.translations.APP_LANGUAGES
+import app.morphe.patches.shared.translations.baseTranslationsPatch
 
 // Array of supported translations, each represented by its language code.
 private val SUPPORTED_TRANSLATIONS = setOf(

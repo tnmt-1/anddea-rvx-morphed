@@ -1,42 +1,42 @@
-package app.revanced.patches.music.utils.settings
+package app.morphe.patches.music.utils.settings
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.music.utils.extension.Constants.UTILS_PATH
-import app.revanced.patches.music.utils.extension.sharedExtensionPatch
-import app.revanced.patches.music.utils.fix.timedlyrics.timedLyricsPatch
-import app.revanced.patches.music.utils.mainactivity.mainActivityResolvePatch
-import app.revanced.patches.music.utils.patch.PatchList.GMSCORE_SUPPORT
-import app.revanced.patches.music.utils.patch.PatchList.SETTINGS_FOR_YOUTUBE_MUSIC
-import app.revanced.patches.music.utils.playservice.is_6_39_or_greater
-import app.revanced.patches.music.utils.playservice.is_6_42_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.settings.ResourceUtils.addGmsCorePreference
-import app.revanced.patches.music.utils.settings.ResourceUtils.gmsCorePackageName
-import app.revanced.patches.shared.extension.Constants.EXTENSION_THEME_UTILS_CLASS_DESCRIPTOR
-import app.revanced.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
-import app.revanced.patches.shared.mainactivity.injectConstructorMethodCall
-import app.revanced.patches.shared.mainactivity.injectOnCreateMethodCall
-import app.revanced.patches.shared.settings.baseSettingsPatch
-import app.revanced.patches.shared.sharedSettingFingerprint
-import app.revanced.util.ResourceGroup
-import app.revanced.util.Utils.printInfo
-import app.revanced.util.copyResources
-import app.revanced.util.copyXmlNode
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.removeStringsElements
-import app.revanced.util.valueOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.music.utils.extension.Constants.UTILS_PATH
+import app.morphe.patches.music.utils.extension.sharedExtensionPatch
+import app.morphe.patches.music.utils.fix.timedlyrics.timedLyricsPatch
+import app.morphe.patches.music.utils.mainactivity.mainActivityResolvePatch
+import app.morphe.patches.music.utils.patch.PatchList.GMSCORE_SUPPORT
+import app.morphe.patches.music.utils.patch.PatchList.SETTINGS_FOR_YOUTUBE_MUSIC
+import app.morphe.patches.music.utils.playservice.is_6_39_or_greater
+import app.morphe.patches.music.utils.playservice.is_6_42_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.settings.ResourceUtils.addGmsCorePreference
+import app.morphe.patches.music.utils.settings.ResourceUtils.gmsCorePackageName
+import app.morphe.patches.shared.extension.Constants.EXTENSION_THEME_UTILS_CLASS_DESCRIPTOR
+import app.morphe.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
+import app.morphe.patches.shared.mainactivity.injectConstructorMethodCall
+import app.morphe.patches.shared.mainactivity.injectOnCreateMethodCall
+import app.morphe.patches.shared.settings.baseSettingsPatch
+import app.morphe.patches.shared.sharedSettingFingerprint
+import app.morphe.util.ResourceGroup
+import app.morphe.util.Utils.printInfo
+import app.morphe.util.copyResources
+import app.morphe.util.copyXmlNode
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.removeStringsElements
+import app.morphe.util.valueOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -80,7 +80,7 @@ private val settingsBytecodePatch = bytecodePatch(
 
         settingsHeadersFragmentFingerprint.matchOrThrow().let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.endIndex
+                val targetIndex = it.instructionMatches.last().index
                 val targetRegister = getInstruction<OneRegisterInstruction>(targetIndex).registerA
 
                 addInstruction(
@@ -96,7 +96,7 @@ private val settingsBytecodePatch = bytecodePatch(
 
         preferenceFingerprint.matchOrThrow().let {
             it.method.apply {
-                val targetIndex = it.patternMatch!!.endIndex
+                val targetIndex = it.instructionMatches.last().index
                 val keyRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerD
                 val valueRegister = getInstruction<FiveRegisterInstruction>(targetIndex).registerE
 

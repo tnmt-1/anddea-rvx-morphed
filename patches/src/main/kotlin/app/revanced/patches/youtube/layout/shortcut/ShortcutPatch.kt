@@ -1,14 +1,14 @@
-package app.revanced.patches.youtube.layout.shortcut
+package app.morphe.patches.youtube.layout.shortcut
 
-import app.revanced.patcher.patch.booleanOption
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.HIDE_SHORTCUTS
-import app.revanced.patches.youtube.utils.playservice.is_19_44_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.findElementByAttributeValueOrThrow
+import app.morphe.patcher.patch.booleanOption
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.HIDE_SHORTCUTS
+import app.morphe.patches.youtube.utils.playservice.is_19_44_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.findElementByAttributeValueOrThrow
 import org.w3c.dom.Element
 
 @Suppress("unused")

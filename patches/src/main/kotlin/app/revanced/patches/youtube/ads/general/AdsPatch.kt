@@ -1,35 +1,35 @@
-package app.revanced.patches.youtube.ads.general
+package app.morphe.patches.youtube.ads.general
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.ANDROID_AUTOMOTIVE_STRING
-import app.revanced.patches.shared.ads.adsPatch
-import app.revanced.patches.shared.autoMotiveFingerprint
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.spoof.guide.addClientOSVersionHook
-import app.revanced.patches.shared.spoof.guide.spoofClientGuideEndpointPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.ADS_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.fix.litho.lithoLayoutPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.HIDE_ADS
-import app.revanced.patches.youtube.utils.playservice.is_20_06_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.adAttribution
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.findMutableMethodOf
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.indexOfFirstStringInstructionOrThrow
-import app.revanced.util.injectHideViewCall
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.ANDROID_AUTOMOTIVE_STRING
+import app.morphe.patches.shared.ads.adsPatch
+import app.morphe.patches.shared.autoMotiveFingerprint
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.spoof.guide.addClientOSVersionHook
+import app.morphe.patches.shared.spoof.guide.spoofClientGuideEndpointPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.ADS_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.fix.litho.lithoLayoutPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.HIDE_ADS
+import app.morphe.patches.youtube.utils.playservice.is_20_06_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.adAttribution
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.findMutableMethodOf
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.indexOfFirstStringInstructionOrThrow
+import app.morphe.util.injectHideViewCall
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -61,7 +61,7 @@ val adsPatch = adsPatch(
 
         // region patch for hide general ads
 
-        classes.forEach { classDef ->
+        classDefForEach { classDef ->
             classDef.methods.forEach { method ->
                 method.implementation.apply {
                     this?.instructions?.forEachIndexed { index, instruction ->
@@ -80,8 +80,7 @@ val adsPatch = adsPatch(
 
                             // Hide the view
                             val viewRegister = (this as Instruction35c).registerC
-                            proxy(classDef)
-                                .mutableClass
+                            mutableClassDefBy(classDef)
                                 .findMutableMethodOf(method)
                                 .injectHideViewCall(
                                     insertIndex,
@@ -101,7 +100,7 @@ val adsPatch = adsPatch(
 
         compactYpcOfferModuleViewFingerprint.matchOrThrow().let {
             it.method.apply {
-                val startIndex = it.patternMatch!!.startIndex
+                val startIndex = it.instructionMatches.first().index
                 val measuredWidthRegister =
                     getInstruction<TwoRegisterInstruction>(startIndex).registerA
                 val measuredHeightInstruction =

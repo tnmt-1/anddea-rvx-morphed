@@ -1,7 +1,7 @@
-package app.revanced.patches.spotify.navbar
+package app.morphe.patches.spotify.navbar
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.spotify.misc.unlockPremiumPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.spotify.misc.unlockPremiumPatch
 
 @Deprecated("Superseded by unlockPremiumPatch", ReplaceWith("unlockPremiumPatch"))
 @Suppress("unused")

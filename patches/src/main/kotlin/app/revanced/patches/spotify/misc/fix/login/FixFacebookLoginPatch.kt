@@ -1,7 +1,7 @@
-package app.revanced.patches.spotify.misc.fix.login
+package app.morphe.patches.spotify.misc.fix.login
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.util.returnEarly
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.util.returnEarly
 
 @Suppress("unused")
 val fixFacebookLoginPatch = bytecodePatch(

@@ -1,41 +1,41 @@
-package app.revanced.patches.shared.spoof.streamingdata
+package app.morphe.patches.shared.spoof.streamingdata
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.instructions
-import app.revanced.patcher.patch.BytecodePatchBuilder
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.ResourcePatchContext
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.rawResourcePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.revanced.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
-import app.revanced.patches.shared.extension.Constants.PATCHES_PATH
-import app.revanced.patches.shared.extension.Constants.SPOOF_PATH
-import app.revanced.patches.shared.mapping.ResourceType.ID
-import app.revanced.patches.shared.mapping.getResourceId
-import app.revanced.patches.shared.mapping.resourceMappingPatch
-import app.revanced.util.FilesCompat
-import app.revanced.util.ResourceGroup
-import app.revanced.util.addInstructionsAtControlFlowLabel
-import app.revanced.util.cloneMutable
-import app.revanced.util.copyResources
-import app.revanced.util.findInstructionIndicesReversedOrThrow
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.definingClassOrThrow
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstStringInstructionOrThrow
-import app.revanced.util.inputStreamFromBundledResourceOrThrow
-import app.revanced.util.returnEarly
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.patch.BytecodePatchBuilder
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.ResourcePatchContext
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.rawResourcePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
+import app.morphe.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
+import app.morphe.patches.shared.extension.Constants.PATCHES_PATH
+import app.morphe.patches.shared.extension.Constants.SPOOF_PATH
+import app.morphe.patches.shared.mapping.ResourceType.ID
+import app.morphe.patches.shared.mapping.getResourceId
+import app.morphe.patches.shared.mapping.resourceMappingPatch
+import app.morphe.util.FilesCompat
+import app.morphe.util.ResourceGroup
+import app.morphe.util.addInstructionsAtControlFlowLabel
+import app.morphe.util.cloneMutable
+import app.morphe.util.copyResources
+import app.morphe.util.findInstructionIndicesReversedOrThrow
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.definingClassOrThrow
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstStringInstructionOrThrow
+import app.morphe.util.inputStreamFromBundledResourceOrThrow
+import app.morphe.util.returnEarly
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -73,7 +73,7 @@ const val EXTENSION_STREAMING_DATA_INTERFACE =
     "$SPOOF_PATH/StreamingDataOuterClassPatch${'$'}StreamingDataMessage;"
 
 const val EXTENSION_YOUTUBE_SPOOF_PATH =
-    app.revanced.patches.youtube.utils.extension.Constants.SPOOF_PATH
+    app.morphe.patches.youtube.utils.extension.Constants.SPOOF_PATH
 const val EXTENSION_RELOAD_VIDEO_CLASS_DESCRIPTOR =
     "$EXTENSION_YOUTUBE_SPOOF_PATH/ReloadVideoPatch;"
 const val EXTENSION_RELOAD_VIDEO_BUTTON_CLASS_DESCRIPTOR =
@@ -167,7 +167,7 @@ fun spoofStreamingDataPatch(
                     val setStreamDataMethodName = "patch_setStreamingData"
                     val resultClassDef = result.classDef
                     val resultMethodType = resultClassDef.type
-                    val setStreamingDataIndex = result.patternMatch!!.startIndex
+                    val setStreamingDataIndex = result.instructionMatches.first().index
                     val setStreamingDataRegister =
                         getInstruction<TwoRegisterInstruction>(setStreamingDataIndex).registerA
 

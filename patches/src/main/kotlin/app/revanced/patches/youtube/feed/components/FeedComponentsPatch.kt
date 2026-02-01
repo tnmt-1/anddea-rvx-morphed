@@ -1,45 +1,45 @@
-package app.revanced.patches.youtube.feed.components
+package app.morphe.patches.youtube.feed.components
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.emptyComponentLabel
-import app.revanced.patches.shared.mainactivity.onCreateMethod
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.engagement.engagementPanelHookPatch
-import app.revanced.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.FEED_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.mainactivity.mainActivityResolvePatch
-import app.revanced.patches.youtube.utils.navigation.navigationBarHookPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.HIDE_FEED_COMPONENTS
-import app.revanced.patches.youtube.utils.playertype.playerTypeHookPatch
-import app.revanced.patches.youtube.utils.playservice.is_19_46_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_02_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_10_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.bar
-import app.revanced.patches.youtube.utils.resourceid.captionToggleContainer
-import app.revanced.patches.youtube.utils.resourceid.channelListSubMenu
-import app.revanced.patches.youtube.utils.resourceid.contentPill
-import app.revanced.patches.youtube.utils.resourceid.horizontalCardList
-import app.revanced.patches.youtube.utils.resourceid.relatedChipCloudMargin
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.scrollTopParentFingerprint
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.REGISTER_TEMPLATE_REPLACEMENT
-import app.revanced.util.fingerprint.injectLiteralInstructionViewCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.emptyComponentLabel
+import app.morphe.patches.shared.mainactivity.onCreateMethod
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.engagement.engagementPanelHookPatch
+import app.morphe.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.FEED_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.mainactivity.mainActivityResolvePatch
+import app.morphe.patches.youtube.utils.navigation.navigationBarHookPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.HIDE_FEED_COMPONENTS
+import app.morphe.patches.youtube.utils.playertype.playerTypeHookPatch
+import app.morphe.patches.youtube.utils.playservice.is_19_46_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_02_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_10_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.bar
+import app.morphe.patches.youtube.utils.resourceid.captionToggleContainer
+import app.morphe.patches.youtube.utils.resourceid.channelListSubMenu
+import app.morphe.patches.youtube.utils.resourceid.contentPill
+import app.morphe.patches.youtube.utils.resourceid.horizontalCardList
+import app.morphe.patches.youtube.utils.resourceid.relatedChipCloudMargin
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.scrollTopParentFingerprint
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.REGISTER_TEMPLATE_REPLACEMENT
+import app.morphe.util.fingerprint.injectLiteralInstructionViewCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -193,7 +193,7 @@ val feedComponentsPatch = bytecodePatch(
         ) =
             matchOrThrow().let {
                 it.method.apply {
-                    val endIndex = it.patternMatch!!.endIndex
+                    val endIndex = it.instructionMatches.last().index
 
                     val insertIndex = endIndex + insertIndexOffset
                     val register =
@@ -289,7 +289,7 @@ val feedComponentsPatch = bytecodePatch(
                     val objectIndex = indexOfFirstInstructionOrThrow(Opcode.MOVE_OBJECT)
                     val objectRegister =
                         getInstruction<TwoRegisterInstruction>(objectIndex).registerA
-                    val jumpIndex = it.patternMatch!!.startIndex
+                    val jumpIndex = it.instructionMatches.first().index
 
                     addInstructionsWithLabels(
                         insertIndex, """

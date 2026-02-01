@@ -1,13 +1,13 @@
-package app.revanced.patches.youtube.layout.theme
+package app.morphe.patches.youtube.layout.theme
 
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.shared.materialyou.baseMaterialYou
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.patch.PatchList.MATERIALYOU
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.copyXmlNode
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.shared.materialyou.baseMaterialYou
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.patch.PatchList.MATERIALYOU
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.updatePatchStatusTheme
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.copyXmlNode
 
 @Suppress("unused")
 val materialYouPatch = resourcePatch(

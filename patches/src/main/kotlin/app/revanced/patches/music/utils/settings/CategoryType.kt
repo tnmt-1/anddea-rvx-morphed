@@ -1,4 +1,4 @@
-package app.revanced.patches.music.utils.settings
+package app.morphe.patches.music.utils.settings
 
 internal enum class CategoryType(val value: String, var added: Boolean) {
     GENERAL("general", false),

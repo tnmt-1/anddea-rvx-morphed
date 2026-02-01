@@ -1,6 +1,6 @@
-package app.revanced.patches.youtube.general.loadingscreen
+package app.morphe.patches.youtube.general.loadingscreen
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal const val GRADIENT_LOADING_SCREEN_AB_CONSTANT = 45412406L
 

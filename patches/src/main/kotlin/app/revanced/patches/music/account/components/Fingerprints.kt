@@ -1,11 +1,11 @@
-package app.revanced.patches.music.account.components
+package app.morphe.patches.music.account.components
 
-import app.revanced.patches.music.utils.resourceid.accountSwitcherAccessibility
-import app.revanced.patches.music.utils.resourceid.channelHandle
-import app.revanced.patches.music.utils.resourceid.menuEntry
-import app.revanced.patches.music.utils.resourceid.namesInactiveAccountThumbnailSize
-import app.revanced.patches.music.utils.resourceid.tosFooter
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.patches.music.utils.resourceid.accountSwitcherAccessibility
+import app.morphe.patches.music.utils.resourceid.channelHandle
+import app.morphe.patches.music.utils.resourceid.menuEntry
+import app.morphe.patches.music.utils.resourceid.namesInactiveAccountThumbnailSize
+import app.morphe.patches.music.utils.resourceid.tosFooter
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val accountSwitcherAccessibilityLabelFingerprint = legacyFingerprint(
     name = "accountSwitcherAccessibilityLabelFingerprint",

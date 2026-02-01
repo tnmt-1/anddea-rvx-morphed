@@ -1,8 +1,8 @@
-package app.revanced.patches.shared.audiotracks
+package app.morphe.patches.shared.audiotracks
 
-import app.revanced.util.containsLiteralInstruction
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.containsLiteralInstruction
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal const val AUDIO_STREAM_IGNORE_DEFAULT_FEATURE_FLAG = 45666189L

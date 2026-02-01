@@ -1,17 +1,17 @@
-package app.revanced.patches.shared.spoof.useragent
+package app.morphe.patches.shared.spoof.useragent
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patches.all.misc.transformation.IMethodCall
-import app.revanced.patches.all.misc.transformation.filterMapInstruction35c
-import app.revanced.patches.all.misc.transformation.transformInstructionsPatch
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
-import app.revanced.util.indexOfFirstStringInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patches.all.misc.transformation.IMethodCall
+import app.morphe.patches.all.misc.transformation.filterMapInstruction35c
+import app.morphe.patches.all.misc.transformation.transformInstructionsPatch
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.util.indexOfFirstStringInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -26,7 +26,7 @@ fun baseSpoofUserAgentPatch(
 ) = transformInstructionsPatch(
     filterMap = { classDef, _, instruction, instructionIndex ->
         filterMapInstruction35c<MethodCall>(
-            "Lapp/revanced/extension",
+            "Lapp/morphe/extension",
             classDef,
             instruction,
             instructionIndex,

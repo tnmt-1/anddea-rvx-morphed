@@ -1,13 +1,13 @@
-package app.revanced.patches.music.misc.watchhistory
+package app.morphe.patches.music.misc.watchhistory
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.patch.PatchList.WATCH_HISTORY
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.trackingurlhook.hookWatchHistory
-import app.revanced.patches.shared.trackingurlhook.trackingUrlHookPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.patch.PatchList.WATCH_HISTORY
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.trackingurlhook.hookWatchHistory
+import app.morphe.patches.shared.trackingurlhook.trackingUrlHookPatch
 
 @Suppress("unused")
 val watchHistoryPatch = bytecodePatch(

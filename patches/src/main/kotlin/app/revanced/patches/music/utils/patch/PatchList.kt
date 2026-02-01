@@ -1,4 +1,4 @@
-package app.revanced.patches.music.utils.patch
+package app.morphe.patches.music.utils.patch
 
 internal enum class PatchList(
     val title: String,

@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.utils.recyclerview
+package app.morphe.patches.youtube.utils.recyclerview
 
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal const val RECYCLER_VIEW_BUILDER_FEATURE_FLAG = 45382015L

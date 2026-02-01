@@ -1,20 +1,21 @@
 @file:Suppress("CONTEXT_RECEIVERS_DEPRECATED")
 
-package app.revanced.util.fingerprint
+package app.morphe.util.fingerprint
 
-import app.revanced.patcher.Fingerprint
-import app.revanced.patcher.Match
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.fingerprint
-import app.revanced.patcher.patch.BytecodePatchContext
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.util.proxy.mutableTypes.MutableClass
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.util.containsLiteralInstruction
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstLiteralInstruction
-import app.revanced.util.injectLiteralInstructionViewCall
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.Match
+import app.morphe.patcher.OpcodesFilter
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.util.proxy.mutableTypes.MutableClass
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.util.containsLiteralInstruction
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstLiteralInstruction
+import app.morphe.util.injectLiteralInstructionViewCall
+import com.android.tools.smali.dexlib2.AccessFlags.getAccessFlagsForMethod
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
@@ -134,7 +135,6 @@ fun Pair<String, Fingerprint>.injectLiteralInstructionViewCall(
 
 internal fun legacyFingerprint(
     name: String,
-    fuzzyPatternScanThreshold: Int = 0,
     accessFlags: Int? = null,
     returnType: String? = null,
     parameters: List<String>? = null,
@@ -144,34 +144,19 @@ internal fun legacyFingerprint(
     customFingerprint: ((methodDef: Method, classDef: ClassDef) -> Boolean)? = null,
 ) = Pair(
     name,
-    fingerprint(fuzzyPatternScanThreshold = fuzzyPatternScanThreshold) {
-        if (accessFlags != null) {
-            accessFlags(accessFlags)
-        }
-        if (returnType != null) {
-            returns(returnType)
-        }
-        if (parameters != null) {
-            parameters(*parameters.toTypedArray())
-        }
-        if (opcodes != null) {
-            opcodes(*opcodes.toTypedArray())
-        }
-        if (strings != null) {
-            strings(*strings.toTypedArray())
-        }
-        custom { method, classDef ->
+    Fingerprint(
+        accessFlags = if (accessFlags != null) getAccessFlagsForMethod(accessFlags).toList() else null,
+        returnType = returnType,
+        parameters = parameters,
+        strings = strings,
+        filters = if (opcodes != null) OpcodesFilter.opcodesToFilters(*opcodes.toTypedArray()) else null,
+        custom = { method, classDef ->
             if (literals != null) {
                 for (literal in literals)
                     if (!method.containsLiteralInstruction(literal))
-                        return@custom false
+                        return@Fingerprint false
             }
-            if (customFingerprint != null && !customFingerprint(method, classDef)) {
-                return@custom false
-            }
-
-            return@custom true
+            customFingerprint == null || customFingerprint(method, classDef)
         }
-    }
+    )
 )
-

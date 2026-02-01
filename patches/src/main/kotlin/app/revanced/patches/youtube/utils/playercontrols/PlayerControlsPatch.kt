@@ -1,34 +1,34 @@
-package app.revanced.patches.youtube.utils.playercontrols
+package app.morphe.patches.youtube.utils.playercontrols
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.PatchException
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.extension.sharedExtensionPatch
-import app.revanced.patches.youtube.utils.playservice.is_19_25_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_19_36_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_19_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_20_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_28_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_30_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.resourceid.fullScreenButton
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.youtubeControlsOverlayFingerprint
-import app.revanced.util.copyXmlNode
-import app.revanced.util.findElementByAttributeValueOrThrow
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionReversedOrThrow
-import app.revanced.util.inputStreamFromBundledResourceOrThrow
-import app.revanced.util.returnEarly
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.patches.youtube.utils.extension.sharedExtensionPatch
+import app.morphe.patches.youtube.utils.playservice.is_19_25_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_19_36_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_19_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_20_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_28_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_30_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.resourceid.fullScreenButton
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.youtubeControlsOverlayFingerprint
+import app.morphe.util.copyXmlNode
+import app.morphe.util.findElementByAttributeValueOrThrow
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionReversedOrThrow
+import app.morphe.util.inputStreamFromBundledResourceOrThrow
+import app.morphe.util.returnEarly
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
@@ -173,7 +173,7 @@ val playerControlsPatch = bytecodePatch(
     execute {
         playerControlsVisibilityEntityModelFingerprint.matchOrThrow().let {
             it.method.apply {
-                val startIndex = it.patternMatch!!.startIndex
+                val startIndex = it.instructionMatches.first().index
                 val iGetReference = getInstruction<ReferenceInstruction>(startIndex).reference
                 val staticReference = getInstruction<ReferenceInstruction>(startIndex + 1).reference
 

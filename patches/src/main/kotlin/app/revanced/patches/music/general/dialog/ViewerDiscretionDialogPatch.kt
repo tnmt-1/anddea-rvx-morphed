@@ -1,14 +1,14 @@
-package app.revanced.patches.music.general.dialog
+package app.morphe.patches.music.general.dialog
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.patch.PatchList.REMOVE_VIEWER_DISCRETION_DIALOG
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.dialog.baseViewerDiscretionDialogPatch
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.patch.PatchList.REMOVE_VIEWER_DISCRETION_DIALOG
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.dialog.baseViewerDiscretionDialogPatch
 
 @Suppress("unused")
 val viewerDiscretionDialogPatch = bytecodePatch(

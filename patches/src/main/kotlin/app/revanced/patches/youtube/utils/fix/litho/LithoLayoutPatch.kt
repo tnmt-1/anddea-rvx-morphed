@@ -1,15 +1,15 @@
-package app.revanced.patches.youtube.utils.fix.litho
+package app.morphe.patches.youtube.utils.fix.litho
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.proxy.mutableTypes.MutableMethod
-import app.revanced.patches.shared.mainactivity.injectOnBackPressedMethodCall
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.playservice.is_20_16_or_greater
-import app.revanced.patches.youtube.utils.scrollTopParentFingerprint
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.getWalkerMethod
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patches.shared.mainactivity.injectOnBackPressedMethodCall
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.patches.youtube.utils.playservice.is_20_16_or_greater
+import app.morphe.patches.youtube.utils.scrollTopParentFingerprint
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.getWalkerMethod
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 private const val EXTENSION_DOUBLE_BACK_TO_CLOSE_CLASS_DESCRIPTOR =
@@ -39,7 +39,7 @@ val lithoLayoutPatch = bytecodePatch(
         // Inject the methods which start of ScrollView
         scrollPositionFingerprint.matchOrThrow().let {
             val walkerMethod =
-                it.getWalkerMethod(it.patternMatch!!.startIndex + 1)
+                it.getWalkerMethod(it.instructionMatches.first().index + 1)
             val insertIndex = walkerMethod.implementation!!.instructions.size - 1 - 1
 
             walkerMethod.injectScrollView(insertIndex, "onStartScrollView")
@@ -48,7 +48,7 @@ val lithoLayoutPatch = bytecodePatch(
         // Inject the methods which stop of ScrollView
         val fingerprint = if (is_20_16_or_greater) scrollTopFingerprint2016 else scrollTopFingerprint
         fingerprint.matchOrThrow(scrollTopParentFingerprint).let {
-            val insertIndex = it.patternMatch!!.endIndex
+            val insertIndex = it.instructionMatches.last().index
 
             it.method.injectScrollView(insertIndex, "onStopScrollView")
         }
@@ -59,7 +59,7 @@ val lithoLayoutPatch = bytecodePatch(
 
         swipeRefreshLayoutFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.endIndex
+                val insertIndex = it.instructionMatches.last().index
                 val register = getInstruction<OneRegisterInstruction>(insertIndex).registerA
 
                 addInstruction(

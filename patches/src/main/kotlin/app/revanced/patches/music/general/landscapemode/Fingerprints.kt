@@ -1,8 +1,8 @@
-package app.revanced.patches.music.general.landscapemode
+package app.morphe.patches.music.general.landscapemode
 
-import app.revanced.patches.music.utils.resourceid.isTablet
-import app.revanced.util.fingerprint.legacyFingerprint
-import app.revanced.util.or
+import app.morphe.patches.music.utils.resourceid.isTablet
+import app.morphe.util.fingerprint.legacyFingerprint
+import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 

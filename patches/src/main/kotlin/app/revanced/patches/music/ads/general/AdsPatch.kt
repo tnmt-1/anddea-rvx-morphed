@@ -1,36 +1,36 @@
-package app.revanced.patches.music.ads.general
+package app.morphe.patches.music.ads.general
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patches.music.navigation.components.navigationBarComponentsPatch
-import app.revanced.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.music.utils.extension.Constants.ADS_PATH
-import app.revanced.patches.music.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.music.utils.mainactivity.mainActivityResolvePatch
-import app.revanced.patches.music.utils.navigation.navigationBarHookPatch
-import app.revanced.patches.music.utils.patch.PatchList.HIDE_ADS
-import app.revanced.patches.music.utils.playservice.is_7_28_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.resourceid.buttonContainer
-import app.revanced.patches.music.utils.resourceid.floatingLayout
-import app.revanced.patches.music.utils.resourceid.privacyTosFooter
-import app.revanced.patches.music.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.ads.adsPatch
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.mainactivity.onStartMethod
-import app.revanced.patches.shared.mainactivity.onStopMethod
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.getWalkerMethod
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstLiteralInstructionOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patches.music.navigation.components.navigationBarComponentsPatch
+import app.morphe.patches.music.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.music.utils.extension.Constants.ADS_PATH
+import app.morphe.patches.music.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.music.utils.mainactivity.mainActivityResolvePatch
+import app.morphe.patches.music.utils.navigation.navigationBarHookPatch
+import app.morphe.patches.music.utils.patch.PatchList.HIDE_ADS
+import app.morphe.patches.music.utils.playservice.is_7_28_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.resourceid.buttonContainer
+import app.morphe.patches.music.utils.resourceid.floatingLayout
+import app.morphe.patches.music.utils.resourceid.privacyTosFooter
+import app.morphe.patches.music.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.ads.adsPatch
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.mainactivity.onStartMethod
+import app.morphe.patches.shared.mainactivity.onStopMethod
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.getWalkerMethod
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstLiteralInstructionOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -131,7 +131,7 @@ val adsPatch = adsPatch(
         // get premium button at the top of the account switching menu
         getPremiumTextViewFingerprint.matchOrThrow().let {
             it.method.apply {
-                val insertIndex = it.patternMatch!!.startIndex
+                val insertIndex = it.instructionMatches.first().index
                 val register = getInstruction<TwoRegisterInstruction>(insertIndex).registerA
 
                 addInstruction(

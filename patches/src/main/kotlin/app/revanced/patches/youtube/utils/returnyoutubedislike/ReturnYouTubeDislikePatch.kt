@@ -1,44 +1,44 @@
-package app.revanced.patches.youtube.utils.returnyoutubedislike
+package app.morphe.patches.youtube.utils.returnyoutubedislike
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.removeInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.util.smali.ExternalLabel
-import app.revanced.patches.shared.dislikeFingerprint
-import app.revanced.patches.shared.likeFingerprint
-import app.revanced.patches.shared.litho.addLithoFilter
-import app.revanced.patches.shared.litho.lithoFilterPatch
-import app.revanced.patches.shared.removeLikeFingerprint
-import app.revanced.patches.shared.textcomponent.hookSpannableString
-import app.revanced.patches.shared.textcomponent.hookTextComponent
-import app.revanced.patches.shared.textcomponent.textComponentPatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.UTILS_PATH
-import app.revanced.patches.youtube.utils.fix.litho.lithoLayoutPatch
-import app.revanced.patches.youtube.utils.patch.PatchList.RETURN_YOUTUBE_DISLIKE
-import app.revanced.patches.youtube.utils.playservice.is_18_34_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_18_49_or_greater
-import app.revanced.patches.youtube.utils.playservice.is_20_07_or_greater
-import app.revanced.patches.youtube.utils.playservice.versionCheckPatch
-import app.revanced.patches.youtube.utils.rollingNumberTextViewAnimationUpdateFingerprint
-import app.revanced.patches.youtube.utils.rollingNumberTextViewFingerprint
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.patches.youtube.video.information.hookShortsVideoInformation
-import app.revanced.patches.youtube.video.information.videoInformationPatch
-import app.revanced.patches.youtube.video.videoid.hookPlayerResponseVideoId
-import app.revanced.patches.youtube.video.videoid.hookVideoId
-import app.revanced.util.findFreeRegister
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
-import app.revanced.util.getReference
-import app.revanced.util.indexOfFirstInstructionOrThrow
-import app.revanced.util.indexOfFirstInstructionReversedOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
+import app.morphe.patches.shared.dislikeFingerprint
+import app.morphe.patches.shared.likeFingerprint
+import app.morphe.patches.shared.litho.addLithoFilter
+import app.morphe.patches.shared.litho.lithoFilterPatch
+import app.morphe.patches.shared.removeLikeFingerprint
+import app.morphe.patches.shared.textcomponent.hookSpannableString
+import app.morphe.patches.shared.textcomponent.hookTextComponent
+import app.morphe.patches.shared.textcomponent.textComponentPatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.COMPONENTS_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.UTILS_PATH
+import app.morphe.patches.youtube.utils.fix.litho.lithoLayoutPatch
+import app.morphe.patches.youtube.utils.patch.PatchList.RETURN_YOUTUBE_DISLIKE
+import app.morphe.patches.youtube.utils.playservice.is_18_34_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_18_49_or_greater
+import app.morphe.patches.youtube.utils.playservice.is_20_07_or_greater
+import app.morphe.patches.youtube.utils.playservice.versionCheckPatch
+import app.morphe.patches.youtube.utils.rollingNumberTextViewAnimationUpdateFingerprint
+import app.morphe.patches.youtube.utils.rollingNumberTextViewFingerprint
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patches.youtube.video.information.hookShortsVideoInformation
+import app.morphe.patches.youtube.video.information.videoInformationPatch
+import app.morphe.patches.youtube.video.videoid.hookPlayerResponseVideoId
+import app.morphe.patches.youtube.video.videoid.hookVideoId
+import app.morphe.util.findFreeRegister
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
+import app.morphe.util.getReference
+import app.morphe.util.indexOfFirstInstructionOrThrow
+import app.morphe.util.indexOfFirstInstructionReversedOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -61,7 +61,7 @@ private val returnYouTubeDislikeRollingNumberPatch = bytecodePatch(
 
         rollingNumberSetterFingerprint.matchOrThrow().let {
             it.method.apply {
-                val rollingNumberClassIndex = it.patternMatch!!.startIndex
+                val rollingNumberClassIndex = it.instructionMatches.first().index
                 val rollingNumberClassReference =
                     getInstruction<ReferenceInstruction>(rollingNumberClassIndex).reference.toString()
                 val rollingNumberConstructorMethod =
@@ -98,7 +98,7 @@ private val returnYouTubeDislikeRollingNumberPatch = bytecodePatch(
         // Modify the measure text calculation to include the left drawable separator if needed.
         rollingNumberMeasureAnimatedTextFingerprint.matchOrThrow().let {
             it.method.apply {
-                val endIndex = it.patternMatch!!.endIndex
+                val endIndex = it.instructionMatches.last().index
                 val measuredTextWidthIndex = endIndex - 2
                 val measuredTextWidthRegister =
                     getInstruction<TwoRegisterInstruction>(measuredTextWidthIndex).registerA
@@ -126,7 +126,7 @@ private val returnYouTubeDislikeRollingNumberPatch = bytecodePatch(
             rollingNumberMeasureTextParentFingerprint
         ).let {
             it.method.apply {
-                val measureTextIndex = it.patternMatch!!.startIndex + 1
+                val measureTextIndex = it.instructionMatches.first().index + 1
                 val freeRegister = getInstruction<TwoRegisterInstruction>(0).registerA
 
                 addInstructions(
@@ -181,7 +181,7 @@ private val returnYouTubeDislikeShortsPatch = bytecodePatch(
     execute {
         shortsTextViewFingerprint.matchOrThrow().let {
             it.method.apply {
-                val startIndex = it.patternMatch!!.startIndex
+                val startIndex = it.instructionMatches.first().index
 
                 val isDisLikesBooleanIndex =
                     indexOfFirstInstructionReversedOrThrow(startIndex, Opcode.IGET_BOOLEAN)

@@ -1,9 +1,9 @@
-package app.revanced.patches.music.utils.playertype
+package app.morphe.patches.music.utils.playertype
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.music.utils.extension.Constants.UTILS_PATH
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.music.utils.extension.Constants.UTILS_PATH
+import app.morphe.util.fingerprint.methodOrThrow
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
     "$UTILS_PATH/PlayerTypeHookPatch;"

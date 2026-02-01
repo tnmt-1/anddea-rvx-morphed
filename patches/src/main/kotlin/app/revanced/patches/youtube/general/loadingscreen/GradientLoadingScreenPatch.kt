@@ -1,12 +1,12 @@
-package app.revanced.patches.youtube.general.loadingscreen
+package app.morphe.patches.youtube.general.loadingscreen
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.patch.PatchList.ENABLE_GRADIENT_LOADING_SCREEN
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.patch.PatchList.ENABLE_GRADIENT_LOADING_SCREEN
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
 
 @Suppress("unused")
 val gradientLoadingScreenPatch = bytecodePatch(

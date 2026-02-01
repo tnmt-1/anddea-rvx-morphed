@@ -1,6 +1,6 @@
-package app.revanced.patches.music.utils.fix.fileprovider
+package app.morphe.patches.music.utils.fix.fileprovider
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 
 internal val fileProviderResolverFingerprint = legacyFingerprint(
     name = "fileProviderResolverFingerprint",

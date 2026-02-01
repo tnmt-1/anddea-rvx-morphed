@@ -1,8 +1,8 @@
 @file:Suppress("SpellCheckingInspection")
 
-package app.revanced.patches.shared.quic
+package app.morphe.patches.shared.quic
 
-import app.revanced.util.fingerprint.legacyFingerprint
+import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val cronetEngineBuilderFingerprint = legacyFingerprint(

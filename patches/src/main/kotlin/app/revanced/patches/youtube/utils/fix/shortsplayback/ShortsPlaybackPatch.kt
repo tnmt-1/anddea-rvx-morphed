@@ -1,7 +1,7 @@
-package app.revanced.patches.youtube.utils.fix.shortsplayback
+package app.morphe.patches.youtube.utils.fix.shortsplayback
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.util.fingerprint.injectLiteralInstructionBooleanCall
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.util.fingerprint.injectLiteralInstructionBooleanCall
 
 val shortsPlaybackPatch = bytecodePatch(
     description = "shortsPlaybackPatch"

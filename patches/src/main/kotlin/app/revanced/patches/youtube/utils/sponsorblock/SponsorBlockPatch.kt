@@ -1,36 +1,36 @@
-package app.revanced.patches.youtube.utils.sponsorblock
+package app.morphe.patches.youtube.utils.sponsorblock
 
-import app.revanced.patcher.extensions.InstructionExtensions.addInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.addInstructions
-import app.revanced.patcher.extensions.InstructionExtensions.getInstruction
-import app.revanced.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patcher.patch.stringOption
-import app.revanced.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
-import app.revanced.patches.youtube.utils.extension.Constants.EXTENSION_PATH
-import app.revanced.patches.youtube.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
-import app.revanced.patches.youtube.utils.patch.PatchList.SPONSORBLOCK
-import app.revanced.patches.youtube.utils.playercontrols.addTopControl
-import app.revanced.patches.youtube.utils.playercontrols.injectControl
-import app.revanced.patches.youtube.utils.playercontrols.playerControlsPatch
-import app.revanced.patches.youtube.utils.resourceid.insetOverlayViewLayout
-import app.revanced.patches.youtube.utils.resourceid.sharedResourceIdPatch
-import app.revanced.patches.youtube.utils.seekbarFingerprint
-import app.revanced.patches.youtube.utils.seekbarOnDrawFingerprint
-import app.revanced.patches.youtube.utils.settings.ResourceUtils.addPreference
-import app.revanced.patches.youtube.utils.settings.settingsPatch
-import app.revanced.patches.youtube.utils.totalTimeFingerprint
-import app.revanced.patches.youtube.utils.youtubeControlsOverlayFingerprint
-import app.revanced.patches.youtube.video.information.hookVideoInformation
-import app.revanced.patches.youtube.video.information.onCreateHook
-import app.revanced.patches.youtube.video.information.videoInformationPatch
-import app.revanced.patches.youtube.video.information.videoTimeHook
-import app.revanced.util.ResourceGroup
-import app.revanced.util.copyResources
-import app.revanced.util.*
-import app.revanced.util.fingerprint.matchOrThrow
-import app.revanced.util.fingerprint.methodOrThrow
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.patch.stringOption
+import app.morphe.patches.youtube.utils.compatibility.Constants.COMPATIBLE_PACKAGE
+import app.morphe.patches.youtube.utils.extension.Constants.EXTENSION_PATH
+import app.morphe.patches.youtube.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
+import app.morphe.patches.youtube.utils.patch.PatchList.SPONSORBLOCK
+import app.morphe.patches.youtube.utils.playercontrols.addTopControl
+import app.morphe.patches.youtube.utils.playercontrols.injectControl
+import app.morphe.patches.youtube.utils.playercontrols.playerControlsPatch
+import app.morphe.patches.youtube.utils.resourceid.insetOverlayViewLayout
+import app.morphe.patches.youtube.utils.resourceid.sharedResourceIdPatch
+import app.morphe.patches.youtube.utils.seekbarFingerprint
+import app.morphe.patches.youtube.utils.seekbarOnDrawFingerprint
+import app.morphe.patches.youtube.utils.settings.ResourceUtils.addPreference
+import app.morphe.patches.youtube.utils.settings.settingsPatch
+import app.morphe.patches.youtube.utils.totalTimeFingerprint
+import app.morphe.patches.youtube.utils.youtubeControlsOverlayFingerprint
+import app.morphe.patches.youtube.video.information.hookVideoInformation
+import app.morphe.patches.youtube.video.information.onCreateHook
+import app.morphe.patches.youtube.video.information.videoInformationPatch
+import app.morphe.patches.youtube.video.information.videoTimeHook
+import app.morphe.util.ResourceGroup
+import app.morphe.util.copyResources
+import app.morphe.util.*
+import app.morphe.util.fingerprint.matchOrThrow
+import app.morphe.util.fingerprint.methodOrThrow
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
@@ -163,7 +163,7 @@ val sponsorBlockBytecodePatch = bytecodePatch(
 
             segmentPlaybackControllerFingerprint.matchOrThrow().let {
                 it.method.apply {
-                    val replaceIndex = it.patternMatch!!.startIndex
+                    val replaceIndex = it.instructionMatches.first().index
                     val replaceRegister =
                         getInstruction<OneRegisterInstruction>(replaceIndex).registerA
 
@@ -252,7 +252,7 @@ val sponsorBlockPatch = resourcePatch(
         if (newSegmentAlignment == "left") {
             document("res/layout/revanced_sb_inline_sponsor_overlay.xml").use { document ->
                 document.doRecursively loop@{ node ->
-                    if (node is Element && node.tagName == "app.revanced.integrations.youtube.sponsorblock.ui.NewSegmentLayout") {
+                    if (node is Element && node.tagName == "app.morphe.extension.youtube.sponsorblock.ui.NewSegmentLayout") {
                         node.setAttribute("android:layout_alignParentRight", "false")
                         node.setAttribute("android:layout_alignParentLeft", "true")
                     }

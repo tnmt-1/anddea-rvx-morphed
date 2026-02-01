@@ -1,27 +1,27 @@
-package app.revanced.patches.music.general.spoofappversion
+package app.morphe.patches.music.general.spoofappversion
 
-import app.revanced.patcher.patch.bytecodePatch
-import app.revanced.patcher.patch.resourcePatch
-import app.revanced.patches.music.utils.compatibility.Constants.YOUTUBE_MUSIC_PACKAGE_NAME
-import app.revanced.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
-import app.revanced.patches.music.utils.extension.sharedExtensionPatch
-import app.revanced.patches.music.utils.patch.PatchList.SPOOF_APP_VERSION
-import app.revanced.patches.music.utils.playservice.is_6_36_or_greater
-import app.revanced.patches.music.utils.playservice.is_6_43_or_greater
-import app.revanced.patches.music.utils.playservice.is_7_25_or_greater
-import app.revanced.patches.music.utils.playservice.versionCheckPatch
-import app.revanced.patches.music.utils.settings.CategoryType
-import app.revanced.patches.music.utils.settings.ResourceUtils.updatePatchStatus
-import app.revanced.patches.music.utils.settings.addPreferenceWithIntent
-import app.revanced.patches.music.utils.settings.addSwitchPreference
-import app.revanced.patches.music.utils.settings.settingsPatch
-import app.revanced.patches.shared.spoof.appversion.baseSpoofAppVersionPatch
-import app.revanced.patches.shared.spoof.watchnext.spoofAppVersionWatchNextPatch
-import app.revanced.util.Utils.printWarn
-import app.revanced.util.appendAppVersion
-import app.revanced.util.findMethodOrThrow
-import app.revanced.util.returnEarly
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patches.music.utils.compatibility.Constants.YOUTUBE_MUSIC_PACKAGE_NAME
+import app.morphe.patches.music.utils.extension.Constants.GENERAL_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.extension.Constants.PATCH_STATUS_CLASS_DESCRIPTOR
+import app.morphe.patches.music.utils.extension.sharedExtensionPatch
+import app.morphe.patches.music.utils.patch.PatchList.SPOOF_APP_VERSION
+import app.morphe.patches.music.utils.playservice.is_6_36_or_greater
+import app.morphe.patches.music.utils.playservice.is_6_43_or_greater
+import app.morphe.patches.music.utils.playservice.is_7_25_or_greater
+import app.morphe.patches.music.utils.playservice.versionCheckPatch
+import app.morphe.patches.music.utils.settings.CategoryType
+import app.morphe.patches.music.utils.settings.ResourceUtils.updatePatchStatus
+import app.morphe.patches.music.utils.settings.addPreferenceWithIntent
+import app.morphe.patches.music.utils.settings.addSwitchPreference
+import app.morphe.patches.music.utils.settings.settingsPatch
+import app.morphe.patches.shared.spoof.appversion.baseSpoofAppVersionPatch
+import app.morphe.patches.shared.spoof.watchnext.spoofAppVersionWatchNextPatch
+import app.morphe.util.Utils.printWarn
+import app.morphe.util.appendAppVersion
+import app.morphe.util.findMethodOrThrow
+import app.morphe.util.returnEarly
 
 private val spoofAppVersionWatchNextPatch = spoofAppVersionWatchNextPatch(
     block = {
