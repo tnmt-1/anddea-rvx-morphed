@@ -16,7 +16,6 @@ permissions:
 jobs:
   pull-request:
     name: Open pull request
-    if: github.repository_owner == 'anddea'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
