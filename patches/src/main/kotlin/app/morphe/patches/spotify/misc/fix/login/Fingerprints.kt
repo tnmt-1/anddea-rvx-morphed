@@ -1,13 +1,13 @@
 package app.morphe.patches.spotify.misc.fix.login
 
-import app.morphe.patcher.fingerprint
-import app.morphe.util.literal
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.literal
 
-internal val katanaProxyLoginMethodHandlerClassFingerprint = fingerprint {
-    strings("katana_proxy_auth")
-}
+internal val katanaProxyLoginMethodHandlerClassFingerprint = Fingerprint(
+    strings = listOf("katana_proxy_auth")
+)
 
-internal val katanaProxyLoginMethodTryAuthorizeFingerprint = fingerprint {
-    strings("e2e")
-    literal { 0 }
-}
+internal val katanaProxyLoginMethodTryAuthorizeFingerprint = Fingerprint(
+    strings = listOf("e2e"),
+    filters = listOf(literal(0))
+)

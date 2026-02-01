@@ -1,15 +1,17 @@
 package app.morphe.patches.shared.litho
 
-import app.morphe.patcher.fingerprint
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.OpcodesFilter
+import app.morphe.patcher.literal
 import app.morphe.util.*
 import app.morphe.util.fingerprint.legacyFingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
-internal val componentContextParserFingerprint = fingerprint {
-    strings("Number of bits must be positive")
-}
+internal val componentContextParserFingerprint = Fingerprint(
+    strings = listOf("Number of bits must be positive")
+)
 
 internal val componentContextSubParserFingerprint2 = legacyFingerprint(
     name = "componentContextSubParserFingerprint2",
@@ -17,37 +19,37 @@ internal val componentContextSubParserFingerprint2 = legacyFingerprint(
     strings = listOf("Number of bits must be positive"),
 )
 
-internal val lithoFilterFingerprint = fingerprint {
-    accessFlags(AccessFlags.STATIC, AccessFlags.CONSTRUCTOR)
-    custom { _, classDef ->
+internal val lithoFilterFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.STATIC, AccessFlags.CONSTRUCTOR),
+    custom = { _, classDef ->
         classDef.endsWith("/LithoFilterPatch;")
     }
-}
+)
 
-internal val emptyComponentFingerprint = fingerprint {
-    accessFlags(AccessFlags.PRIVATE, AccessFlags.CONSTRUCTOR)
-    parameters()
-    strings("EmptyComponent")
-    custom { _, classDef ->
+internal val emptyComponentFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PRIVATE, AccessFlags.CONSTRUCTOR),
+    parameters = listOf(),
+    strings = listOf("EmptyComponent"),
+    custom = { _, classDef ->
         classDef.methods.filter { AccessFlags.STATIC.isSet(it.accessFlags) }.size == 1
     }
-}
+)
 
-internal val lithoComponentNameUpbFeatureFlagFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returns("Z")
-    parameters()
-    literal { 45631264L }
-}
+internal val lithoComponentNameUpbFeatureFlagFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "Z",
+    parameters = emptyList(),
+    filters = listOf(literal(45631264L))
+)
 
-internal val lithoConverterBufferUpbFeatureFlagFingerprint = fingerprint {
-    returns("L")
-    literal { 45419603L }
-}
+internal val lithoConverterBufferUpbFeatureFlagFingerprint = Fingerprint(
+    returnType = "L",
+    filters = listOf(literal(45419603L))
+)
 
-internal val conversionContextFingerprintToString = fingerprint {
-    parameters()
-    strings(
+internal val conversionContextFingerprintToString = Fingerprint(
+    parameters = listOf(),
+    strings = listOf(
         "ConversionContext{containerInternal=",
         ", widthConstraint=",
         ", heightConstraint=",
@@ -55,19 +57,19 @@ internal val conversionContextFingerprintToString = fingerprint {
         ", rootDisposableContainer=",
         ", identifierProperty="
     )
-}
+)
 
-internal val protobufBufferReferenceLegacyFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returns("V")
-    parameters("I", "Ljava/nio/ByteBuffer;")
-    opcodes(
+internal val protobufBufferReferenceLegacyFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "V",
+    parameters = listOf("I", "Ljava/nio/ByteBuffer;"),
+    filters = OpcodesFilter.opcodesToFilters(
         Opcode.IPUT,
         Opcode.INVOKE_VIRTUAL,
         Opcode.MOVE_RESULT,
         Opcode.SUB_INT_2ADDR,
     )
-}
+)
 
 internal const val BUFFER_UPD_FEATURE_FLAG = 45419603L
 

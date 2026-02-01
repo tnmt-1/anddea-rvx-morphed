@@ -1,8 +1,8 @@
 package app.morphe.patches.spotify.extended
 
+import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
-import app.morphe.patcher.fingerprint
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.util.indexOfFirstInstructionOrThrow
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -13,24 +13,25 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 private const val TRACK_LOGGER_CLASS_DESCRIPTOR = "Lapp/morphe/extension/spotify/misc/LyricsSearchManager;"
 private const val MEDIA_SESSION_METADATA_TO_STRING_START = "MediaSessionTrackMetadata(uri="
 
-val mediaSessionMetadataConstructorFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
-    returns("V")
-
-    custom { _, classDef ->
+val mediaSessionMetadataConstructorFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
+    returnType = "V",
+    custom =  { _, classDef ->
         val toStringMethod = classDef.methods.firstOrNull {
             it.name == "toString" && it.parameters.isEmpty() && it.returnType == "Ljava/lang/String;"
-        } ?: return@custom false
+        } ?: return@Fingerprint false
 
-        val toStringInstructions = toStringMethod.instructionsOrNull ?: return@custom false
+        val toStringInstructions = toStringMethod.instructionsOrNull ?: return@Fingerprint false
         toStringInstructions.any { instruction ->
             instruction.opcode == Opcode.CONST_STRING &&
                     (instruction as? ReferenceInstruction)?.reference?.let { ref ->
-                        (ref as? StringReference)?.string?.startsWith(MEDIA_SESSION_METADATA_TO_STRING_START) == true
+                        (ref as? StringReference)?.string?.startsWith(
+                            MEDIA_SESSION_METADATA_TO_STRING_START
+                        ) == true
                     } == true
         }
     }
-}
+)
 
 @Suppress("unused")
 val lyricsSearchPatch = bytecodePatch(

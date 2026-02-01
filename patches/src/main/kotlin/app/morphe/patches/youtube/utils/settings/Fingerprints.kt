@@ -1,19 +1,19 @@
 package app.morphe.patches.youtube.utils.settings
 
-import app.morphe.patcher.fingerprint
+import app.morphe.patcher.Fingerprint
 import app.morphe.patches.youtube.utils.resourceid.appearance
 import app.morphe.util.fingerprint.legacyFingerprint
 import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 
-internal val licenseActivityOnCreateFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returns("V")
-    parameters("L")
-    custom { method, classDef ->
+internal val licenseActivityOnCreateFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "V",
+    parameters = listOf("L"),
+    custom = { method, classDef ->
         classDef.endsWith("LicenseActivity;") && method.name == "onCreate"
     }
-}
+)
 
 internal val settingsFragmentStylePrimaryFingerprint = legacyFingerprint(
     name = "settingsFragmentStylePrimaryFingerprint",

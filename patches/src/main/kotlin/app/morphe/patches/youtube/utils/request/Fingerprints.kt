@@ -1,6 +1,6 @@
 package app.morphe.patches.youtube.utils.request
 
-import app.morphe.patcher.fingerprint
+import app.morphe.patcher.Fingerprint
 import app.morphe.util.getReference
 import app.morphe.util.indexOfFirstInstruction
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -8,10 +8,10 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-internal val buildRequestFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.STATIC)
-    returns("Lorg/chromium/net/UrlRequest") // UrlRequest; or UrlRequest$Builder;
-    custom { methodDef, _ ->
+internal val buildRequestFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    returnType = "Lorg/chromium/net/UrlRequest", // UrlRequest; or UrlRequest$Builder;
+    custom = { methodDef, _ ->
         // Different targets have slightly different parameters
 
         // Earlier targets have parameters:
@@ -49,7 +49,7 @@ internal val buildRequestFingerprint = fingerprint {
                 !methodDef.definingClass.startsWith("Lorg/") &&
                 indexOfNewUrlRequestBuilderInstruction(methodDef) >= 0
     }
-}
+)
 
 internal fun indexOfNewUrlRequestBuilderInstruction(method: Method) =
     method.indexOfFirstInstruction {

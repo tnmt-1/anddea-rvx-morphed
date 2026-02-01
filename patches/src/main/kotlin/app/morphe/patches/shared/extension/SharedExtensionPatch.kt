@@ -11,7 +11,6 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.proxy.mutableTypes.encodedValue.MutableLongEncodedValue
 import app.morphe.patches.shared.extension.Constants.EXTENSION_PATCH_STATUS_CLASS_DESCRIPTOR
 import app.morphe.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
-import app.morphe.patches.shared.misc.extension.ExtensionHook
 import app.morphe.util.findMethodsOrThrow
 import app.morphe.util.returnEarly
 import com.android.tools.smali.dexlib2.iface.Method
@@ -81,8 +80,8 @@ fun sharedExtensionPatch(
 @Suppress("CONTEXT_RECEIVERS_DEPRECATED")
 class ExtensionHook internal constructor(
     val fingerprint: Fingerprint,
-    private val insertIndexResolver: ((Method) -> Int),
-    private val contextRegisterResolver: (Method) -> String,
+    private val insertIndexResolver: (BytecodePatchContext.(Method) -> Int),
+    private val contextRegisterResolver: BytecodePatchContext.(Method) -> String,
 ) {
     context(BytecodePatchContext)
     operator fun invoke(extensionClassDescriptor: String) {
@@ -98,24 +97,7 @@ class ExtensionHook internal constructor(
 }
 
 fun extensionHook(
-    insertIndexResolver: ((Method) -> Int) = { 0 },
-    contextRegisterResolver: (Method) -> String = { "p0" },
-    fingerprintBuilderBlock: FingerprintBuilder.() -> Unit,
-) = ExtensionHook(
-    fingerprint(block = fingerprintBuilderBlock),
-    insertIndexResolver,
-    contextRegisterResolver
-)
-
-fun extensionHook(
     insertIndexResolver: BytecodePatchContext.(Method) -> Int = { 0 },
     contextRegisterResolver: BytecodePatchContext.(Method) -> String = { "p0" },
     fingerprint: Fingerprint,
 ) = ExtensionHook(fingerprint, insertIndexResolver, contextRegisterResolver)
-
-@Suppress("unused")
-fun extensionHook(
-    insertIndexResolver: BytecodePatchContext.(Method) -> Int = { 0 },
-    contextRegisterResolver: BytecodePatchContext.(Method) -> String = { "p0" },
-    fingerprintBuilderBlock: FingerprintBuilder.() -> Unit,
-) = extensionHook(insertIndexResolver, contextRegisterResolver, fingerprint(block = fingerprintBuilderBlock))

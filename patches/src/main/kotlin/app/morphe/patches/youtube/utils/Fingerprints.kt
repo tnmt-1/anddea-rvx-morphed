@@ -1,6 +1,8 @@
 package app.morphe.patches.youtube.utils
 
+import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.fingerprint
+import app.morphe.patcher.literal
 import app.morphe.patches.youtube.player.components.playerComponentsPatch
 import app.morphe.patches.youtube.utils.resourceid.fadeDurationFast
 import app.morphe.patches.youtube.utils.resourceid.inlineTimeBarColorizedBarPlayedColorDark
@@ -29,6 +31,7 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import kotlin.collections.emptyList
 
 internal const val YOUTUBE_FORMAT_STREAM_MODEL_CLASS_TYPE =
     "Lcom/google/android/libraries/youtube/innertube/model/media/FormatStreamModel;"
@@ -84,12 +87,12 @@ internal val layoutConstructorFingerprint = legacyFingerprint(
     literals = listOf(playerControlPreviousButtonTouchArea, playerControlNextButtonTouchArea),
 )
 
-internal val inflateControlsGroupLayoutStubFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    parameters()
-    returns("V")
-    literal { youTubeControlsButtonGroupLayoutStub }
-}
+internal val inflateControlsGroupLayoutStubFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = emptyList(),
+    returnType = "V",
+    filters = listOf(literal(youTubeControlsButtonGroupLayoutStub))
+)
 
 internal val playbackRateBottomSheetBuilderFingerprint = legacyFingerprint(
     name = "playbackRateBottomSheetBuilderFingerprint",

@@ -133,6 +133,7 @@ fun Pair<String, Fingerprint>.injectLiteralInstructionViewCall(
     method.injectLiteralInstructionViewCall(literal, smaliInstruction)
 }
 
+//@Deprecated("Migrate away from fingerprint DSL")
 internal fun legacyFingerprint(
     name: String,
     accessFlags: Int? = null,

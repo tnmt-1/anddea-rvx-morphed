@@ -1,7 +1,8 @@
 package app.morphe.patches.youtube.shorts.components
 
+import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
-import app.morphe.patcher.fingerprint
+import app.morphe.patcher.literal
 import app.morphe.patches.youtube.utils.resourceid.reelDynRemix
 import app.morphe.patches.youtube.utils.resourceid.reelDynShare
 import app.morphe.patches.youtube.utils.resourceid.reelFeedbackLike
@@ -15,7 +16,6 @@ import app.morphe.patches.youtube.utils.resourceid.rightComment
 import app.morphe.util.fingerprint.legacyFingerprint
 import app.morphe.util.getReference
 import app.morphe.util.indexOfFirstInstruction
-import app.morphe.util.literal
 import app.morphe.util.or
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -322,20 +322,16 @@ internal val shortsFullscreenFeatureFingerprint = legacyFingerprint(
     literals = listOf(FULLSCREEN_FEATURE_FLAG),
 )
 
-internal val shortsExperimentalPlayerFeatureFlagFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returns("Z")
-    parameters()
-    literal {
-        45677719L
-    }
-}
+internal val shortsExperimentalPlayerFeatureFlagFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "Z",
+    parameters = emptyList(),
+    filters = listOf(literal(45677719L))
+)
 
-internal val renderNextUIFeatureFlagFingerprint = fingerprint {
-    accessFlags(AccessFlags.PUBLIC, AccessFlags.FINAL)
-    returns("Z")
-    parameters()
-    literal {
-        45649743L
-    }
-}
+internal val renderNextUIFeatureFlagFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "Z",
+    parameters = emptyList(),
+    filters = listOf(literal(45649743L))
+)
