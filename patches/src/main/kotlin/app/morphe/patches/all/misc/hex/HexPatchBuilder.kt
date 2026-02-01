@@ -1,4 +1,4 @@
-package app.morphe.patches.shared.misc.hex
+package app.morphe.patches.all.misc.hex
 
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.rawResourcePatch

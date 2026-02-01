@@ -3,12 +3,10 @@ package app.morphe.patches.all.misc.hex
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.rawResourcePatch
 import app.morphe.patcher.patch.stringsOption
-import app.morphe.patches.shared.misc.hex.HexPatchBuilder
-import app.morphe.patches.shared.misc.hex.hexPatch
 import app.morphe.util.Utils.trimIndentMultiline
 
 @Suppress("unused")
-val hexPatch = rawResourcePatch(
+val hexResourcePatch = rawResourcePatch(
     description = "Replaces a hexadecimal patterns of bytes of files in an APK.",
     use = false,
 ) {

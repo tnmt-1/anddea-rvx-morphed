@@ -11,11 +11,27 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.proxy.mutableTypes.encodedValue.MutableLongEncodedValue
 import app.morphe.patches.shared.extension.Constants.EXTENSION_PATCH_STATUS_CLASS_DESCRIPTOR
 import app.morphe.patches.shared.extension.Constants.EXTENSION_UTILS_CLASS_DESCRIPTOR
+import app.morphe.patches.shared.misc.extension.ExtensionHook
 import app.morphe.util.findMethodsOrThrow
 import app.morphe.util.returnEarly
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.immutable.value.ImmutableLongEncodedValue
 import java.util.jar.Manifest
+
+/**
+ * A patch to extend with an extension shared with multiple patches.
+ *
+ * @param extensionName The name of the extension to extend with.
+ */
+@Suppress("unused")
+fun sharedExtensionPatch(
+    extensionName: String,
+    vararg hooks: ExtensionHook,
+) = bytecodePatch {
+    dependsOn(sharedExtensionPatch(*hooks))
+
+    extendWith("extensions/shared.mpe")
+}
 
 fun sharedExtensionPatch(
     vararg hooks: ExtensionHook,
@@ -90,3 +106,16 @@ fun extensionHook(
     insertIndexResolver,
     contextRegisterResolver
 )
+
+fun extensionHook(
+    insertIndexResolver: BytecodePatchContext.(Method) -> Int = { 0 },
+    contextRegisterResolver: BytecodePatchContext.(Method) -> String = { "p0" },
+    fingerprint: Fingerprint,
+) = ExtensionHook(fingerprint, insertIndexResolver, contextRegisterResolver)
+
+@Suppress("unused")
+fun extensionHook(
+    insertIndexResolver: BytecodePatchContext.(Method) -> Int = { 0 },
+    contextRegisterResolver: BytecodePatchContext.(Method) -> String = { "p0" },
+    fingerprintBuilderBlock: FingerprintBuilder.() -> Unit,
+) = extensionHook(insertIndexResolver, contextRegisterResolver, fingerprint(block = fingerprintBuilderBlock))

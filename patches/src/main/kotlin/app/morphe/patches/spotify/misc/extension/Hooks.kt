@@ -1,7 +1,7 @@
 package app.morphe.patches.spotify.misc.extension
 
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
-import app.morphe.patches.shared.misc.extension.extensionHook
+import app.morphe.patches.shared.extension.extensionHook
 import app.morphe.patches.spotify.shared.mainActivityOnCreateFingerprint
 import app.morphe.util.getReference
 import app.morphe.util.indexOfFirstInstruction
