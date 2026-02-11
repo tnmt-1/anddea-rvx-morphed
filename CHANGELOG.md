@@ -1,3 +1,15 @@
+# [3.17.0-dev.2](https://github.com/wchill/anddea-rvx-morphed/compare/v3.17.0-dev.1...v3.17.0-dev.2) (2026-02-11)
+
+
+### Bug Fixes
+
+* Update reddit patches to use Morphe API and delete the duplicate shared patches ([0263378](https://github.com/wchill/anddea-rvx-morphed/commit/0263378a687cef7179e3aa3f8c853baf1f9f6333))
+
+
+### Reverts
+
+* Revert "refactor: Remove Reddit patches that are already in Morphe" ([8e92ed5](https://github.com/wchill/anddea-rvx-morphed/commit/8e92ed5bf0beb36d3c87c4d36617f7ebd85b3611))
+
 # [3.17.0-dev.1](https://github.com/wchill/anddea-rvx-morphed/compare/v3.16.0...v3.17.0-dev.1) (2026-02-01)
 
 
