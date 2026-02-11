@@ -1,4 +1,4 @@
-package app.revanced.extension.all.misc.signature;
+package app.morphe.extension.all.misc.signature;
 
 import android.annotation.SuppressLint;
 import android.app.Application;

@@ -1,4 +1,4 @@
-group = "app.revanced"
+group = "app.morphe"
 
 patches {
     about {
