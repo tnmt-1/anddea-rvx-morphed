@@ -16,6 +16,9 @@
 -keep class com.liskovsoft.** {
   *;
 }
+-keep class org.lsposed.** {
+  *;
+}
 
 ## Rules for OkHttp. Copy pasted from https://github.com/square/okhttp
 -dontwarn okhttp3.**

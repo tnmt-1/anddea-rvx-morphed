@@ -67,3 +67,24 @@ protobuf {
         }
     }
 }
+
+val sharedExtensionOutput = layout.buildDirectory.file("morphe/extensions/shared.mpe")
+
+tasks.register("verifySharedExtension") {
+    dependsOn("syncExtension")
+    inputs.file(sharedExtensionOutput)
+
+    doLast {
+        val classes = sharedExtensionOutput.get()
+            .asFile
+            .readText(Charsets.ISO_8859_1)
+
+        check("Lapp/morphe/extension/shared/utils/Utils;" in classes) {
+            "The shared extension does not contain Utils."
+        }
+    }
+}
+
+tasks.named("check") {
+    dependsOn("verifySharedExtension")
+}
