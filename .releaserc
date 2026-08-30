@@ -28,7 +28,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "jq '.version=\"${nextRelease.version}\"' patches-list.json > patches-list.json.tmp && mv patches-list.json.tmp patches-list.json"
+        "prepareCmd": "jq '.version=\"${nextRelease.version}\"' patches-list.json > patches-list.json.tmp && mv patches-list.json.tmp patches-list.json && gpg --batch --yes --pinentry-mode loopback --passphrase \"$GPG_PASSPHRASE\" --armor --detach-sign --output patches/build/libs/patches-${nextRelease.version}.mpp.asc patches/build/libs/patches-${nextRelease.version}.mpp"
       }
     ],
     [
