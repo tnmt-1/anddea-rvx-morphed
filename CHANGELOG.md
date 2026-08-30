@@ -1,3 +1,10 @@
+# [3.17.0-dev.3](https://github.com/tnmt-1/anddea-rvx-morphed/compare/v3.17.0-dev.2...v3.17.0-dev.3) (2026-08-30)
+
+
+### Bug Fixes
+
+* 共有拡張をR8削除から保護する ([8c92ab6](https://github.com/tnmt-1/anddea-rvx-morphed/commit/8c92ab6784d591c76d91ffaa5e884ee8fe26b902))
+
 # [3.17.0-dev.2](https://github.com/wchill/anddea-rvx-morphed/compare/v3.17.0-dev.1...v3.17.0-dev.2) (2026-02-11)
 
 
